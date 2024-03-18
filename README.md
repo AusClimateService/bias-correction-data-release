@@ -14,7 +14,7 @@ This repository tracks the details and progress of the first ACS bias corrected 
 - Precipitation - pr (AGCD, BARRA-R2)
 - Surface downwelling solar radiation - rsds (BARRA-R2)
 - Daily maximum surface wind speed - sfcWindmax (BARRA-R2)
-- Moisutre variable (e.g. relative humidity, vapour pressure) still TBC
+- Moisture variable (e.g. relative humidity, vapour pressure) still TBC
 
 The rationale for processing two observational datasets is that BARRA-R2 provides a consistent product across all variables,
 while having AGCD available for temperature and precipitation caters to users who don't require consistency across many variables
