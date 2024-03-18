@@ -31,3 +31,7 @@ TODO: Provide file paths
 - Time period: 1960-2100
 - Regional climate models: [CCAMoc-v2112](https://dx.doi.org/10.25914/8fve-1910), [BARPA-R](https://dx.doi.org/10.25914/z1x6-dq28), [CCAM-v2203-SN](https://dx.doi.org/10.25914/rd73-4m3)
 
+The regional climate model data (regridded as necessary) are available on NCI at the following directories:
+```
+TODO: Provide file paths
+```
