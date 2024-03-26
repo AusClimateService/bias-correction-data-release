@@ -6,7 +6,10 @@ This repository tracks the details and progress of the first ACS bias corrected 
 
 #### General
 - Timescale: Daily
-- Spatial resolution: 5km AGCD grid
+- Spatial grid: AGCD
+  - 0.05 x 0.05 degrees 
+  - 691 latitudes (112.00 to 156.25 East)
+  - 886 longitudes (10.0 to 44.5 South) 
 
 #### Variables (observational dataset/s):
 - Daily maximum surface air temperature - tasmax (AGCD, BARRA-R2)
