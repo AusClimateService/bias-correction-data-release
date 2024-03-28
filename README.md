@@ -11,14 +11,14 @@ The following bias corrected data will be produced for the
 
 | Variable | Timescale | Grid | Units | Observations | Experiments |
 | ---      | ---       | ---  | ---   | ---                     | ---          |
-| Daily maximum surface air temperature (tasmax) | daily | AUS-05i | C | AGCD, BARRA-R2 | ssp370 |
-| Daily minimum surface air temperature (tasmin) | daily | AUS-05i | C | AGCD, BARRA-R2 | ssp370 |
-| Precipitation (pr) | daily | AUS-05i | mm/day | AGCD, BARRA-R2 | ssp370 |
-| Surface downwelling solar radiation (rsds) | daily | AUS-05i | W/m2 | BARRA-R2 | ssp370 |
-| Daily maximum surface wind speed (sfcWindmax) | daily | AUS-05i | m/s | BARRA-R2 | ssp370 |
-| Moisture TBC (e.g. relative humidity, vapour pressure) | daily | AUS-05i | TBC | BARRA-R2 | ssp370 |
+| Daily maximum surface air temperature (tasmax) | daily | AGCD-05i | C | AGCD, BARRA-R2 | ssp370 |
+| Daily minimum surface air temperature (tasmin) | daily | AGCD-05i | C | AGCD, BARRA-R2 | ssp370 |
+| Precipitation (pr) | daily | AGCD-05i | mm/day | AGCD, BARRA-R2 | ssp370 |
+| Surface downwelling solar radiation (rsds) | daily | AGCD-05i | W/m2 | BARRA-R2 | ssp370 |
+| Daily maximum surface wind speed (sfcWindmax) | daily | AGCD-05i | m/s | BARRA-R2 | ssp370 |
+| Moisture TBC (e.g. relative humidity, vapour pressure) | daily | AGCD-05i | TBC | BARRA-R2 | ssp370 |
 
-AUS-05i is the AGCD spatial grid: 0.05 x 0.05 degrees, 691 latitudes (112.00 to 156.25 East), 886 longitudes (10.0 to 44.5 South). 
+AGCD-05i is the AGCD 0.05 x 0.05 degrees spatial grid: 691 latitudes (112.00 to 156.25 East), 886 longitudes (10.0 to 44.5 South). 
 
 The rationale for processing two observational datasets is that BARRA-R2 provides a consistent product across all variables,
 while having AGCD available for temperature and precipitation caters to users who don't require consistency across many variables
