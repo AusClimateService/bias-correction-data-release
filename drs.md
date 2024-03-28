@@ -1,7 +1,7 @@
 # Data Reference Syntax (DRS)
 
 This document defines the file naming conventions and metadata (i.e. netCDF attributes)
-for the bias corrected CORDEX-Australasia data being produced by the Australian Climate Service.
+for the bias corrected CORDEX-Australasia data produced by the Australian Climate Service.
 It follows the DRS for bias-adjusted CORDEX simulations
 ([Nikulin & Legutke, 2016](http://is-enes-data.github.io/CORDEX_adjust_drs.pdf)).
 It should be noted that achieving absolute consistency across the
