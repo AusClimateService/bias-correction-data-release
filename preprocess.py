@@ -3,8 +3,64 @@
 import argparse
 
 import numpy as np
+import xarray as xr
 import xcdat
+import xclim
 import cmdline_provenance as cmdprov
+
+
+output_units = {
+    'tasmax': 'degC',
+    'tasmin': 'degC',
+    'pr': 'mm d-1',
+    'sfcWindmax': 'm s-1',
+    'rsds': 'W m-2',
+}
+
+
+def convert_units(da, target_units):
+    """Convert units.
+
+    Parameters
+    ----------
+    da : xarray DataArray
+        Input array containing a units attribute
+    target_units : str
+        Units to convert to
+
+    Returns
+    -------
+    da : xarray DataArray
+       Array with converted units
+    """
+
+    xclim_unit_check = {
+        'degrees_Celsius': 'degC',
+        'deg_k': 'degK',
+        'kg/m2/s': 'kg m-2 s-1',
+        'mm': 'mm d-1',
+    }
+
+    if da.attrs["units"] in xclim_unit_check:
+        da.attrs["units"] = xclim_unit_check[da.units]
+
+    try:
+        with xr.set_options(keep_attrs=True):
+            da = xclim.units.convert_units_to(da, target_units)
+    except Exception as e:
+        if (da.attrs['units'] == 'kg m-2 s-1') and (target_units in ['mm d-1', 'mm day-1']):
+            da = da * 86400
+            da.attrs["units"] = target_units
+        elif (da.attrs['units'] == 'MJ m^-2') and target_units == 'W m-2':
+            da = da * (1e6 / 86400)
+            da.attrs["units"] = target_units
+        else:
+            raise e
+    
+    if target_units == 'degC':
+        da.attrs['units'] = 'degC'
+
+    return da
 
 
 def fix_metadata(ds):
@@ -36,6 +92,7 @@ def main(args):
         tool='xesmf',
         method=args.method,
     )
+    output_ds[args.var] = convert_units(output_ds[args.var], output_units[args.var])
     output_ds = fix_metadata(output_ds)
     infile_log = {}
     if 'history' in input_ds.attrs:
