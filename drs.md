@@ -20,7 +20,8 @@ and the DRS for bias-adjusted CORDEX simulations.
 
 For example, taking the original file
 ```
-/g/data/hq89/CCAM/output/CMIP6/DD/AUS-10i/CSIRO/CNRM-ESM2-1/ssp370/r1i1p1f2/CCAM-v2203-SN/v1-r1/day/pr/v20231206/pr_AUS-10i_CNRM-ESM2-1_ssp370_r1i1p1f2_CSIRO_CCAM-v2203-SN_v1-r1_day_20540101-20541231.nc
+/g/data/hq89/CCAM/output/CMIP6/DD/AUS-10i/CSIRO/CNRM-ESM2-1/ssp370/r1i1p1f2/CCAM-v2203-SN/v1-r1/day/pr/v20231206/
+pr_AUS-10i_CNRM-ESM2-1_ssp370_r1i1p1f2_CSIRO_CCAM-v2203-SN_v1-r1_day_20540101-20541231.nc
 ```
 and applying QME bias correction would produce the following file:
 ```
