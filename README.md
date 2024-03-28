@@ -10,7 +10,7 @@ The following bias corrected data will be produced for the
 [CCAM-v2203-SN](https://dx.doi.org/10.25914/rd73-4m3) model outputs.
 
 | Variable | Timescale | Grid | Units | Observations | Experiments |
-| ---      | ---       | ---  | ---   | ---                     | ---          |
+| ---      | ---       | ---  | ---   | ---          | ---         |
 | Daily maximum surface air temperature (tasmax) | daily | AGCD-05i | C | AGCD, BARRA-R2 | ssp370 |
 | Daily minimum surface air temperature (tasmin) | daily | AGCD-05i | C | AGCD, BARRA-R2 | ssp370 |
 | Precipitation (pr) | daily | AGCD-05i | mm/day | AGCD, BARRA-R2 | ssp370 |
@@ -24,12 +24,18 @@ The rationale for processing two observational datasets is that BARRA-R2 provide
 while having AGCD available for temperature and precipitation caters to users who don't require consistency across many variables
 and just want the (arguably) superior observational underpinning.
 
-The AGCD and BARRA-R2 observational data (regridded as necessary) are available on NCI at the following directories:
+The data reference syntax for the bias corrected data is described by [drs.md](drs.md).
+
+## Pre-processed input data for bias correction
+
+Preprocessed AGCD and BARRA-R2 observational data (i.e. with regridding and unit conversion applied as necessary)
+are available on NCI at the following directories:
 ```
 TODO: Provide file paths
 ```
 
-The regional climate model data (regridded and unit conversion applied as necessary) are available on NCI at the following directories:
+Preprocessed CORDEX regional climate model data (i.e. with regridding and unit conversion applied as necessary)
+are available on NCI at the following directories:
 ```
 TODO: Provide file paths
 ```
