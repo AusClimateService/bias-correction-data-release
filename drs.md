@@ -11,32 +11,38 @@ It should be noted that achieving absolute consistency across the
 contributions to CORDEX-Australasia isn't possible
 because each modelling group has used slightly different global file attributes.
 
-### File name
+### File path
 
-Bias corrected data files should inherit the same file name as the original CORDEX data file
-with a simple modification to the variable name by adding the suffix "Adjust".
-For example, the file
+Bias corrected data files inherit many of the characteristics of the original CORDEX data file
+with a number of small modifications for consistency with the
+[ACS data standards](https://github.com/AusClimateService/data-code-group/blob/main/data_standards.md#cordex-cmip6)
+and the DRS for bias-adjusted CORDEX simulations.
+
+For example, taking the original file
 ```
-pr_AUS-10i_CNRM-ESM2-1_historical_r1i1p1f2_CSIRO_CCAM-v2203-SN_v1-r1_day_19540101-19541231.nc
+/g/data/hq89/CCAM/output/CMIP6/DD/AUS-10i/CSIRO/CNRM-ESM2-1/ssp370/r1i1p1f2/CCAM-v2203-SN/v1-r1/day/pr/v20231206/pr_AUS-10i_CNRM-ESM2-1_ssp370_r1i1p1f2_CSIRO_CCAM-v2203-SN_v1-r1_day_20540101-20541231.nc
 ```
-would become
+and applying QME bias correction would produce the following file:
 ```
-prAdjust_AUS-10i_CNRM-ESM2-1_historical_r1i1p1f2_CSIRO_CCAM-v2203-SN_v1-r1_day_19540101-19541231.nc
+/g/data/ia39/australian-climate-service/test-data/CORDEX-CMIP6/bias-adjusted-output/AGCD-05i/CSIRO/CNRM-ESM2-1/ssp370/r1i1p1f2/CCAM-v2203-SN/v1-r1-ACS-QME-AGCD-1985-2014/day/prAdjust/
+prAdjust_AGCD-05i_CNRM-ESM2-1_ssp370_r1i1p1f2_CSIRO_CCAM-v2203-SN_v1-r1-ACS-QME-AGCD-1985-2014_day_19540101-19541231.nc
 ```
-Within the netCDF file the variable name remains unchanged (e.g. it would remain as `pr`).
+
+(See the global attribute `bc_info` below for an explanation of the `ACS-QME-AGCD-1985-2014` field.) 
 
 ### Variable attributes 
 
 Bias corrected data files should inherit the variable attributes of the original CORDEX data file
-with one small modification.
-The words "Bias-Adjusted" should be added to the beginning of the `long_name` variable attribute.
+with two small modifications.
+The suffix "Adjust" needs to be added to the variable name (e.g. `pr` becomes `prAdjust`)
+and the words "Bias-Adjusted" should be added to the beginning of the `long_name` variable attribute.
 For example,
 ```
-pr:long_name = "Precipitation"
+prAdjust:long_name = "Precipitation"
 ```
 would become
 ```
-pr:long_name = "Bias-Adjusted Precipitation"
+prAdjust:long_name = "Bias-Adjusted Precipitation"
 ```
 
 ### Global attributes
