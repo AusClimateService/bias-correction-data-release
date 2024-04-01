@@ -97,7 +97,10 @@ def main(args):
     infile_log = {}
     if 'history' in input_ds.attrs:
         infile_log[args.infile] = input_ds.attrs['history']
-    output_ds.attrs['history'] = cmdprov.new_log(infile_logs=infile_log)
+    output_ds.attrs['history'] = cmdprov.new_log(
+        infile_logs=infile_log,
+        code_url='https://github.com/AusClimateService/bias-correction-data-release'
+    )
     output_ds.to_netcdf(args.outfile)
 
 
