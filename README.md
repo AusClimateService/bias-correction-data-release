@@ -31,7 +31,11 @@ The data reference syntax for the bias corrected data is described by [drs.md](d
 Preprocessed AGCD and BARRA-R2 observational data (i.e. with regridding and unit conversion applied as necessary)
 are available on NCI at the following (example) directories:
 ```
-/g/data/xv83/agcd-csiro/precip/daily/precip-total_AGCD-CSIRO_r005_19300101-19301231_daily.nc
+/g/data/xv83/agcd-csiro/precip/daily/
+precip-total_AGCD-CSIRO_r005_19300101-19301231_daily.nc
+
+/g/data/ia39/australian-climate-service/test-data/CORDEX-CMIP6/bias-adjustment-input/AGCD-05i/BOM/ERA5/historical/hres/BARRA-R2/v1/day/pr/
+pr_AGCD-05i_ERA5_historical_hres_BOM_BARRA-R2_v1_day_200208-200208.nc
 ```
 
 Preprocessed CORDEX regional climate model data (i.e. with regridding and unit conversion applied as necessary)

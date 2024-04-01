@@ -13,7 +13,9 @@
 #
 # Input: /g/data/py18/BARPA/output/CMIP6/DD/AUS-15/BOM/CESM2/ssp370/r11i1p1f1/BARPA-R/v1-r1/day/pr/v20231001/pr_AUS-15_CESM2_ssp370_r11i1p1f1_BOM_BARPA-R_v1-r1_day_202201-202212.nc
 # Output: /g/data/ia39/australian-climate-service/test-data/CORDEX-CMIP6/bias-adjustment-input/AGCD-05i/BOM/CESM2/ssp370/r11i1p1f1/BARPA-R/v1-r1/day/pr/pr_AGCD-05i_CESM2_ssp370_r11i1p1f1_BOM_BARPA-R_v1-r1_day_20220101-20221231.nc
-
+#
+# Input: /g/data/ob53/BARRA2/output/reanalysis/AUS-11/BOM/ERA5/historical/hres/BARRA-R2/v1/day/pr/v20231001/pr_AUS-11_ERA5_historical_hres_BOM_BARRA-R2_v1_day_200208-200208.nc
+# Output: /g/data/ia39/australian-climate-service/test-data/CORDEX-CMIP6/bias-adjustment-input/AGCD-05i/BOM/ERA5/historical/hres/BARPA-R/v1/day/pr/pr_AGCD-05i_ERA5_historical_hres_BOM_BARRA-R2_v1_day_200208-200208.nc
 
 python=/g/data/xv83/dbi599/miniconda3/envs/npcp/bin/python
 
@@ -27,13 +29,9 @@ for infile in "$@"; do
     rcm=`basename ${infile} | cut -d _ -f 7`
     version=`basename ${infile} | cut -d _ -f 8`
     tbounds=`basename ${infile} | cut -d _ -f 10 | cut -d . -f 1`
-    start_date=`echo ${tbounds} | cut -d - -f 1`
-    start_year=`echo ${start_date:0:4}`
-    end_date=`echo ${tbounds} | cut -d - -f 2`
-    end_year=`echo ${end_date:0:4}`
     
     outdir=/g/data/ia39/australian-climate-service/test-data/CORDEX-CMIP6/bias-adjustment-input/AGCD-05i/${institution}/${gcm}/${experiment}/${run}/${rcm}/${version}/day/${var}
-    outfile=${var}_AGCD-05i_${gcm}_${experiment}_${run}_${institution}_${rcm}_${version}_day_${start_year}0101-${end_year}1231.nc
+    outfile=${var}_AGCD-05i_${gcm}_${experiment}_${run}_${institution}_${rcm}_${version}_day_${tbounds}.nc
 
     mkdir -p ${outdir}
     ${python} preprocess.py ${infile} ${var} bilinear ${outdir}/${outfile} 
