@@ -44,3 +44,11 @@ are available on NCI at the following (example) directories:
 /g/data/ia39/australian-climate-service/test-data/CORDEX-CMIP6/bias-adjustment-input/AGCD-05i/BOM/CESM2/ssp370/r11i1p1f1/BARPA-R/v1-r1/day/pr/
 pr_AGCD-05i_CESM2_ssp370_r11i1p1f1_BOM_BARPA-R_v1-r1_day_20220101-20221231.nc
 ```
+Here's a summary of what pre-processed data are currently available.
+
+| GCM | RCM | experiment | tasmax | tasmin | pr | rsds | sfcWindmax | moisture | 
+| ---   | --- | ---        | :-:    | :-:    | :-:| :-:  | :-:        | :-:      |
+|  | AGCD | historical | :green_circle: | :green_circle: | :green_circle: |  |  |  |
+| ERA5 | BARRA-R2 | historical | :white_circle: | :white_circle: | :green_circle: | :white_circle: | :white_circle: | :white_circle: |
+| CESM2 | BARPA-R | historical | :white_circle: | :white_circle: | :green_circle: | :white_circle: | :white_circle: | :white_circle: |
+| CESM2 | BARPA-R | ssp370 | :white_circle: | :white_circle: | :green_circle: | :white_circle: | :white_circle: | :white_circle: |
