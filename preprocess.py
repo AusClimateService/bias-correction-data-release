@@ -101,7 +101,7 @@ def main(args):
         infile_logs=infile_log,
         code_url='https://github.com/AusClimateService/bias-correction-data-release'
     )
-    output_ds.to_netcdf(args.outfile)
+    output_ds.to_netcdf(args.outfile, encoding={args.var: {'least_significant_digit': 2, 'zlib': True}})
 
 
 if __name__ == '__main__':
