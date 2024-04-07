@@ -7,7 +7,7 @@ This repository tracks the details and progress of the first ACS bias corrected 
 The following bias corrected data will be produced for the
 [CCAMoc-v2112](https://dx.doi.org/10.25914/8fve-1910),
 [BARPA-R](https://dx.doi.org/10.25914/z1x6-dq28) and
-[CCAM-v2203-SN](https://dx.doi.org/10.25914/rd73-4m3) model outputs.
+[CCAM-v2203-SN](https://dx.doi.org/10.25914/rd73-4m38) model outputs.
 
 | Variable | Timescale | Grid | Units | Observations | Experiments |
 | ---      | ---       | ---  | ---   | ---          | ---         |
