@@ -7,7 +7,7 @@ It follows the DRS for bias-adjusted CORDEX simulations
 It should be noted that achieving absolute consistency across the
 [CCAMoc-v2112](https://dx.doi.org/10.25914/8fve-1910),
 [BARPA-R](https://dx.doi.org/10.25914/z1x6-dq28) and
-[CCAM-v2203-SN](https://dx.doi.org/10.25914/rd73-4m3)
+[CCAM-v2203-SN](https://dx.doi.org/10.25914/rd73-4m38)
 contributions to CORDEX-Australasia isn't possible
 because each modelling group has used slightly different global file attributes.
 
