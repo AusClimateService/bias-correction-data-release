@@ -72,7 +72,6 @@ def fix_metadata(ds):
         del ds['time_bnds'].attrs['xcdat_bounds']
     except KeyError:
         pass
-    # TODO: Delete time_bnds altogether?
 
     return ds
     
@@ -94,6 +93,7 @@ def main(args):
     )
     output_ds[args.var] = convert_units(output_ds[args.var], output_units[args.var])
     output_ds = fix_metadata(output_ds)
+    output_ds = output_ds.chunk({'time': 1, 'lat': -1, 'lon': -1})
     infile_log = {}
     if 'history' in input_ds.attrs:
         infile_log[args.infile] = input_ds.attrs['history']

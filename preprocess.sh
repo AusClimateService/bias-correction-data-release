@@ -34,7 +34,8 @@ for infile in "$@"; do
     outfile=${var}_AGCD-05i_${gcm}_${experiment}_${run}_${institution}_${rcm}_${version}_day_${tbounds}.nc
 
     mkdir -p ${outdir}
-    ${python} preprocess.py ${infile} ${var} bilinear ${outdir}/${outfile} 
-    echo ${outdir}/${outfile}
+    qsub -v infile=${infile},var=${var},outfile=${outdir}/${outfile} preprocess-job.sh
+#    ${python} preprocess.py ${infile} ${var} bilinear ${outdir}/${outfile} 
+#    echo ${outdir}/${outfile}
 done
 
