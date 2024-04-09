@@ -79,7 +79,7 @@ def fix_metadata(ds):
 def main(args):
     """Run the program."""
     
-    input_ds = xcdat.open_dataset(args.infile)
+    input_ds = xcdat.open_dataset(args.infile, mask_and_scale=True)
 
     # AGCD grid
     lats = np.round(np.arange(-44.5, -9.99, 0.05), decimals=2)

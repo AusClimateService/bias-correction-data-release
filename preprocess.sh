@@ -33,6 +33,7 @@ for infile in "$@"; do
     outdir=/g/data/ia39/australian-climate-service/test-data/CORDEX-CMIP6/bias-adjustment-input/AGCD-05i/${institution}/${gcm}/${experiment}/${run}/${rcm}/${version}/day/${var}
     outfile=${var}_AGCD-05i_${gcm}_${experiment}_${run}_${institution}_${rcm}_${version}_day_${tbounds}.nc
 
+    echo ${outdir}/${outfile}
     mkdir -p ${outdir}
     qsub -v infile=${infile},var=${var},outfile=${outdir}/${outfile} preprocess-job.sh
 #    ${python} preprocess.py ${infile} ${var} bilinear ${outdir}/${outfile} 
