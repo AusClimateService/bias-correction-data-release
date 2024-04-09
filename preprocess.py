@@ -74,7 +74,19 @@ def fix_metadata(ds):
         pass
 
     return ds
+
+
+def get_outvar_encoding(var_shape, nlats, nlons):
+    """Define the output variable encoding."""
+
+    assert len(var_shape) == 3
+    assert var_shape[1] == nlats
+    assert var_shape[2] == nlons
+
+    var_encoding = {'chunksizes': (1, nlats, nlons), 'least_significant_digit': 2, 'zlib': True}
     
+    return var_encoding
+
 
 def main(args):
     """Run the program."""
@@ -93,7 +105,6 @@ def main(args):
     )
     output_ds[args.var] = convert_units(output_ds[args.var], output_units[args.var])
     output_ds = fix_metadata(output_ds)
-    output_ds = output_ds.chunk({'time': 1, 'lat': -1, 'lon': -1})
     infile_log = {}
     if 'history' in input_ds.attrs:
         infile_log[args.infile] = input_ds.attrs['history']
@@ -101,7 +112,8 @@ def main(args):
         infile_logs=infile_log,
         code_url='https://github.com/AusClimateService/bias-correction-data-release'
     )
-    output_ds.to_netcdf(args.outfile, encoding={args.var: {'least_significant_digit': 2, 'zlib': True}})
+    outvar_encoding = get_outvar_encoding(output_ds[args.var].shape, len(lats), len(lons))
+    output_ds.to_netcdf(args.outfile, encoding={args.var: outvar_encoding})
 
 
 if __name__ == '__main__':
