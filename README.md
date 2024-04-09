@@ -16,7 +16,8 @@ The following bias corrected data will be produced for the
 | Precipitation (pr) | daily | AGCD-05i | mm/day | AGCD, BARRA-R2 | ssp370 |
 | Surface downwelling solar radiation (rsds) | daily | AGCD-05i | W/m2 | BARRA-R2 | ssp370 |
 | Daily maximum surface wind speed (sfcWindmax) | daily | AGCD-05i | m/s | BARRA-R2 | ssp370 |
-| Moisture TBC (e.g. relative humidity, vapour pressure) | daily | AGCD-05i | TBC | BARRA-R2 | ssp370 |
+| Daily maximum relative humidity (hursmax) | daily | AGCD-05i | % | BARRA-R2 | ssp370 |
+| Daily minimum relative humidity (hursmin) | daily | AGCD-05i | % | BARRA-R2 | ssp370 |
 
 AGCD-05i is the AGCD 0.05 x 0.05 degrees spatial grid: 691 latitudes (112.00 to 156.25 East), 886 longitudes (10.0 to 44.5 South). 
 
@@ -43,9 +44,9 @@ are available on NCI at the following (example) directories:
 ```
 Here's a summary of what pre-processed data are currently available.
 
-| GCM | RCM | experiment | tasmax | tasmin | pr | rsds | sfcWindmax | moisture | 
-| ---   | --- | ---        | :-:    | :-:    | :-:| :-:  | :-:        | :-:      |
-|  | AGCD | historical | :green_circle: | :green_circle: | :green_circle: |  |  |  |
-| ERA5 | BARRA-R2 | historical | :white_circle: | :white_circle: | :green_circle: | :white_circle: | :white_circle: | :white_circle: |
-| CESM2 | BARPA-R | historical | :white_circle: | :white_circle: | :green_circle: | :white_circle: | :white_circle: | :white_circle: |
-| CESM2 | BARPA-R | ssp370 | :white_circle: | :white_circle: | :green_circle: | :white_circle: | :white_circle: | :white_circle: |
+| GCM | RCM | experiment | tasmax | tasmin | pr | rsds | sfcWindmax | hursmax | hursmin | 
+| ---   | --- | ---        | :-:    | :-:    | :-:| :-:  | :-:        | :-:      | :-:      |
+|  | AGCD | historical | :green_circle: | :green_circle: | :green_circle: |  |  |  |  |
+| ERA5 | BARRA-R2 | historical | :white_circle: | :white_circle: | :green_circle: | :white_circle: | :white_circle: | :white_circle: | :white_circle: |
+| CESM2 | BARPA-R | historical | :white_circle: | :white_circle: | :green_circle: | :white_circle: | :white_circle: | :white_circle: | :white_circle: |
+| CESM2 | BARPA-R | ssp370 | :white_circle: | :white_circle: | :green_circle: | :white_circle: | :white_circle: | :white_circle: | :white_circle: |
