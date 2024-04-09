@@ -1,13 +1,18 @@
 # bias-correction-data-release
 
-This repository tracks the details and progress of the first ACS bias corrected CORDEX data release.
+This repository tracks the details and progress of the first
+Australian Climate Service (ACS) bias corrected CORDEX-CMIP6 data release.
 
 ## Dataset specifications
 
-The following bias corrected data will be produced for the
-[CCAMoc-v2112](https://dx.doi.org/10.25914/8fve-1910),
-[BARPA-R](https://dx.doi.org/10.25914/z1x6-dq28) and
-[CCAM-v2203-SN](https://dx.doi.org/10.25914/rd73-4m38) model outputs.
+A number of institutions have dynamically downscaled CMIP6 global climate model data
+over Australasia as part of the CORDEX-CMIP6 project. 
+For this data release,
+bias correction will be applied to CORDEX-CMIP6 model outputs produced by the
+[Bureau of Meteorology](https://dx.doi.org/10.25914/z1x6-dq28),
+[CSIRO](https://dx.doi.org/10.25914/rd73-4m38) and the
+[Queensland Future Climate Science Program](https://dx.doi.org/10.25914/8fve-1910)
+(see the [Data Availability](#data-availability) table below for details).
 
 | Variable | Timescale | Grid | Units | Observations | Experiments |
 | ---      | ---       | ---  | ---   | ---          | ---         |
@@ -21,7 +26,8 @@ The following bias corrected data will be produced for the
 
 AGCD-05i is the AGCD 0.05 x 0.05 degrees spatial grid: 691 latitudes (112.00 to 156.25 East), 886 longitudes (10.0 to 44.5 South). 
 
-The rationale for processing two observational datasets is that BARRA-R2 provides a consistent product across all variables,
+The rationale for bias correcting against two different observational datasets
+is that BARRA-R2 provides a consistent product across all variables,
 while having AGCD available for temperature and precipitation caters to users who don't require consistency across many variables
 and just want the (arguably) superior observational underpinning.
 
@@ -94,3 +100,8 @@ A summary of what pre-processed input data (first dot) and bias corrected output
 | NorESM2-MM | BARPA-R | r1i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
 | NorESM2-MM | CCAMoc-v2112 | r1i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
 | NorESM2-MM | CCAM-v2112 | r1i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
+
+The BARPA-R model was run by the [Bureau of Meteorology](https://dx.doi.org/10.25914/z1x6-dq28),
+while the various different versions of the CCAM model were run by
+[CSIRO](https://dx.doi.org/10.25914/rd73-4m38) and the
+[Queensland Future Climate Science Program](https://dx.doi.org/10.25914/8fve-1910).
