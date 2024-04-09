@@ -48,5 +48,10 @@ Here's a summary of what pre-processed data are currently available.
 | ---   | --- | ---        | :-:    | :-:    | :-:| :-:  | :-:        | :-:      | :-:      |
 |  | AGCD | historical | :green_circle: | :green_circle: | :green_circle: |  |  |  |  |
 | ERA5 | BARRA-R2 | historical | :white_circle: | :white_circle: | :green_circle: | :white_circle: | :white_circle: | :white_circle: | :white_circle: |
-| CESM2 | BARPA-R | historical | :white_circle: | :white_circle: | :green_circle: | :white_circle: | :white_circle: | :white_circle: | :white_circle: |
-| CESM2 | BARPA-R | ssp370 | :white_circle: | :white_circle: | :green_circle: | :white_circle: | :white_circle: | :white_circle: | :white_circle: |
+| ACCESS-CM2 | BARPA-R | historical + ssp370 | :white_circle: | :white_circle: | :white_circle: | :white_circle: | :white_circle: | :white_circle: | :white_circle: |
+| ACCESS-ESM1-5 | BARPA-R | historical + ssp370 | :white_circle: | :white_circle: | :white_circle: | :white_circle: | :white_circle: | :white_circle: | :white_circle: |
+| CESM2 | BARPA-R | historical + ssp370 | :white_circle: | :white_circle: | :green_circle: | :white_circle: | :white_circle: | :white_circle: | :white_circle: |
+| CMCC-ESM2 | BARPA-R | historical + ssp370 | :white_circle: | :white_circle: | :white_circle: | :white_circle: | :white_circle: | :white_circle: | :white_circle: |
+| EC-Earth3 | BARPA-R | historical + ssp370 | :white_circle: | :white_circle: | :white_circle: | :white_circle: | :white_circle: | :white_circle: | :white_circle: |
+| MPI-ESM1-2-HR | BARPA-R | historical + ssp370 | :white_circle: | :white_circle: | :white_circle: | :white_circle: | :white_circle: | :white_circle: | :white_circle: |
+| NorESM2-MM | BARPA-R | historical + ssp370 | :white_circle: | :white_circle: | :white_circle: | :white_circle: | :white_circle: | :white_circle: | :white_circle: |
