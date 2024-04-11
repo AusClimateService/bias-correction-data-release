@@ -107,7 +107,7 @@ def fix_metadata(ds):
     # Add/update attributes
     ds.attrs['domain'] = 'Australia/AGCD'
     ds.attrs['domain_id'] = 'AGCD-05i'
-    ds.attrs['title'] = 'Pre-processed model output in preparation for bias correction'
+    ds.attrs['title'] = 'Pre-processed model output in preparation for bias adjustment'
 
     return ds
 

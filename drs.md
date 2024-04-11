@@ -83,6 +83,7 @@ these global attributes need to be deleted:
 The following attributes need to be modified or created if they don't exist
 in the original CORDEX data file:
 
+- `title = "Bias-adjusted model output"`
 - `institution = "Australian Climate Service"`
 - `institution_id = "ACS"`
 - `domain = "Australia/AGCD"`
@@ -108,5 +109,10 @@ in the original CORDEX data file:
 - `bc_info =`
   - `"ACS-QME-AGCD-1985-2014"`
   - `"ACS-MRNBC-AGCD-1985-2014"`
+- `bc_code =`
+  - `https://github.com/AusClimateService/QME`
+  - `link to MRNBC code`
 - `creation_date = "YYYY-MM-DDTHH:MM:SSZ"`
+
+If possible, details of the command that was run to process the data should also be appended to the `history` attribute. 
 

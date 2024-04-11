@@ -2,7 +2,7 @@
 #PBS -P xv83
 #PBS -q normal
 #PBS -l walltime=10:00:00
-#PBS -l mem=50GB
+#PBS -l mem=60GB
 #PBS -l storage=gdata/xv83+gdata/ia39+gdata/hq89+gdata/ig45+gdata/py18+gdata/ob53
 #PBS -l wd
 #PBS -l ncpus=5
