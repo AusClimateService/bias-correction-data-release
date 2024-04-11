@@ -17,7 +17,8 @@
 # Input: /g/data/ob53/BARRA2/output/reanalysis/AUS-11/BOM/ERA5/historical/hres/BARRA-R2/v1/day/pr/v20231001/pr_AUS-11_ERA5_historical_hres_BOM_BARRA-R2_v1_day_200208-200208.nc
 # Output: /g/data/ia39/australian-climate-service/test-data/CORDEX-CMIP6/bias-adjustment-input/AGCD-05i/BOM/ERA5/historical/hres/BARPA-R/v1/day/pr/pr_AGCD-05i_ERA5_historical_hres_BOM_BARRA-R2_v1_day_200208-200208.nc
 
-python=/g/data/xv83/dbi599/miniconda3/envs/npcp/bin/python
+#module load nco
+#python=/g/data/xv83/dbi599/miniconda3/envs/npcp/bin/python
 
 for infile in "$@"; do
     echo ${infile}
@@ -36,7 +37,8 @@ for infile in "$@"; do
     echo ${outdir}/${outfile}
     mkdir -p ${outdir}
     qsub -v infile=${infile},var=${var},outfile=${outdir}/${outfile} preprocess-job.sh
-#    ${python} preprocess.py ${infile} ${var} bilinear ${outdir}/${outfile} 
-#    echo ${outdir}/${outfile}
+#     ${python} preprocess.py ${infile} ${var} bilinear ${outdir}/${outfile}
+#     ncatted -O -a least_significant_digit,${var},d,, ${outdir}/${outfile} 
+#     echo ${outdir}/${outfile}
 done
 

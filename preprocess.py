@@ -66,12 +66,48 @@ def convert_units(da, target_units):
 def fix_metadata(ds):
     "Apply metadata fixes."""
 
+    # Remove xcdat attributes
     del ds['lat_bnds'].attrs['xcdat_bounds']
     del ds['lon_bnds'].attrs['xcdat_bounds']
     try:
         del ds['time_bnds'].attrs['xcdat_bounds']
     except KeyError:
         pass
+
+    # Rename input attributes
+    for attr in ['tracking_id', 'doi']:
+        if attr in ds.attrs:
+            ds.attrs['input_' + attr] = ds.attrs[attr]
+    
+    # Delete attributes
+    keys_to_delete = [
+        'tracking_id',
+        'doi',
+        'axiom_version',
+        'axiom_schemas_version',
+        'axiom_schema',
+        'productive_version',
+        'processing_level',
+        'geospatial_lat_min',
+        'geospatial_lat_max',
+        'geospatial_lat_units',
+        'geospatial_lon_min',
+        'geospatial_lon_max',
+        'geospatial_lon_units',
+        'date_modified',
+        'date_metadata_modified',
+        'creation_date',
+    ]
+    for key in keys_to_delete:
+        try:
+            del ds.attrs[key]
+        except KeyError:
+            pass
+
+    # Add/update attributes
+    ds.attrs['domain'] = 'Australia/AGCD'
+    ds.attrs['domain_id'] = 'AGCD-05i'
+    ds.attrs['title'] = 'Pre-processed model output in preparation for bias correction'
 
     return ds
 
