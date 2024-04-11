@@ -21,10 +21,14 @@ bias correction will be applied to CORDEX-CMIP6 model outputs produced by the
 | Precipitation (pr) | daily | AGCD-05i | mm/day | AGCD, BARRA-R2 | historical, ssp370 |
 | Surface downwelling solar radiation (rsds) | daily | AGCD-05i | W/m2 | BARRA-R2 | historical, ssp370 |
 | Daily maximum surface wind speed (sfcWindmax) | daily | AGCD-05i | m/s | BARRA-R2 | historical, ssp370 |
-| Daily maximum relative humidity (hursmax) | daily | AGCD-05i | % | BARRA-R2 | historical, ssp370 |
-| Daily minimum relative humidity (hursmin) | daily | AGCD-05i | % | BARRA-R2 | historical, ssp370 |
+| Daily maximum relative humidity (hursmax) | daily | AGCD-05i | % | BARRA-R2* | historical, ssp370 |
+| Daily minimum relative humidity (hursmin) | daily | AGCD-05i | % | BARRA-R2* | historical, ssp370 |
 
 AGCD-05i is the AGCD 0.05 x 0.05 degrees spatial grid: 691 latitudes (112.00 to 156.25 East), 886 longitudes (10.0 to 44.5 South). 
+
+*Daily hursmin and hursmax need to be calculated from hourly (instantaneous) BARRA-R2 hurs data.
+There are currently [known issues](https://opus.nci.org.au/pages/viewpage.action?pageId=264241304)
+with those hourly hurs data (for BARRA-R2 and BARPA-R) that should ideally be resolved before we process it.
 
 The rationale for bias correcting against two different observational datasets
 is that BARRA-R2 provides a consistent product across all variables,
@@ -77,37 +81,41 @@ Those data are formatted and archived according to the data reference syntax des
 
 A summary of what pre-processed input data (first dot) and bias corrected output data (second dot) are currently available.
 
+- :green_circle: data processed
+- :yellow_circle: data not yet processed (because there is an issue with the input data) 
+
+
 | GCM | RCM | run  | tas max | tas min | pr   | rsds   | sfcWind max | hurs max | hurs min | 
 | --- | --- | ---  |  :-:   | :-:    | :-:  | :-:    | :-:        | :-:     | :-:     |
 |     | AGCD |     | :green_circle: | :green_circle: | :green_circle: |  |  |  |  |
-|     | BARRA-R2 | | :green_circle: | :green_circle: | :green_circle: | :green_circle: | :green_circle: | :white_circle: | :white_circle: |
-| ACCESS-CM2 | BARPA-R | r4i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
+|     | BARRA-R2 | | :green_circle: | :green_circle: | :green_circle: | :green_circle: | :green_circle: | :yellow_circle: | :yellow_circle: |
+| ACCESS-CM2 | BARPA-R | r4i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :yellow_circle: :white_circle: | :yellow_circle: :white_circle: |
 | ACCESS-CM2 | CCAM-v2203-SN | r4i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
 | ACCESS-CM2 | CCAMoc-v2112 | r2i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
-| ACCESS-ESM1-5 | BARPA-R | r6i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
+| ACCESS-ESM1-5 | BARPA-R | r6i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :yellow_circle: :white_circle: | :yellow_circle: :white_circle: |
 | ACCESS-ESM1-5 | CCAM-v2203-SN | r6i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
 | ACCESS-ESM1-5 | CCAMoc-v2112 | r20i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
 | ACCESS-ESM1-5 | CCAMoc-v2112 | r40i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
 | ACCESS-ESM1-5 | CCAM-v2105 | r6i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
-| CESM2 | BARPA-R | r11i1p1f1 | :green_circle: :white_circle: | :green_circle: :white_circle: | :green_circle: :white_circle: | :green_circle: :white_circle: | :green_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
+| CESM2 | BARPA-R | r11i1p1f1 | :green_circle: :white_circle: | :green_circle: :white_circle: | :green_circle: :white_circle: | :green_circle: :white_circle: | :green_circle: :white_circle: | :yellow_circle: :white_circle: | :yellow_circle: :white_circle: |
 | CESM2 | CCAM-v2203-SN | r11i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
-| CMCC-ESM2 | BARPA-R | r1i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
+| CMCC-ESM2 | BARPA-R | r1i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :yellow_circle: :white_circle: | :yellow_circle: :white_circle: |
 | CMCC-ESM2 | CCAM-v2203-SN | r1i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
 | CMCC-ESM2 | CCAM-v2015 | r1i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
 | CNRM-CM6-1-HR | CCAMoc-v2112 | r1i1p1f2 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
 | CNRM-CM6-1-HR | CCAM-v2112 | r1i1p1f2 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
 | CNRM-ESM2-1 | CCAM-v2203-SN | r1i1p1f2 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
-| EC-Earth3 | BARPA-R | r1i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
+| EC-Earth3 | BARPA-R | r1i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :yellow_circle: :white_circle: | :yellow_circle: :white_circle: |
 | EC-Earth3 | CCAM-v2203-SN | r1i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
 | EC-Earth3 | CCAM-v2105 | r1i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
 | FGOALS-g3 | CCAM-v2105 | r4i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
 | FGOALS-g3 | CCAM-v2105 | r4i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
 | GFDL-ESM4 | CCAM-v2105 | r1i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
 | GISS-E2-1-G | CCAM-v2105 | r2i1p1f2 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
-| MPI-ESM1-2-HR | BARPA-R | r1i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
+| MPI-ESM1-2-HR | BARPA-R | r1i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :yellow_circle: :white_circle: | :yellow_circle: :white_circle: |
 | MPI-ESM1-2-LR | CCAM-v2105 | r9i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
 | MRI-ESM2-0 | CCAM-v2105 | r1i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
-| NorESM2-MM | BARPA-R | r1i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
+| NorESM2-MM | BARPA-R | r1i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :yellow_circle: :white_circle: | :yellow_circle: :white_circle: |
 | NorESM2-MM | CCAMoc-v2112 | r1i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
 | NorESM2-MM | CCAM-v2112 | r1i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
 
