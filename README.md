@@ -35,9 +35,19 @@ and just want the (arguably) superior observational underpinning.
 
 Model outputs and observational data were pre-processed prior to bias correction.
 This pre-processing involved spatial regridding, unit conversion and re-chunking
-and was achieved by running the following at the command line:
+and was achieved by running the following at the command line
+for any given GCM / RCM / model run / variable combination:
+
 ```
-bash preprocess.sh /path/to/file1.nc /path/to/file12.nc  ... /path/to/fileN.nc
+bash preprocess.sh ACCESS-CM2 BARPA-R r4i1p1f1 tasmin -n
+```
+(The `-n` is optional and allows for a dry run where the commands
+that would be executed are just printed to the screen.)
+
+The following is the equivalent command to submit to the job queue on NCI:
+
+```
+qsub -v gcm=ACCESS-CM2,rcm=BARPA-R,run=r4i1p1f1,var=tasmin preprocess-job.sh
 ```
 
 The preprocessed AGCD and BARRA-R2 observational data 
@@ -70,7 +80,7 @@ A summary of what pre-processed input data (first dot) and bias corrected output
 | GCM | RCM | run  | tas max | tas min | pr   | rsds   | sfcWind max | hurs max | hurs min | 
 | --- | --- | ---  |  :-:   | :-:    | :-:  | :-:    | :-:        | :-:     | :-:     |
 |     | AGCD |     | :green_circle: | :green_circle: | :green_circle: |  |  |  |  |
-|     | BARRA-R2 | | :white_circle: | :white_circle: | :green_circle: | :white_circle: | :white_circle: | :white_circle: | :white_circle: |
+|     | BARRA-R2 | | :green_circle: | :green_circle: | :green_circle: | :green_circle: | :green_circle: | :white_circle: | :white_circle: |
 | ACCESS-CM2 | BARPA-R | r4i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
 | ACCESS-CM2 | CCAM-v2203-SN | r4i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
 | ACCESS-CM2 | CCAMoc-v2112 | r2i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
@@ -79,7 +89,7 @@ A summary of what pre-processed input data (first dot) and bias corrected output
 | ACCESS-ESM1-5 | CCAMoc-v2112 | r20i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
 | ACCESS-ESM1-5 | CCAMoc-v2112 | r40i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
 | ACCESS-ESM1-5 | CCAM-v2105 | r6i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
-| CESM2 | BARPA-R | r11i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :green_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
+| CESM2 | BARPA-R | r11i1p1f1 | :green_circle: :white_circle: | :green_circle: :white_circle: | :green_circle: :white_circle: | :green_circle: :white_circle: | :green_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
 | CESM2 | CCAM-v2203-SN | r11i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
 | CMCC-ESM2 | BARPA-R | r1i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
 | CMCC-ESM2 | CCAM-v2203-SN | r1i1p1f1 | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: | :white_circle: :white_circle: |
