@@ -31,7 +31,7 @@ elif [[ "${rcm}" == "CCAM-v2112" ]] ; then
 elif [[ "${rcm}" == "BARRA-R2" ]] ; then
     project_dir=/g/data/ob53/BARRA2/output/reanalysis/AUS-11/BOM
 fi
-infiles=(`ls ${project_dir}/${gcm}/*/${run}/${rcm}/*/day/${var}/*/*.nc`)
+infiles=(`ls ${project_dir}/${gcm}/{historical,ssp370}/${run}/${rcm}/*/day/${var}/*/*.nc`)
 
 for infile in "${infiles[@]}"; do
     var=`basename ${infile} | cut -d _ -f 1`
