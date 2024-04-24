@@ -94,8 +94,8 @@ A summary of what pre-processed input data (first dot) and bias corrected output
 - :yellow_circle: data processed for beta usage checks
 - :red_circle: data not yet processed (because there is an issue with the input data) 
 
-Last update: Tuesday 23/04 11 am AEST.
-There seems to be some issue reading tasmax and tasmin datasets in Dask for ACCESS CCAM models that needs to be investigated - however, the data should be there and it does seem to load fine in Jupyter notebooks.
+Last update: Wednesday 24/04 2 pm AEST.
+RESOLVED: The issue regarding the reading of certain tasmax and tasmin datasets under certain circumstances as noted yesterday has been resolved. The data itself should be unchanged.
 
 | GCM | RCM | run  | tas max | tas min | pr   | rsds   | sfcWind max | hurs max | hurs min | (Notes) |
 | --- | --- | ---  |  :-:   | :-:    | :-:  | :-:    | :-:        | :-:     | :-:     | --- |
