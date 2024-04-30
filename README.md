@@ -94,7 +94,7 @@ A summary of what pre-processed input data (first dot) and bias corrected output
 - :yellow_circle: data processed for beta usage checks
 - :red_circle: data not yet processed (because there is an issue with the input data) 
 
-Last update: Monday 29/04 4 pm: Completed sfcWindmax univariate runs (except one).
+Last update: Monday 29/04 4 pm: Completed sfcWindmax univariate runs.
 
 | GCM | RCM | run  | tas max | tas min | pr   | rsds   | sfcWind max | hurs max | hurs min | (Notes) |
 | --- | --- | ---  |  :-:   | :-:    | :-:  | :-:    | :-:        | :-:     | :-:     | --- |
