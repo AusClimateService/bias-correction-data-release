@@ -19,7 +19,7 @@ bias correction will be applied to CORDEX-CMIP6 model outputs produced by the
 | Daily maximum surface air temperature (tasmax) | daily | AGCD-05i | C | AGCD, BARRA-R2 | historical, ssp370 |
 | Daily minimum surface air temperature (tasmin) | daily | AGCD-05i | C | AGCD, BARRA-R2 | historical, ssp370 |
 | Precipitation (pr) | daily | AGCD-05i | mm/day | AGCD, BARRA-R2 | historical, ssp370 |
-| Surface downwelling solar radiation (rsds) | daily | AGCD-05i | W/m2 | BARRA-R2 | historical, ssp370 |
+| Surface downwelling shortwave radiation (rsds) | daily | AGCD-05i | W/m2 | BARRA-R2 | historical, ssp370 |
 | Daily maximum surface wind speed (sfcWindmax) | daily | AGCD-05i | m/s | BARRA-R2 | historical, ssp370 |
 | Daily maximum relative humidity (hursmax) | daily | AGCD-05i | % | BARRA-R2* | historical, ssp370 |
 | Daily minimum relative humidity (hursmin) | daily | AGCD-05i | % | BARRA-R2* | historical, ssp370 |
