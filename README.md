@@ -88,11 +88,18 @@ Note that from previous usage there still exists data following a slightly diffe
 
 ## Data availability
 
-A summary of what pre-processed input data (first dot) and bias corrected output data for univariate (second dot) and multivariate (third dot) are currently available.
+The table below provides a summary of what data has been processed.
 
-- :green_circle: data processed
-- :yellow_circle: data processed for beta usage checks
-- :red_circle: data not yet processed (because there is an issue with the input data) 
+The three dots (in order from first/top/left to last/bottom/right) represent:
+- Dot 1: Status of the pre-processed input data
+- Dot 2: Status of the univariate bias corrected data (i.e. using the QME method)
+- Dot 3: Status of the multivariate bias corrected data (i.e. using the MRNBC method)
+ 
+In terms of the colors:
+- :green_circle: The data is available in its final official form
+- :yellow_circle: The data exists for early / beta users to try
+- :white_circle: Not yet processed but we don't anticipate any problems/delays
+- :red_circle: We can’t produce that data yet (e.g. there are issues with BARPA and BARRA humidity data that are currently being resolved) 
 
 Last update: Monday 29/04 4 pm: Completed sfcWindmax univariate runs.
 
