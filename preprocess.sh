@@ -6,10 +6,10 @@
 #   gcm:    name of global climate model (e.g. ACCESS-CM2)*
 #   rcm:    name of regional climate model (BARPA-R, CCAM-v2203-SN, CCAMoc-v2112, CCAM-v2105, CCAM-v2112, BARRA-R2)
 #   run:    run to process (e.g. r1i1p1f1)
-#   var:    variable to process (tasmin, tasmax, pr, rsds, sfcWindmax)
+#   var:    variable to process (tasmin, tasmax, pr, rsds, sfcWindmax, hursmin, hursmax)
 #   flags:  optional flags (e.g. -n for dry run)
 #
-# *For BARRA-R2 the gcm is ERA5
+# *For BARRA-R2 the gcm is ERA5 and run is hres
 
 gcm=$1
 rcm=$2
@@ -29,12 +29,25 @@ elif [[ "${rcm}" == "CCAM-v2105" ]] ; then
 elif [[ "${rcm}" == "CCAM-v2112" ]] ; then
     project_dir=/g/data/ig45/QldFCP-2/CORDEX/CMIP6/DD/AUS-20i/UQ-DES
 elif [[ "${rcm}" == "BARRA-R2" ]] ; then
-    project_dir=/g/data/ob53/BARRA2/output/reanalysis/AUS-11/BOM
+    if [[ "${var}" == "hursmin" || "${var}" == "hursmax" ]] ; then
+        project_dir=/scratch/hd50/jt4085/bias_correction/BARRA2/output/reanalysis/AUS-11/BOM
+    else
+        project_dir=/g/data/ob53/BARRA2/output/reanalysis/AUS-11/BOM
+    fi
 fi
-infiles=(`ls ${project_dir}/${gcm}/{historical,ssp370}/${run}/${rcm}/*/day/${var}/*/*.nc`)
+
+if [[ "${var}" == "hursmin" || "${var}" == "hursmax" ]] ; then
+    input_freq=1hr
+    input_var=hurs
+else
+    input_freq=day
+    input_var=${var}
+fi
+
+
+infiles=(`ls ${project_dir}/${gcm}/{historical,ssp370}/${run}/${rcm}/*/${input_freq}/${input_var}/*/*.nc`)
 
 for infile in "${infiles[@]}"; do
-    var=`basename ${infile} | cut -d _ -f 1`
     gcm=`basename ${infile} | cut -d _ -f 3`
     experiment=`basename ${infile} | cut -d _ -f 4`
     run=`basename ${infile} | cut -d _ -f 5`

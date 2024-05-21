@@ -15,6 +15,8 @@ output_units = {
     'pr': 'mm d-1',
     'sfcWindmax': 'm s-1',
     'rsds': 'W m-2',
+    'hursmin': '%',
+    'hursmax': '%',
 }
 
 
@@ -112,22 +114,39 @@ def fix_metadata(ds):
     return ds
 
 
-def get_outvar_encoding(var_shape, nlats, nlons):
-    """Define the output variable encoding."""
+def get_output_encoding(ds, var, nlats, nlons):
+    """Define the output file encoding."""
 
+    var_shape = ds[var].shape
     assert len(var_shape) == 3
     assert var_shape[1] == nlats
     assert var_shape[2] == nlons
 
-    var_encoding = {'chunksizes': (1, nlats, nlons), 'least_significant_digit': 2, 'zlib': True}
+    encoding = {}
+    ds_vars = list(ds.coords) + list(ds.keys())
+    for ds_var in ds_vars:
+        encoding[ds_var] = {'_FillValue': None}
+    encoding[var]['least_significant_digit'] = 2
+    encoding[var]['zlib'] = True
+    encoding[var]['chunksizes'] = (1, nlats, nlons)
     
-    return var_encoding
+    return encoding
 
 
 def main(args):
     """Run the program."""
     
     input_ds = xcdat.open_dataset(args.infile, mask_and_scale=True)
+
+    # Temporal aggregation
+    if args.var == 'hursmax':
+        input_ds = input_ds.resample(time='D').max('time', keep_attrs=True)
+        input_ds = input_ds.rename({'hurs': 'hursmax'})
+        input_ds['hursmax'].attrs['long_name'] = 'Daily Maximum Near-Surface Relative Humidity'
+    elif args.var == 'hursmin':
+        input_ds = input_ds.resample(time='D').min('time', keep_attrs=True)
+        input_ds = input_ds.rename({'hurs': 'hursmin'})
+        input_ds['hursmin'].attrs['long_name'] = 'Daily Minimum Near-Surface Relative Humidity'
 
     # AGCD grid
     lats = np.round(np.arange(-44.5, -9.99, 0.05), decimals=2)
@@ -141,15 +160,11 @@ def main(args):
     )
     output_ds[args.var] = convert_units(output_ds[args.var], output_units[args.var])
     output_ds = fix_metadata(output_ds)
-    infile_log = {}
-    if 'history' in input_ds.attrs:
-        infile_log[args.infile] = input_ds.attrs['history']
     output_ds.attrs['history'] = cmdprov.new_log(
-        infile_logs=infile_log,
         code_url='https://github.com/AusClimateService/bias-correction-data-release'
     )
-    outvar_encoding = get_outvar_encoding(output_ds[args.var].shape, len(lats), len(lons))
-    output_ds.to_netcdf(args.outfile, encoding={args.var: outvar_encoding})
+    output_encoding = get_output_encoding(output_ds, args.var, len(lats), len(lons))
+    output_ds.to_netcdf(args.outfile, encoding=output_encoding)
 
 
 if __name__ == '__main__':
