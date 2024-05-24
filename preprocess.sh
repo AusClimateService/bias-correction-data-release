@@ -19,7 +19,11 @@ flags=$5
 python=/g/data/xv83/dbi599/miniconda3/envs/npcp/bin/python
 
 if [[ "${rcm}" == "BARPA-R" ]] ; then
-    project_dir=/g/data/py18/BARPA/output/CMIP6/DD/AUS-15/BOM
+    if [[ "${var}" == "hursmin" || "${var}" == "hursmax" ]] ; then
+        project_dir=/scratch/tp28/eh6215/bias_correction_inputs/BARPA/output/CMIP6/DD/AUS-15/BOM
+    else
+        project_dir=/g/data/py18/BARPA/output/CMIP6/DD/AUS-15/BOM
+    fi
 elif [[ "${rcm}" == "CCAM-v2203-SN" ]] ; then
     project_dir=/g/data/hq89/CCAM/output/CMIP6/DD/AUS-10i/CSIRO
 elif [[ "${rcm}" == "CCAMoc-v2112" ]] ; then
