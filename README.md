@@ -96,7 +96,7 @@ In terms of the colors:
 - :yellow_circle: The data exists for early / beta users to try
 - :white_circle: Not yet processed but we don't anticipate any problems/delays
 
-Last update: Mon 27 May 4:30pm: Univariate (QME) processing for hursmin and hursmax complete.
+Last update: Mon 3 June 6:30am: Land mask applied to bias corrected AGCD output.
 
 | GCM | RCM | run  | tas max | tas min | pr   | rsds   | sfcWind max | hurs max | hurs min | (Notes) |
 | --- | --- | ---  |  :-:   | :-:    | :-:  | :-:    | :-:        | :-:     | :-:     | --- |
