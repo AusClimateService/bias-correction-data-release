@@ -96,7 +96,7 @@ In terms of the colors:
 - :yellow_circle: The data exists for early / beta users to try
 - :white_circle: Not yet processed but we don't anticipate any problems/delays
 
-Last update: Wed 5 June 5am: Multivariate (MRNBC) output runs are starting to become available.
+Last update: Thurs 6 June 2am: Multivariate (MRNBC) output runs complete for tasmax, tasmin and pr using AGCD reference data.
 Please note:
 - The MRNBC runs have only been corrected using AGCD data thus far.
 - For tasmax and tasmin outputs there are small gaps within the WA data void; the exact size and shape of which varies.
@@ -117,7 +117,7 @@ Please note:
 | ACCESS-ESM1-5 | CCAM-v2105 | r6i1p1f1 | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :white_circle: |  | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: |  |
 | CESM2 | BARPA-R | r11i1p1f1 | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: |  |
 | CESM2 | CCAM-v2203-SN | r11i1p1f1 | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | |
-| CMCC-ESM2 | BARPA-R | r1i1p1f1 | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: |  |
+| CMCC-ESM2 | BARPA-R | r1i1p1f1 | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: |  |
 | CMCC-ESM2 | CCAM-v2203-SN | r1i1p1f1 | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | |
 | CMCC-ESM2 | CCAM-v2105 | r1i1p1f1 | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :white_circle: | | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: |  |
 | CNRM-CM6-1-HR | CCAMoc-v2112 | r1i1p1f2 | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :white_circle: |  | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: |  |
