@@ -6,7 +6,7 @@
 #PBS -l storage=gdata/xv83+gdata/ia39+gdata/hq89+gdata/ig45+gdata/py18+gdata/ob53+scratch/hd50+scratch/tp28
 #PBS -l wd
 #PBS -l ncpus=5
-#PBS -v gcm,rcm,run,var
+#PBS -v gcm,rcm,run,exp,var
 
 module load nco
 
@@ -24,7 +24,7 @@ unset __conda_setup
 
 conda activate npcp
 
-command="bash /home/599/dbi599/bias-correction-data-release/preprocess.sh ${gcm} ${rcm} ${run} ${var}"
+command="bash /home/599/dbi599/bias-correction-data-release/preprocess.sh ${gcm} ${rcm} ${run} ${exp} ${var}"
 echo ${command}
 ${command}
 

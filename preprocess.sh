@@ -1,11 +1,12 @@
 #
 # Bash script for preprocessing data for ACS bias correction
 #
-# Usage: bash preprocess.sh {gcm} {rcm} {run} {var} {flags}
+# Usage: bash preprocess.sh {gcm} {rcm} {run} {exp} {var} {flags}
 #
 #   gcm:    name of global climate model (e.g. ACCESS-CM2)*
 #   rcm:    name of regional climate model (BARPA-R, CCAM-v2203-SN, CCAMoc-v2112, CCAM-v2105, CCAM-v2112, BARRA-R2)
 #   run:    run to process (e.g. r1i1p1f1)
+#   exp:    experiment (e.g. historical, ssp126, ssp370)
 #   var:    variable to process (tasmin, tasmax, pr, rsds, sfcWindmax, hursmin, hursmax)
 #   flags:  optional flags (e.g. -n for dry run)
 #
@@ -14,8 +15,9 @@
 gcm=$1
 rcm=$2
 run=$3
-var=$4
-flags=$5
+exp=$4
+var=$5
+flags=$6
 python=/g/data/xv83/dbi599/miniconda3/envs/npcp/bin/python
 
 if [[ "${rcm}" == "BARPA-R" ]] ; then
@@ -49,7 +51,7 @@ else
 fi
 
 
-infiles=(`ls ${project_dir}/${gcm}/{historical,ssp370}/${run}/${rcm}/*/${input_freq}/${input_var}/*/*.nc`)
+infiles=(`ls ${project_dir}/${gcm}/${exp}/${run}/${rcm}/*/${input_freq}/${input_var}/*/*.nc`)
 
 for infile in "${infiles[@]}"; do
     gcm=`basename ${infile} | cut -d _ -f 3`
@@ -70,7 +72,7 @@ for infile in "${infiles[@]}"; do
         echo ${infile}
         mkdir -p ${outdir}
         ${python_command}
-        ncatted -O -a least_significant_digit,${var},d,, ${outdir}/${outfile}
+        ncatted -O -a least_sigiificant_digit,${var}.d.. ${outdir}/${outfile}
         echo ${outdir}/${outfile}
     fi
 done

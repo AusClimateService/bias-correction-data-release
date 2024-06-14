@@ -65,7 +65,7 @@ def convert_units(da, target_units):
     return da
 
 
-def fix_metadata(ds):
+def fix_metadata(ds, var):
     "Apply metadata fixes."""
 
     # Remove xcdat attributes
@@ -81,7 +81,7 @@ def fix_metadata(ds):
         if attr in ds.attrs:
             ds.attrs['input_' + attr] = ds.attrs[attr]
     
-    # Delete attributes
+    # Delete global attributes
     keys_to_delete = [
         'tracking_id',
         'doi',
@@ -106,10 +106,35 @@ def fix_metadata(ds):
         except KeyError:
             pass
 
-    # Add/update attributes
+    # Delete variable attributes
+    try:
+        del ds[var].attrs['cell_methods']
+    except KeyError:
+        pass
+
+    # Add/update variable attributes
+    ds['lat'].attrs['long_name'] = 'latitude'
+    ds['lat'].attrs['standard_name'] = 'latitude'
+    ds['lon'].attrs['long_name'] = 'longitude'
+    ds['lon'].attrs['standard_name'] = 'longitude'
+    ds['time'].attrs['long_name'] = 'time'
+    ds['time'].attrs['standard_name'] = 'time'
+    ds['time'].attrs['axis'] = 'T'
+
+    # Add/update global attributes
     ds.attrs['domain'] = 'Australia/AGCD'
     ds.attrs['domain_id'] = 'AGCD-05i'
     ds.attrs['title'] = 'Pre-processed model output in preparation for bias adjustment'
+    ds.attrs['frequency'] = 'day'
+    ds.attrs['variable_id'] = var
+
+    # Variables to delete
+    drop_vars = ['sigma', 'level_height', 'model_level_number', 'height']
+    for drop_var in drop_vars:
+        try:
+            ds = ds.drop(drop_var)
+        except ValueError:
+            pass
 
     return ds
 
@@ -126,10 +151,11 @@ def get_output_encoding(ds, var, nlats, nlons):
     ds_vars = list(ds.coords) + list(ds.keys())
     for ds_var in ds_vars:
         encoding[ds_var] = {'_FillValue': None}
-    encoding[var]['least_significant_digit'] = 2
     encoding[var]['zlib'] = True
+    encoding[var]['least_significant_digit'] = 2
     encoding[var]['chunksizes'] = (1, nlats, nlons)
-    
+    encoding['time']['units'] = 'days since 1950-01-10'    
+
     return encoding
 
 
@@ -159,7 +185,7 @@ def main(args):
         method=args.method,
     )
     output_ds[args.var] = convert_units(output_ds[args.var], output_units[args.var])
-    output_ds = fix_metadata(output_ds)
+    output_ds = fix_metadata(output_ds, args.var)
     output_ds.attrs['history'] = cmdprov.new_log(
         code_url='https://github.com/AusClimateService/bias-correction-data-release'
     )
