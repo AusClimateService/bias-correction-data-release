@@ -39,7 +39,7 @@ and was achieved by running the following at the command line
 for any given GCM / RCM / model run / variable combination:
 
 ```
-bash preprocess.sh ACCESS-CM2 BARPA-R r4i1p1f1 tasmin -n
+bash preprocess.sh ACCESS-CM2 BARPA-R r4i1p1f1 ssp370 tasmin -n
 ```
 (The `-n` is optional and allows for a dry run where the commands
 that would be executed are just printed to the screen.)
@@ -47,7 +47,7 @@ that would be executed are just printed to the screen.)
 The following is the equivalent command to submit to the job queue on NCI:
 
 ```
-qsub -v gcm=ACCESS-CM2,rcm=BARPA-R,run=r4i1p1f1,var=tasmin preprocess-job.sh
+qsub -v gcm=ACCESS-CM2,rcm=BARPA-R,run=r4i1p1f1,exp=ssp370,var=tasmin preprocess-job.sh
 ```
 
 The preprocessed AGCD and BARRA-R2 observational data 
@@ -55,7 +55,7 @@ are available on NCI at the following (example) directories:
 ```
 /g/data/xv83/agcd-csiro/precip/daily/precip-total_AGCD-CSIRO_r005_19300101-19301231_daily.nc
 
-/g/data/ia39/australian-climate-service/test-data/CORDEX-CMIP6/bias-adjustment-input/AGCD-05i/BOM/ERA5/historical/hres/BARRA-R2/v1/day/pr/pr_AGCD-05i_ERA5_historical_hres_BOM_BARRA-R2_v1_day_200208-200208.nc
+/g/data/ia39/australian-climate-service/test-data/CORDEX-CMIP6/bias-adjustment-input/AGCD-05i/BOM/ERA5/historical/hres/BARRA-R2/v1/day/pr/pr_AGCD-05i_ERA5_historical_hres_BOM_BARRA-R2_v1_day_20020801-20020831.nc
 ```
 
 The preprocessed CORDEX regional climate model data

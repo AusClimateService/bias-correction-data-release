@@ -12,6 +12,8 @@
 #
 # *For BARRA-R2 the gcm is ERA5 and run is hres
 
+module load nco
+
 gcm=$1
 rcm=$2
 run=$3
@@ -74,7 +76,7 @@ for infile in "${infiles[@]}"; do
         echo ${infile}
         mkdir -p ${outdir}
         ${python_command}
-        ncatted -O -a least_sigiificant_digit,${var}.d.. ${outdir}/${outfile}
+        ncatted -O -a least_significant_digit,${var},d,, ${outdir}/${outfile}
         echo ${outdir}/${outfile}
     fi
 done
