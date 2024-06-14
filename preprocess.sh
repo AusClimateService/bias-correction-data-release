@@ -61,9 +61,11 @@ for infile in "${infiles[@]}"; do
     rcm=`basename ${infile} | cut -d _ -f 7`
     version=`basename ${infile} | cut -d _ -f 8`
     tbounds=`basename ${infile} | cut -d _ -f 10 | cut -d . -f 1`
+    start_date=`echo ${tbounds} | cut -d - -f 1`
+    end_date=`echo ${tbounds} | cut -d - -f 2`
     
     outdir=/g/data/ia39/australian-climate-service/test-data/CORDEX-CMIP6/bias-adjustment-input/AGCD-05i/${institution}/${gcm}/${experiment}/${run}/${rcm}/${version}/day/${var}
-    outfile=${var}_AGCD-05i_${gcm}_${experiment}_${run}_${institution}_${rcm}_${version}_day_${tbounds}.nc
+    outfile=${var}_AGCD-05i_${gcm}_${experiment}_${run}_${institution}_${rcm}_${version}_day_${start_date:0:6}01-${end_date:0:6}31.nc
     
     python_command="${python} preprocess.py ${infile} ${var} bilinear ${outdir}/${outfile}"
     if [[ "${flags}" == "-n" ]] ; then
