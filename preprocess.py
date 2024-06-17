@@ -1,5 +1,5 @@
 """Command line program for ACS bias correction data pre-processing."""
-
+import pdb
 import argparse
 
 import numpy as np
@@ -135,6 +135,10 @@ def fix_metadata(ds, var):
             ds = ds.drop(drop_var)
         except ValueError:
             pass
+    try:
+        del ds['time_bnds'].encoding['coordinates']
+    except KeyError:
+        pass
 
     return ds
 
@@ -153,8 +157,9 @@ def get_output_encoding(ds, var, nlats, nlons):
         encoding[ds_var] = {'_FillValue': None}
     encoding[var]['zlib'] = True
     encoding[var]['least_significant_digit'] = 2
+    encoding[var]['dtype'] = 'float32'
     encoding[var]['chunksizes'] = (1, nlats, nlons)
-    encoding['time']['units'] = 'days since 1950-01-10'    
+    encoding['time']['units'] = 'days since 1950-01-10'
 
     return encoding
 
