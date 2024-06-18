@@ -23,7 +23,9 @@ flags=$6
 python=/g/data/xv83/dbi599/miniconda3/envs/npcp/bin/python
 
 if [[ "${rcm}" == "BARPA-R" ]] ; then
-    if [[ "${var}" == "hursmin" || "${var}" == "hursmax" ]] ; then
+    if [[ "${exp}" == "ssp126" ]] ; then
+        project_dir=/g/data/py18/BARPA/output/CMIP6/DD/AUS-15/BOM
+    elif [[ "${var}" == "hursmin" || "${var}" == "hursmax" ]] ; then
         project_dir=/scratch/tp28/eh6215/bias_correction_inputs/BARPA/output/CMIP6/DD/AUS-15/BOM
     else
         project_dir=/g/data/py18/BARPA/output/CMIP6/DD/AUS-15/BOM
@@ -76,7 +78,6 @@ for infile in "${infiles[@]}"; do
         echo ${infile}
         mkdir -p ${outdir}
         ${python_command}
-        ncatted -O -a least_significant_digit,${var},d,, ${outdir}/${outfile}
         echo ${outdir}/${outfile}
     fi
 done

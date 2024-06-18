@@ -156,7 +156,6 @@ def get_output_encoding(ds, var, nlats, nlons):
     for ds_var in ds_vars:
         encoding[ds_var] = {'_FillValue': None}
     encoding[var]['zlib'] = True
-    encoding[var]['least_significant_digit'] = 2
     encoding[var]['dtype'] = 'float32'
     encoding[var]['chunksizes'] = (1, nlats, nlons)
     encoding['time']['units'] = 'days since 1950-01-10'
