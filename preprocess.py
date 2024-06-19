@@ -99,6 +99,10 @@ def fix_metadata(ds, var):
         'date_modified',
         'date_metadata_modified',
         'creation_date',
+        'time_coverage_start',
+        'time_coverage_end',
+        'time_coverage_duration',
+        'time_coverage_resolution'
     ]
     for key in keys_to_delete:
         try:
@@ -166,7 +170,7 @@ def get_output_encoding(ds, var, nlats, nlons):
 def main(args):
     """Run the program."""
     
-    input_ds = xcdat.open_dataset(args.infile, mask_and_scale=True)
+    input_ds = xcdat.open_mfdataset(args.infiles, mask_and_scale=True)
 
     # Temporal aggregation
     if args.var == 'hursmax':
@@ -202,7 +206,7 @@ if __name__ == '__main__':
         description=__doc__,
         formatter_class=argparse.RawDescriptionHelpFormatter
     )     
-    parser.add_argument("infile", type=str, help="input file")
+    parser.add_argument("infiles", type=str, nargs='*', help="input files")
     parser.add_argument("var", type=str, help="input variable")
     parser.add_argument("method", type=str, choices=('bilinear', 'conservative'), help="regridding method")
     parser.add_argument("outfile", type=str, help="output file")

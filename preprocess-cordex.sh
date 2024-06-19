@@ -1,18 +1,15 @@
 #
-# Bash script for preprocessing data for ACS bias correction
+# Bash script for preprocessing CORDEX data for ACS bias correction
 #
 # Usage: bash preprocess.sh {gcm} {rcm} {run} {exp} {var} {flags}
 #
-#   gcm:    name of global climate model (e.g. ACCESS-CM2)*
-#   rcm:    name of regional climate model (BARPA-R, CCAM-v2203-SN, CCAMoc-v2112, CCAM-v2105, CCAM-v2112, BARRA-R2)
+#   gcm:    name of global climate model (e.g. ACCESS-CM2)
+#   rcm:    name of regional climate model (BARPA-R, CCAM-v2203-SN, CCAMoc-v2112, CCAM-v2105, CCAM-v2112)
 #   run:    run to process (e.g. r1i1p1f1)
 #   exp:    experiment (e.g. historical, ssp126, ssp370)
 #   var:    variable to process (tasmin, tasmax, pr, rsds, sfcWindmax, hursmin, hursmax)
 #   flags:  optional flags (e.g. -n for dry run)
 #
-# *For BARRA-R2 the gcm is ERA5 and run is hres
-
-module load nco
 
 gcm=$1
 rcm=$2
@@ -38,12 +35,6 @@ elif [[ "${rcm}" == "CCAM-v2105" ]] ; then
     project_dir=/g/data/ig45/QldFCP-2/CORDEX/CMIP6/DD/AUS-20i/UQ-DES
 elif [[ "${rcm}" == "CCAM-v2112" ]] ; then
     project_dir=/g/data/ig45/QldFCP-2/CORDEX/CMIP6/DD/AUS-20i/UQ-DES
-elif [[ "${rcm}" == "BARRA-R2" ]] ; then
-    if [[ "${var}" == "hursmin" || "${var}" == "hursmax" ]] ; then
-        project_dir=/scratch/hd50/jt4085/bias_correction/BARRA2/output/reanalysis/AUS-11/BOM
-    else
-        project_dir=/g/data/ob53/BARRA2/output/reanalysis/AUS-11/BOM
-    fi
 fi
 
 if [[ "${var}" == "hursmin" || "${var}" == "hursmax" ]] ; then
@@ -55,7 +46,7 @@ else
 fi
 
 
-infiles=(`ls ${project_dir}/${gcm}/${exp}/${run}/${rcm}/*/${input_freq}/${input_var}/*/*.nc`)
+infiles=(`ls ${project_dir}/${gcm}/${exp}/${run}/${rcm}/*/${input_freq}/${input_var}/v*/*.nc`)
 
 for infile in "${infiles[@]}"; do
     gcm=`basename ${infile} | cut -d _ -f 3`

@@ -8,8 +8,6 @@
 #PBS -l ncpus=5
 #PBS -v gcm,rcm,run,exp,var
 
-module load nco
-
 __conda_setup="$('/g/data/xv83/dbi599/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
@@ -24,7 +22,7 @@ unset __conda_setup
 
 conda activate npcp
 
-command="bash /home/599/dbi599/bias-correction-data-release/preprocess.sh ${gcm} ${rcm} ${run} ${exp} ${var}"
+command="bash /home/599/dbi599/bias-correction-data-release/preprocess-cordex.sh ${gcm} ${rcm} ${run} ${exp} ${var}"
 echo ${command}
 ${command}
 
