@@ -86,25 +86,32 @@ Note that from previous usage there still exists data following a slightly diffe
 
 The table below provides a summary of what data has been processed.
 
-The three dots (in order from first/top/left to last/bottom/right) represent:
+The order of the dots in the table (from first/top/left to last/bottom/right) represents:
 - Dot 1: Status of the pre-processed input data
 - Dot 2: Status of the univariate bias corrected data (i.e. using the QME method)
 - Dot 3: Status of the multivariate bias corrected data (i.e. using the MRNBC method)
- 
-In terms of the colors:
+
+The color of the dots in the table represents:
 - :green_circle: The data is available in its final official form
 - :yellow_circle: The data exists for early / beta users to try
 - :white_circle: Not yet processed but we don't anticipate any problems/delays
 
+The BARPA-R dataset has a small number of daily timesteps
+where the value at all latitude/longitude points is NaN for all variables
+(see the BARPA [known issues](https://opus.nci.org.au/pages/viewpage.action?pageId=264241299) page for details).
+Those NaN timesteps are also present in the bias corrected data for all variables
+except hursmin and hursmax (which were calculated using unaffected hourly BARPA data).
+The table below lists the affected timesteps.
+
 Last update: Thurs 27 June 1pm: QME runs completed for ssp126 for pr, tasmax and tasmin (for both AGCD and BARRA-R2 as reference).
 
 
-| GCM | RCM | run  | exp | tas max | tas min | pr   | rsds   | sfcWind max | hurs max | hurs min | (Notes) |
-| --- | --- | ---  | :-: | :-:     | :-:     | :-:  | :-:    | :-:         | :-:      | :-:      | ---     |
+| GCM | RCM | run  | exp | tas max | tas min | pr   | rsds   | sfcWind max | hurs max | hurs min | missing data |
+| --- | --- | ---  | :-: | :-:     | :-:     | :-:  | :-:    | :-:         | :-:      | :-:      | ---          |
 |     | AGCD |     |     | :green_circle: | :green_circle: | :green_circle: |  |  |  |  |  |
 |     | BARRA-R2 | |     | :green_circle: | :green_circle: | :green_circle: | :green_circle: | :green_circle: | :green_circle: | :green_circle: |  |
 | ACCESS-CM2 | BARPA-R | r4i1p1f1 | historical | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: |  |
-| ACCESS-CM2 | BARPA-R | r4i1p1f1 | ssp126 | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | Missing 1 and 2 July 2049 (all vars except hursmax and hursmin)[^1] |
+| ACCESS-CM2 | BARPA-R | r4i1p1f1 | ssp126 | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | 1-2 July 2049[^1] |
 | ACCESS-CM2 | BARPA-R | r4i1p1f1 | ssp370 | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: |  |
 | ACCESS-CM2 | CCAM-v2203-SN | r4i1p1f1 | historical | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: |  |
 | ACCESS-CM2 | CCAM-v2203-SN | r4i1p1f1 | ssp126 | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: |  |
@@ -113,8 +120,8 @@ Last update: Thurs 27 June 1pm: QME runs completed for ssp126 for pr, tasmax and
 | ACCESS-CM2 | CCAMoc-v2112 | r2i1p1f1 | ssp126 | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :white_circle: :white_circle: |   | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: |  |
 | ACCESS-CM2 | CCAMoc-v2112 | r2i1p1f1 | ssp370 | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :white_circle: |   | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: |  |
 | ACCESS-ESM1-5 | BARPA-R | r6i1p1f1 | historical | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: |  |
-| ACCESS-ESM1-5 | BARPA-R | r6i1p1f1 | ssp126 | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | Missing 9 and 10 Sep 2073 + 16 and 17 Oct 2073 (all vars except hursmax and hursmin)[^1] |
-| ACCESS-ESM1-5 | BARPA-R | r6i1p1f1 | ssp370 | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | Missing 21 and 22 April 2029 (all vars except hursmax and hursmin)[^1] |
+| ACCESS-ESM1-5 | BARPA-R | r6i1p1f1 | ssp126 | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | 9-10 Sep, 16-17 Oct 2049[^1] |
+| ACCESS-ESM1-5 | BARPA-R | r6i1p1f1 | ssp370 | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | 21-22 Apr 2029[^1] |
 | ACCESS-ESM1-5 | CCAM-v2203-SN | r6i1p1f1 | historical | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: |  |
 | ACCESS-ESM1-5 | CCAM-v2203-SN | r6i1p1f1 | ssp126 | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: |  |
 | ACCESS-ESM1-5 | CCAM-v2203-SN | r6i1p1f1 | ssp370 | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: |  |
