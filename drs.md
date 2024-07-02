@@ -88,8 +88,12 @@ in the original CORDEX data file:
 - `institution_id = "ACS"`
 - `domain = "Australia/AGCD"`
 - `domain_id = "AGCD-05i"`
-- `driving_experiment = "gap-filling scenario reaching 7.0 based on SSP3"`
-- `driving_experiment_id = "ssp370"`
+- `driving_experiment =`
+  - `"update of RCP2.6 based on SSP1"`
+  - `"gap-filling scenario reaching 7.0 based on SSP3"`
+- `driving_experiment_id =`
+  - `"ssp126"`
+  - `"ssp370"`
 - `product = "bias-adjusted-output"`
 - `project_id = "CORDEX-Adjust"`
 - `contact = "email@address"`
