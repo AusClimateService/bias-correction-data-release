@@ -103,7 +103,7 @@ Those NaN timesteps are also present in the bias corrected data for all variable
 except hursmin and hursmax (which were calculated using unaffected hourly BARPA data).
 The table below lists the affected timesteps.
 
-Last update: Tues 2 July 4am: All QME runs completed for ssp126.
+Last update: Fri 5 July 4pm: All QME runs using BARRA-R2 as reference have been rerun with the reference period starting at 1980 instead of 1979, due to spin-up values being present in 1979 BARRA data.
 
 
 | GCM | RCM | run  | exp | tas max | tas min | pr   | rsds   | sfcWind max | hurs max | hurs min | missing data |
