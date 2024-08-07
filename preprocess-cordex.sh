@@ -28,7 +28,11 @@ if [[ "${rcm}" == "BARPA-R" ]] ; then
         project_dir=/g/data/py18/BARPA/output/CMIP6/DD/AUS-15/BOM
     fi
 elif [[ "${rcm}" == "CCAM-v2203-SN" ]] ; then
-    project_dir=/g/data/hq89/CCAM/output/CMIP6/DD/AUS-10i/CSIRO
+    if [[ "${gcm}" == "NorESM2-MM" ]] ; then
+        project_dir=/g/data/xv83/CCAM/output/CMIP6/DD/AUS-10i/CSIRO
+    else
+        project_dir=/g/data/hq89/CCAM/output/CMIP6/DD/AUS-10i/CSIRO
+    fi
 elif [[ "${rcm}" == "CCAMoc-v2112" ]] ; then
     project_dir=/g/data/ig45/QldFCP-2/CORDEX/CMIP6/DD/AUS-20i/UQ-DES
 elif [[ "${rcm}" == "CCAM-v2105" ]] ; then
