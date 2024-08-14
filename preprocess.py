@@ -112,7 +112,6 @@ def fix_metadata(ds, var):
         'wrf_options',
         'contact',
         'product',
-        'source_type',
         'nest_level',
         'nest_parent',
         'wrf_schemes_ra_sw_physics',
