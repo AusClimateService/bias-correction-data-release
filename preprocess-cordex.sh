@@ -4,7 +4,7 @@
 # Usage: bash preprocess.sh {gcm} {rcm} {run} {exp} {var} {flags}
 #
 #   gcm:    name of global climate model (e.g. ACCESS-CM2)
-#   rcm:    name of regional climate model (BARPA-R, CCAM-v2203-SN, CCAMoc-v2112, CCAM-v2105, CCAM-v2112)
+#   rcm:    name of regional climate model (BARPA-R, CCAM-v2203-SN, CCAMoc-v2112, CCAM-v2105, CCAM-v2112, NARCliM2-0-WRF412R3, NARCliM2-0-WRF412R5)
 #   run:    run to process (e.g. r1i1p1f1)
 #   exp:    experiment (e.g. historical, ssp126, ssp370)
 #   var:    variable to process (tasmin, tasmax, pr, rsds, sfcWindmax, hursmin, hursmax)
@@ -39,6 +39,12 @@ elif [[ "${rcm}" == "CCAM-v2105" ]] ; then
     project_dir=/g/data/ig45/QldFCP-2/CORDEX/CMIP6/DD/AUS-20i/UQ-DES
 elif [[ "${rcm}" == "CCAM-v2112" ]] ; then
     project_dir=/g/data/ig45/QldFCP-2/CORDEX/CMIP6/DD/AUS-20i/UQ-DES
+elif [[ "${rcm}" == "NARCliM2-0-WRF412R3" ]] ; then
+    project_dir=/g/data/zz63/NARCliM2-0/output/CMIP6/DD/AUS-18/NSW-Government
+    rlon="--rlon /g/data/zz63/NARCliM2-0/rlon-correction-AUS-18.txt"
+elif [[ "${rcm}" == "NARCliM2-0-WRF412R5" ]] ; then
+    project_dir=/g/data/zz63/NARCliM2-0/output/CMIP6/DD/AUS-18/NSW-Government
+    rlon="--rlon /g/data/zz63/NARCliM2-0/rlon-correction-AUS-18.txt"
 fi
 
 if [[ "${var}" == "hursmin" || "${var}" == "hursmax" ]] ; then
@@ -66,7 +72,7 @@ for infile in "${infiles[@]}"; do
     outdir=/g/data/ia39/australian-climate-service/test-data/CORDEX-CMIP6/bias-adjustment-input/AGCD-05i/${institution}/${gcm}/${experiment}/${run}/${rcm}/${version}/day/${var}
     outfile=${var}_AGCD-05i_${gcm}_${experiment}_${run}_${institution}_${rcm}_${version}_day_${start_date:0:6}01-${end_date:0:6}31.nc
     
-    python_command="${python} preprocess.py ${infile} ${var} bilinear ${outdir}/${outfile}"
+    python_command="${python} preprocess.py ${infile} ${var} bilinear ${outdir}/${outfile} ${rlon}"
     if [[ "${flags}" == "-n" ]] ; then
         echo ${python_command}
     else

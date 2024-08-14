@@ -34,12 +34,14 @@ and just want the (arguably) superior observational underpinning.
 ## Pre-processed input data for bias correction
 
 Model outputs and observational data were pre-processed prior to bias correction.
-This pre-processing involved spatial regridding, unit conversion and re-chunking
-and was achieved by running the following at the command line
+This pre-processing involved spatial regridding, unit conversion and re-chunking.
+
+For the model outputs,
+the pre-processing was achieved by running the following at the command line
 for any given GCM / RCM / model run / variable combination:
 
 ```
-bash preprocess.sh ACCESS-CM2 BARPA-R r4i1p1f1 ssp370 tasmin -n
+bash preprocess-cordex.sh ACCESS-CM2 BARPA-R r4i1p1f1 ssp370 tasmin -n
 ```
 (The `-n` is optional and allows for a dry run where the commands
 that would be executed are just printed to the screen.)
@@ -47,7 +49,24 @@ that would be executed are just printed to the screen.)
 The following is the equivalent command to submit to the job queue on NCI:
 
 ```
-qsub -v gcm=ACCESS-CM2,rcm=BARPA-R,run=r4i1p1f1,exp=ssp370,var=tasmin preprocess-job.sh
+qsub -v gcm=ACCESS-CM2,rcm=BARPA-R,run=r4i1p1f1,exp=ssp370,var=tasmin preprocess-cordex-job.sh
+```
+
+For the observational data,
+no pre-processing was required for the AGCD data.
+For BARRA-R2,
+the pre-processing was achieved by running the following at the command line
+for any given variable:
+```
+bash preprocess-barra.sh tasmin -n
+```
+(The `-n` is optional and allows for a dry run where the commands
+that would be executed are just printed to the screen.)
+
+The following is the equivalent command to submit to the job queue on NCI:
+
+```
+qsub -v var=tasmin preprocess-barra-job.sh
 ```
 
 The preprocessed AGCD and BARRA-R2 observational data 
@@ -310,7 +329,11 @@ Last update: Fri 9 August 3am: Completed QME runs for new NorESM CCAM version.
 | UKESM1-0-LL | NARCliM2-0-WRF412R5 | r1i1p1f2 | ssp370 | :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: |  |
 
 
-The BARPA-R model was run by the [Bureau of Meteorology](https://dx.doi.org/10.25914/z1x6-dq28),
-while the various different versions of the CCAM model were run by
+The BARPA-R model was run by the [Bureau of Meteorology](https://dx.doi.org/10.25914/z1x6-dq28).
+
+The various different versions of the CCAM model were run by
 [CSIRO](https://dx.doi.org/10.25914/rd73-4m38) and the
 [Queensland Future Climate Science Program](https://dx.doi.org/10.25914/8fve-1910).
+
+The two versions of the WRF model were run by the [NARCliM project](https://dx.doi.org/10.5194/gmd-2024-87),
+which was led by the NSW Government.

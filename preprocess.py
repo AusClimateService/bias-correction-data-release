@@ -1,5 +1,5 @@
 """Command line program for ACS bias correction data pre-processing."""
-import pdb
+
 import argparse
 
 import numpy as np
@@ -82,7 +82,7 @@ def fix_metadata(ds, var):
             ds.attrs['input_' + attr] = ds.attrs[attr]
     
     # Delete global attributes
-    keys_to_delete = [
+    global_keys_to_delete = [
         'tracking_id',
         'doi',
         'axiom_version',
@@ -102,19 +102,47 @@ def fix_metadata(ds, var):
         'time_coverage_start',
         'time_coverage_end',
         'time_coverage_duration',
-        'time_coverage_resolution'
+        'time_coverage_resolution',
+        'git_url_postprocessing',
+        'git_hash_postprocessing',
+        'grid',
+        'project_id',
+        'comment',
+        'DPIE_WRF_HASH',
+        'wrf_options',
+        'contact',
+        'product',
+        'source_type',
+        'nest_level',
+        'nest_parent',
+        'wrf_schemes_ra_sw_physics',
+        'wrf_schemes_ra_lw_physics',
+        'wrf_schemes_sf_sfclay_physics',
+        'wrf_schemes_sf_surface_physics',
+        'wrf_schemes_mp_physics',
+        'wrf_schemes_bl_pbl_physics',
+        'wrf_schemes_cu_physics',
+        'references',
+        'NCO',
     ]
-    for key in keys_to_delete:
+    for key in global_keys_to_delete:
         try:
             del ds.attrs[key]
         except KeyError:
             pass
 
     # Delete variable attributes
-    try:
-        del ds[var].attrs['cell_methods']
-    except KeyError:
-        pass
+    var_keys_to_delete = [
+        'cell_methods',
+        'valid_range',
+        'grid_mapping',
+        'MD5',
+    ]
+    for key in var_keys_to_delete:
+        try:
+            del ds[var].attrs[key]
+        except KeyError:
+            pass
 
     # Add/update variable attributes
     ds['lat'].attrs['long_name'] = 'latitude'
@@ -167,10 +195,30 @@ def get_output_encoding(ds, var, nlats, nlons):
     return encoding
 
 
+def replace_rlon(ds, rlon_file):
+    """Replace rlon values (needed for NARCliM2.0)"""
+
+    rlon_values = []
+    with open(rlon_file, 'r') as file:
+        for line in file.readlines():
+            rlon_values.append(float(line))
+
+    rlon_attrs = ds['rlon'].attrs
+    ds['rlon'] = rlon_values
+    ds['rlon'].attrs = rlon_attrs
+    
+    ds = ds.drop_vars('rlon_bnds')
+    ds = ds.bounds.add_missing_bounds()
+
+    return ds
+
+
 def main(args):
     """Run the program."""
     
     input_ds = xcdat.open_mfdataset(args.infiles, mask_and_scale=True)
+    if args.rlon:
+        input_ds = replace_rlon(input_ds, args.rlon)
 
     # Temporal aggregation
     if args.var == 'hursmax':
@@ -210,6 +258,12 @@ if __name__ == '__main__':
     parser.add_argument("var", type=str, help="input variable")
     parser.add_argument("method", type=str, choices=('bilinear', 'conservative'), help="regridding method")
     parser.add_argument("outfile", type=str, help="output file")
+    parser.add_argument(
+        "--rlon",
+        default=None,
+        type=str,
+        help="file containing correct rlon values"
+    )
     args = parser.parse_args()
     main(args)
 
