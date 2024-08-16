@@ -113,7 +113,8 @@ The order of the dots in each table (from first/top/left to last/bottom/right) r
 The color of the dots in the table represents:
 - :green_circle: The data is available in its final official form
 - :yellow_circle: The data exists for early / beta users to try
-- :white_circle: Not yet processed but we don't anticipate any problems/delays
+- :white_circle: Not processed yet but we don't anticipate any problems/delays
+- :red_circle: Not processed yet due to issues/delays with the original data
 
 The BARPA-R dataset has a small number of daily timesteps
 where the value at all latitude/longitude points is NaN for all variables
@@ -325,8 +326,10 @@ Last update: Thurs 15 August 11pm: Started processing NARCliM runs.
 | UKESM1-0-LL | NARCliM2-0-WRF412R3 | r1i1p1f2 | ssp126 | :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: |  |
 | UKESM1-0-LL | NARCliM2-0-WRF412R3 | r1i1p1f2 | ssp370 | :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: |  |
 | UKESM1-0-LL | NARCliM2-0-WRF412R5 | r1i1p1f2 | historical | :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: |  |
-| UKESM1-0-LL | NARCliM2-0-WRF412R5 | r1i1p1f2 | ssp126 | :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: |  |
+| UKESM1-0-LL | NARCliM2-0-WRF412R5 | r1i1p1f2 | ssp126 | :red_circle: :white_circle: :white_circle: | :red_circle: :white_circle: :white_circle: | :red_circle: :white_circle: :white_circle: | :red_circle: :white_circle: :white_circle: | :red_circle: :white_circle: :white_circle: | :red_circle: :white_circle: :white_circle: | :red_circle: :white_circle: :white_circle: |  |
 | UKESM1-0-LL | NARCliM2-0-WRF412R5 | r1i1p1f2 | ssp370 | :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: | :white_circle: :white_circle: :white_circle: |  |
+
+The UKESM1-0-LL, NARCliM2-0-WRF412R5 ssp126 data is expected to be made available on project zz63 sometime in August 2024.
 
 
 The BARPA-R model was run by the [Bureau of Meteorology](https://dx.doi.org/10.25914/z1x6-dq28).
