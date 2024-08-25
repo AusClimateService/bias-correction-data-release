@@ -331,12 +331,16 @@ Last update: Tues 20 August 11pm: Processed more NARCliM runs.
 
 The UKESM1-0-LL, NARCliM2-0-WRF412R5 ssp126 data is expected to be made available on project zz63 sometime in August 2024.
 
+The BARPA-R model was run by the Bureau of Meteorology
+([data collection](https://dx.doi.org/10.25914/z1x6-dq28)).
 
-The BARPA-R model was run by the [Bureau of Meteorology](https://dx.doi.org/10.25914/z1x6-dq28).
+The CCAM-v2203-SN version of the CCAM model was run by CSIRO
+([data collection](https://dx.doi.org/10.25914/rd73-4m38)). 
 
-The various different versions of the CCAM model were run by
-[CSIRO](https://dx.doi.org/10.25914/rd73-4m38) and the
-[Queensland Future Climate Science Program](https://dx.doi.org/10.25914/8fve-1910).
+The CCAMoc-v2112, CCAM-v2112 and CCAM-v2105 versions of the CCAM model were run by the 
+Queensland Future Climate Science Program
+([data collection](https://dx.doi.org/10.25914/8fve-1910), [paper](https://doi.org/10.1029/2023EF003548)).
 
-The two versions of the WRF model were run by the [NARCliM project](https://dx.doi.org/10.5194/gmd-2024-87),
-which was led by the NSW Government.
+The NARCliM2-0-WRF412R3 and NARCliM2-0-WRF412R5 versions of the WRF model were run by the
+NARCliM project, which was led by the NSW Government
+([data collection](https://dx.doi.org/10.25914/resv-vj43), [paper](https://dx.doi.org/10.5194/gmd-2024-87)).
