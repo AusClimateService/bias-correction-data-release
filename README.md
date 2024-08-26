@@ -10,7 +10,8 @@ over Australasia as part of the CORDEX-CMIP6 project.
 For this data release,
 bias correction will be applied to CORDEX-CMIP6 model outputs produced by the
 [Bureau of Meteorology](https://dx.doi.org/10.25914/z1x6-dq28),
-[CSIRO](https://dx.doi.org/10.25914/rd73-4m38) and the
+[CSIRO](https://dx.doi.org/10.25914/rd73-4m38),
+[NARCliM2.0](https://dx.doi.org/10.25914/resv-vj43) and the
 [Queensland Future Climate Science Program](https://dx.doi.org/10.25914/8fve-1910)
 (see the [Data Availability](#data-availability) table below for details).
 
