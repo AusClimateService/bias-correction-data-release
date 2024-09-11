@@ -124,7 +124,7 @@ Those NaN timesteps are also present in the bias corrected data for all variable
 except hursmin and hursmax (which were calculated using unaffected hourly BARPA data).
 The table below lists the affected timesteps.
 
-Last update: Tues 20 August 11pm: Processed more NARCliM runs.
+Last update: Wed 11 September 2pm: Added QME UKESM NARCliM runs.
 
 ### Observations
 
@@ -323,12 +323,12 @@ Last update: Tues 20 August 11pm: Processed more NARCliM runs.
 
 | GCM | RCM | run  | exp | tas max | tas min | pr   | rsds   | sfcWind max | hurs max | hurs min | missing data |
 | --- | --- | ---  | :-: | :-:     | :-:     | :-:  | :-:    | :-:         | :-:      | :-:      | ---          |
-| UKESM1-0-LL | NARCliM2-0-WRF412R3 | r1i1p1f2 | historical | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: |  |
-| UKESM1-0-LL | NARCliM2-0-WRF412R3 | r1i1p1f2 | ssp126 | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: |  |
-| UKESM1-0-LL | NARCliM2-0-WRF412R3 | r1i1p1f2 | ssp370 | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: |  |
-| UKESM1-0-LL | NARCliM2-0-WRF412R5 | r1i1p1f2 | historical | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: |  |
+| UKESM1-0-LL | NARCliM2-0-WRF412R3 | r1i1p1f2 | historical | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: |  |
+| UKESM1-0-LL | NARCliM2-0-WRF412R3 | r1i1p1f2 | ssp126 | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: |  |
+| UKESM1-0-LL | NARCliM2-0-WRF412R3 | r1i1p1f2 | ssp370 | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: |  |
+| UKESM1-0-LL | NARCliM2-0-WRF412R5 | r1i1p1f2 | historical | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: |  |
 | UKESM1-0-LL | NARCliM2-0-WRF412R5 | r1i1p1f2 | ssp126 | :red_circle: :white_circle: :white_circle: | :red_circle: :white_circle: :white_circle: | :red_circle: :white_circle: :white_circle: | :red_circle: :white_circle: :white_circle: | :red_circle: :white_circle: :white_circle: | :red_circle: :white_circle: :white_circle: | :red_circle: :white_circle: :white_circle: |  |
-| UKESM1-0-LL | NARCliM2-0-WRF412R5 | r1i1p1f2 | ssp370 | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: |  |
+| UKESM1-0-LL | NARCliM2-0-WRF412R5 | r1i1p1f2 | ssp370 | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: |  |
 
 The UKESM1-0-LL, NARCliM2-0-WRF412R5 ssp126 data is expected to be made available on project zz63 sometime in August 2024.
 
