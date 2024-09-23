@@ -124,7 +124,7 @@ Those NaN timesteps are also present in the bias corrected data for all variable
 except hursmin and hursmax (which were calculated using unaffected hourly BARPA data).
 The table below lists the affected timesteps.
 
-Last update: Wed 11 September 2pm: Added QME UKESM NARCliM runs.
+Last update: Tues 24 September 5am: Added missing QME UKESM NARCliM runs.
 
 ### Observations
 
@@ -327,7 +327,7 @@ Last update: Wed 11 September 2pm: Added QME UKESM NARCliM runs.
 | UKESM1-0-LL | NARCliM2-0-WRF412R3 | r1i1p1f2 | ssp126 | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: |  |
 | UKESM1-0-LL | NARCliM2-0-WRF412R3 | r1i1p1f2 | ssp370 | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: |  |
 | UKESM1-0-LL | NARCliM2-0-WRF412R5 | r1i1p1f2 | historical | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: |  |
-| UKESM1-0-LL | NARCliM2-0-WRF412R5 | r1i1p1f2 | ssp126 | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: | :green_circle: :white_circle: :white_circle: |  |
+| UKESM1-0-LL | NARCliM2-0-WRF412R5 | r1i1p1f2 | ssp126 | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: |  |
 | UKESM1-0-LL | NARCliM2-0-WRF412R5 | r1i1p1f2 | ssp370 | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: |  |
 
 The BARPA-R model was run by the Bureau of Meteorology
