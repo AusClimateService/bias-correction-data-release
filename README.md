@@ -124,10 +124,7 @@ Those NaN timesteps are also present in the bias corrected data for all variable
 except hursmin and hursmax (which were calculated using unaffected hourly BARPA data).
 The table below lists the affected timesteps.
 
-Last update: Tues 15 October 4:30am: Completed majority of MRNBC 7-var runs.
-
-Please note that for MRNBC runs where only the tasmax, tasmin and pr lights are enabled, then those 3 variables have only been corrected against AGCD data as part of a 3-var multivariate run. 
-When the 6 or 7 variable multivariate runs are completed (corrected against BARRA-R2) and corresponding lights are enabled for those later variables, this will also signify the availability of tasmax, tasmin and pr corrected against BARRA-R2.
+Last update: Tues 15 October 7pm: Completed all MRNBC runs except UKESM NARCliM.
 
 ### Observations
 
@@ -195,7 +192,7 @@ When the 6 or 7 variable multivariate runs are completed (corrected against BARR
 | CMCC-ESM2 | BARPA-R | r1i1p1f1 | ssp126 | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: |  |
 | CMCC-ESM2 | BARPA-R | r1i1p1f1 | ssp370 | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: |  |
 | CMCC-ESM2 | CCAM-v2203-SN | r1i1p1f1 | historical | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | |
-| CMCC-ESM2 | CCAM-v2203-SN | r1i1p1f1 | ssp126 | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | :green_circle: :yellow_circle: :white_circle: | |
+| CMCC-ESM2 | CCAM-v2203-SN | r1i1p1f1 | ssp126 | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | |
 | CMCC-ESM2 | CCAM-v2203-SN | r1i1p1f1 | ssp370 | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | |
 | CMCC-ESM2 | CCAM-v2105 | r1i1p1f1 | historical | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: |  |
 | CMCC-ESM2 | CCAM-v2105 | r1i1p1f1 | ssp126 | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: | | :green_circle: :yellow_circle: :yellow_circle: | :green_circle: :yellow_circle: :yellow_circle: |  |
