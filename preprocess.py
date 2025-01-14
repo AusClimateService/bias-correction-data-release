@@ -123,6 +123,13 @@ def fix_metadata(ds, var):
         'wrf_schemes_cu_physics',
         'references',
         'NCO',
+        'activity_id',
+        'rlong0',
+        'rlat0',
+        'schmidt',
+        'il',
+        'kl',
+        'native_resolution',
     ]
     for key in global_keys_to_delete:
         try:
@@ -151,11 +158,12 @@ def fix_metadata(ds, var):
     ds['time'].attrs['long_name'] = 'time'
     ds['time'].attrs['standard_name'] = 'time'
     ds['time'].attrs['axis'] = 'T'
+    ds['time_bnds'].attrs = {}
 
     # Add/update global attributes
     ds.attrs['domain'] = 'Australia/AGCD'
-    ds.attrs['domain_id'] = 'AGCD-05i'
-    ds.attrs['title'] = 'Pre-processed model output in preparation for bias adjustment'
+    ds.attrs['domain_id'] = 'AUST-05i'
+    ds.attrs['title'] = 'CORDEX-CMIP6-based regridded and calibrated data for Australia'
     ds.attrs['frequency'] = 'day'
     ds.attrs['variable_id'] = var
 
@@ -166,10 +174,6 @@ def fix_metadata(ds, var):
             ds = ds.drop(drop_var)
         except ValueError:
             pass
-    try:
-        del ds['time_bnds'].encoding['coordinates']
-    except KeyError:
-        pass
 
     return ds
 
@@ -187,9 +191,11 @@ def get_output_encoding(ds, var, nlats, nlons):
     for ds_var in ds_vars:
         encoding[ds_var] = {'_FillValue': None}
     encoding[var]['zlib'] = True
+    encoding[var]['complevel'] = 5
     encoding[var]['dtype'] = 'float32'
     encoding[var]['chunksizes'] = (1, nlats, nlons)
-    encoding['time']['units'] = 'days since 1950-01-10'
+    encoding['time']['units'] = 'days since 1950-01-01'
+    encoding['time_bnds']['dtype'] = 'float64'
 
     return encoding
 
@@ -245,7 +251,7 @@ def main(args):
         code_url='https://github.com/AusClimateService/bias-correction-data-release'
     )
     output_encoding = get_output_encoding(output_ds, args.var, len(lats), len(lons))
-    output_ds.to_netcdf(args.outfile, encoding=output_encoding)
+    output_ds.to_netcdf(args.outfile, encoding=output_encoding, format='NETCDF4_CLASSIC')
 
 
 if __name__ == '__main__':
