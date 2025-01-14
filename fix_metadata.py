@@ -2,17 +2,21 @@
 
 import argparse
 
+import numpy as np
 import xarray as xr
 
 
-def get_output_encoding(ds, var, nlats, nlons):
+def get_output_encoding(ds, var):
     """Define the output file encoding."""
 
     encoding = {}
     #remove fill value attribute
     ds_vars = list(ds.coords) + list(ds.keys())
     for ds_var in ds_vars:
-        encoding[ds_var] = {'_FillValue': None}
+        if ds_var == var:
+            encoding[ds_var] = {'_FillValue': np.float32(1e20)}
+        else:
+            encoding[ds_var] = {'_FillValue': None}
     #compression and chunking
     encoding[var]['zlib'] = True
     encoding[var]['least_significant_digit'] = 2
@@ -37,15 +41,18 @@ def main(args):
     ds = xr.open_dataset(args.infile)
     
     # Edit existing global attributes
-    ds.attrs['domain_id'] = "AUST-05i"
-    ds.attrs['title'] = "CORDEX-CMIP6-based regridded and calibrated data for Australia"
-
-    # Remove variable attributes
-    ds['time_bnds'].attrs = {}
-    try:
-        del ds[args.var].attrs['cell_methods']
-    except KeyError:
-        pass
+    ds.attrs['version_realization'] = 'v1-r1'
+    ds.attrs['domain_id'] = 'AUST-05i'
+    ds.attrs['title'] = 'CORDEX-CMIP6-based regridded and calibrated data for Australia'
+    ds.attrs['grid'] = 'latitude-longitude with 0.05 degree grid spacing for Australia domain (matches standard AGCD grid)'
+    if 'bc_method_id' in ds.attrs:
+        bc_method = ds.attrs['bc_method_id']
+        if bc_method == 'ACS-QME':
+            ds.attrs['bc_code'] = 'https://doi.org/10.5281/zenodo.14635627'
+        elif bc_method == 'ACS-MRNBC':
+            ds.attrs['bc_code'] = 'https://doi.org/10.5281/zenodo.14641854'
+        else:
+            raise ValueError(f'No citation for bias correction method {bc_method}') 
     
     # Remove global attributes
     global_attrs_to_delete = [
@@ -57,17 +64,24 @@ def main(args):
         'kl',
         'native_resolution',
         'comment',
-        'grid',
-        # mask_path = "/g/data/mn51/projects/reference_data/AGCD_land_mask.nc"?
     ]
-    for key in global_attrs_to_delete:
+    for attr in global_attrs_to_delete:
         try:
-            del ds.attrs[key]
+            del ds.attrs[attr]
+        except KeyError:
+            pass
+            
+    # Remove variable attributes
+    ds['time_bnds'].attrs = {}
+    var_attrs_to_delete = ['cell_methods', 'grid_mapping']
+    for attr in var_attrs_to_delete:
+        try:
+            del ds[args.var].attrs[attr]
         except KeyError:
             pass
     
-    output_encoding = get_output_encoding(ds, args.var))
-    output_ds.to_netcdf(args.outfile, encoding=output_encoding, format='NETCDF4_CLASSIC')
+    output_encoding = get_output_encoding(ds, args.var)
+    ds.to_netcdf(args.outfile, encoding=output_encoding, format='NETCDF4_CLASSIC')
 
 
 if __name__ == '__main__':
@@ -75,9 +89,9 @@ if __name__ == '__main__':
         description=__doc__,
         formatter_class=argparse.RawDescriptionHelpFormatter
     )     
-    parser.add_argument("infile", type=str, help="input files")
-    parser.add_argument("var", type=str, help="variable")
-    parser.add_argument("outfile", type=str, help="output file")
+    parser.add_argument('infile', type=str, help='input files')
+    parser.add_argument('var', type=str, help='variable')
+    parser.add_argument('outfile', type=str, help='output file')
     args = parser.parse_args()
     main(args)
 
