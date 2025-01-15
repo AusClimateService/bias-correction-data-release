@@ -15,8 +15,10 @@ def get_output_encoding(ds, var):
     for ds_var in ds_vars:
         if ds_var == var:
             encoding[ds_var] = {'_FillValue': np.float32(1e20)}
+            encoding[ds_var]['dtype'] = 'float32'
         else:
             encoding[ds_var] = {'_FillValue': None}
+            encoding[ds_var]['dtype'] = 'float64'
     #compression and chunking
     encoding[var]['zlib'] = True
     encoding[var]['least_significant_digit'] = 2
@@ -26,9 +28,6 @@ def get_output_encoding(ds, var):
     nlats = var_shape[1]
     nlons = var_shape[2]
     encoding[var]['chunksizes'] = (1, nlats, nlons)
-    #data types
-    encoding[var]['dtype'] = 'float32'
-    encoding['time_bnds']['dtype'] = 'float64'
     #units 
     encoding['time']['units'] = 'days since 1950-01-01'
 
@@ -41,9 +40,10 @@ def main(args):
     ds = xr.open_dataset(args.infile)
     
     # Edit existing global attributes
-    ds.attrs['version_realization'] = 'v1-r1'
+    ds.attrs['version_realisation'] = 'v1-r1'
     ds.attrs['domain_id'] = 'AUST-05i'
     ds.attrs['title'] = 'CORDEX-CMIP6-based regridded and calibrated data for Australia'
+    ds.attrs['license'] = "CC BY 4.0"
     ds.attrs['grid'] = 'latitude-longitude with 0.05 degree grid spacing for Australia domain (matches standard AGCD grid)'
     if 'bc_method_id' in ds.attrs:
         bc_method = ds.attrs['bc_method_id']
@@ -53,6 +53,14 @@ def main(args):
             ds.attrs['bc_code'] = 'https://doi.org/10.5281/zenodo.14641854'
         else:
             raise ValueError(f'No citation for bias correction method {bc_method}') 
+        if '-AGCD-' in ds.attrs['bc_info']:
+            ds.attrs['bc_info'] = ds.attrs['bc_info'].replace('-AGCD-', '-AGCDv1-')
+        if 'BARRA-R2' in ds.attrs['bc_info']:
+            ds.attrs['bc_info'] = ds.attrs['bc_info'].replace('BARRA-R2', 'BARRAR2')
+        if ds.attrs['bc_observation_id'] == 'AGCD':
+            ds.attrs['bc_observation_id'] = 'AGCDv1'
+        if ds.attrs['bc_observation_id'] == 'BARRA-R2':
+            ds.attrs['bc_observation_id'] = 'BARRAR2'
     
     # Remove global attributes
     global_attrs_to_delete = [
