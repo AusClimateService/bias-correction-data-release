@@ -105,7 +105,6 @@ def fix_metadata(ds, var):
         'time_coverage_resolution',
         'git_url_postprocessing',
         'git_hash_postprocessing',
-        'grid',
         'project_id',
         'comment',
         'DPIE_WRF_HASH',
@@ -166,6 +165,8 @@ def fix_metadata(ds, var):
     ds.attrs['title'] = 'CORDEX-CMIP6-based regridded and calibrated data for Australia'
     ds.attrs['frequency'] = 'day'
     ds.attrs['variable_id'] = var
+    ds.attrs['license'] = "CC BY 4.0"
+    ds.attrs['grid'] = 'latitude-longitude with 0.05 degree grid spacing for Australia domain (the standard AGCD grid)'
 
     # Variables to delete
     drop_vars = ['sigma', 'level_height', 'model_level_number', 'height']
@@ -181,21 +182,26 @@ def fix_metadata(ds, var):
 def get_output_encoding(ds, var, nlats, nlons):
     """Define the output file encoding."""
 
+    encoding = {}
+    ds_vars = list(ds.coords) + list(ds.keys())
+    #data type and fill value
+    for ds_var in ds_vars:
+        encoding[ds_var] = {'_FillValue': None}
+        if ds_var == var:
+            encoding[ds_var]['dtype'] = 'float32'
+        else:
+            encoding[ds_var]['dtype'] = 'float64'
+    #compression
+    encoding[var]['zlib'] = True
+    encoding[var]['complevel'] = 5
+    #chunking
     var_shape = ds[var].shape
     assert len(var_shape) == 3
     assert var_shape[1] == nlats
     assert var_shape[2] == nlons
-
-    encoding = {}
-    ds_vars = list(ds.coords) + list(ds.keys())
-    for ds_var in ds_vars:
-        encoding[ds_var] = {'_FillValue': None}
-    encoding[var]['zlib'] = True
-    encoding[var]['complevel'] = 5
-    encoding[var]['dtype'] = 'float32'
     encoding[var]['chunksizes'] = (1, nlats, nlons)
+    #time units
     encoding['time']['units'] = 'days since 1950-01-01'
-    encoding['time_bnds']['dtype'] = 'float64'
 
     return encoding
 

@@ -44,7 +44,7 @@ def main(args):
     ds.attrs['domain_id'] = 'AUST-05i'
     ds.attrs['title'] = 'CORDEX-CMIP6-based regridded and calibrated data for Australia'
     ds.attrs['license'] = "CC BY 4.0"
-    ds.attrs['grid'] = 'latitude-longitude with 0.05 degree grid spacing for Australia domain (matches standard AGCD grid)'
+    ds.attrs['grid'] = 'latitude-longitude with 0.05 degree grid spacing for Australia domain (the standard AGCD grid)'
     if 'bc_method_id' in ds.attrs:
         bc_method = ds.attrs['bc_method_id']
         if bc_method == 'ACS-QME':
