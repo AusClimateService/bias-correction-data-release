@@ -1,8 +1,8 @@
 #!/bin/bash
 #PBS -P xv83
 #PBS -q normal
-#PBS -l walltime=24:00:00
-#PBS -l mem=10GB
+#PBS -l walltime=12:00:00
+#PBS -l mem=60GB
 #PBS -l storage=gdata/xv83+gdata/kj66
 #PBS -l wd
 #PBS -v type,inst,exp,var
