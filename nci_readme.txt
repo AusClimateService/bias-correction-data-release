@@ -11,7 +11,14 @@ v1.0: 21/01/25: Created by Dr Damien Irving, damien.irving@csiro.au
 
 INTRODUCTION
 
-B
+The data are the most commonly used surface variables from all model simulations
+(n=39) from Regional Climate Models (RCMs) contributing to the Coordinated
+Regional Downscaling Experiment under the Coupled Model Intercomparison Project
+phase 6 (CORDEX-CMIP6) for Australasia in a convenient form for applied users.
+Data are for historical and two Shared Socioeconomic Pathway (SSP) experiments,
+regridded to the ~5 km standard and regular grid of the Australian Gridded
+Climate Dataset (AGCD) and subset for Australia only, in raw form and then with
+four variations of bias correction.
 
 Data Provider: Australian Climate Service (partnership between the Bureau of
                Meteorology and CSIRO)
@@ -76,16 +83,17 @@ FILE ORGANISATION
    where,
      <project_id> is CORDEX
      <product> is "output" or "outputAdjust"
-     <mip-era> is the cycle of CMIP that defines experiment and data specifications.
-         We use CMIP6.
+     <mip-era> is the cycle of CMIP that defines experiment and data
+         specifications. We use CMIP6.
      <activity_id> is "DD" for dynamical downscaling or "bais-adjusted-output"
-     <domain_id> is spatial domain and grid resolution of the data, namely AUST-05i
-     <institution_id> is the institution that performed the dynamical downscaling
+     <domain_id> is the spatial domain and grid resolution of the data,
+         namely "AUST-05i"
+     <institution_id> is the institution that performed the downscaling
          institutions are:
-         BOM (Bureau of Meteorology)
-         CSIRO (Commonwealth Scientific and Industrial Research Organisation)
-         NSW-Government (for the New South Wales government)
-         UQ-DEC (for the University of Queensland - 
+         "BOM" (Bureau of Meteorology)
+         "CSIRO" (Commonwealth Scientific and Industrial Research Organisation)
+         "NSW-Government" (for the New South Wales government)
+         "UQ-DEC" (for the University of Queensland - 
      <driving_source_id> is the global driving model that was downscaled. The 
           models selected are: 
           ACCESS-CM2, ACCESS-ESM1-5, NorESM2-MM, EC-Earth3, CESM2, 
@@ -96,18 +104,26 @@ FILE ORGANISATION
      <source_id> is either BARPA-R
      <version_realisation> identifies the modelling version
      <freq> is day (daily)
-     <variable_id> is the variable name, mostly based on,
+     <variable_id> is the variable name
+         hursmax (daily maximum surface relative humidity)
+         hursmin (daily minimum surface relative humidity)
+         pr (precipitation)
+         rsds (surface downwelling solar radiation)
+         sfcWindmax (daily maximum surface wind speed)
+         tasmax (daily maximum surface air temperature)
+         tasmin (daily minimum surface air temperature)
      <version> denotes the date of data generation or date of data release
+         in the form vYYYYMMDD
      <netcdf filename> is 
           <variable_id>_<domain_id>_<driving_source_id>_<driving_experiment_id>_
-          <driving_variant_label>_<institution_id>_<source_id>_<version_realisation>_
-          <freq>[_<StartTime>-<EndTime>].nc
+          <driving_variant_label>_<institution_id>_<source_id>_
+          <version_realisation>_<freq>[_<StartTime>-<EndTime>].nc
 
    Example is, 
-      /g/data/kj66/CORDEX/output/CMIP6/DD/AUST-05i/UQ-DES/ACCESS-ESM1-5/historical/
-      r40i1p1f1/CCAMoc-v2112/v1-r1/day/sfcWindmax/v20241216/sfcWindmax_AUST-05i_
-      ACCESS-ESM1-5_historical_r40i1p1f1_UQ-DES_CCAMoc-v2112_v1-r1_day_19600101-
-      19601231.nc
+      /g/data/kj66/CORDEX/output/CMIP6/DD/AUST-05i/UQ-DES/ACCESS-ESM1-5/
+      historical/r40i1p1f1/CCAMoc-v2112/v1-r1/day/sfcWindmax/v20241216/
+      sfcWindmax_AUST-05i_ACCESS-ESM1-5_historical_r40i1p1f1_UQ-DES_CCAMoc-v2112
+      _v1-r1_day_19600101-19601231.nc
 
 --------------------------------------------------------------------------------
 
