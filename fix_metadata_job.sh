@@ -23,7 +23,7 @@ else
 filevar=${var}
 fi
 
-bash /home/599/dbi599/bias-correction-data-release/fix_metadata.sh /g/data/kj66/admin/staging/CORDEX/output-Adjust/CMIP6/bias-adjusted-${type}/AUST-05i/${inst}/*/${exp}/*/*/v1-r1/day/${filevar}/v20241216/*.nc
+bash /home/599/dbi599/bias-correction-data-release/fix_metadata.sh /g/data/kj66/admin/staging/CORDEX/output-Adjust/CMIP6/bias-adjusted-${type}/AUST-05i/${inst}/*/${exp}/*/*/*/day/${filevar}/v20241216/*.nc
 
 
 

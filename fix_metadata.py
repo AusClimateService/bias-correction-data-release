@@ -36,11 +36,12 @@ def get_output_encoding(ds, var):
 
 def main(args):
     """Run the program."""
-    
+
     ds = xr.open_dataset(args.infile)
     
     # Edit existing global attributes
-    ds.attrs['version_realisation'] = 'v1-r1'
+    if 'v1-r1' in args.infile:
+        ds.attrs['version_realisation'] = 'v1-r1'
     ds.attrs['domain_id'] = 'AUST-05i'
     ds.attrs['title'] = 'CORDEX-CMIP6-based regridded and calibrated data for Australia'
     ds.attrs['license'] = "CC BY 4.0"
