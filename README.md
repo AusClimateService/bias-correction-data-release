@@ -75,27 +75,27 @@ are available on NCI at the following (example) directories:
 ```
 /g/data/xv83/agcd-csiro/precip/daily/precip-total_AGCD-CSIRO_r005_19300101-19301231_daily.nc
 
-/g/data/ia39/australian-climate-service/test-data/CORDEX-CMIP6/bias-adjustment-input/AGCD-05i/BOM/ERA5/historical/hres/BARRA-R2/v1/day/pr/pr_AGCD-05i_ERA5_historical_hres_BOM_BARRA-R2_v1_day_20020801-20020831.nc
+/g/data/ia39/australian-climate-service/release/CORDEX/output-Adjust/CMIP6/bias-adjusted-input/AUST-05i/BOM/ERA5/historical/hres/BARRAR2/v1/day/pr/v20241216/pr_AUST-05i_ERA5_historical_hres_BOM_BARRAR2_v1_day_20020101-20021231.nc
 ```
 
 The preprocessed CORDEX regional climate model data
 are available on NCI at the following (example) directories:
 ```
-/g/data/ia39/australian-climate-service/test-data/CORDEX-CMIP6/bias-adjustment-input/AGCD-05i/BOM/CESM2/ssp370/r11i1p1f1/BARPA-R/v1-r1/day/pr/pr_AGCD-05i_CESM2_ssp370_r11i1p1f1_BOM_BARPA-R_v1-r1_day_20220101-20221231.nc
+/g/data/ia39/australian-climate-service/release/CORDEX/output-Adjust/CMIP6/bias-adjusted-input/AUST-05i/BOM/CESM2/ssp370/r11i1p1f1/BARPA-R/v1-r1/day/pr/v20241216/pr_AUST-05i_CESM2_ssp370_r11i1p1f1_BOM_BARPA-R_v1-r1_day_20220101-20221231.nc
 ```
 
 ## Bias corrected output data
 
 Bias corrected output data are available at:
 ```
-/g/data/ia39/australian-climate-service/test-data/CORDEX-CMIP6/bias-adjustment-output/
+/g/data/ia39/australian-climate-service/release/CORDEX/output-Adjust/CMIP6/bias-adjusted-output/
 ```
 
 Those data are formatted and archived according to the data reference syntax described by [drs.md](drs.md).
 
 For example, pr bias corrected output data for ACCESS-CM2 BARPA-R corrected to AGCD data using QME (i.e. univariate) can be found at the following directory:
 ```
-/g/data/ia39/australian-climate-service/test-data/CORDEX-CMIP6/bias-adjustment-output/AGCD-05i/BOM/ACCESS-CM2/ssp370/r4i1p1f1/BARPA-R/v1-r1-ACS-QME-AGCD-1960-2022/day/prAdjust/
+/g/data/ia39/australian-climate-service/release/CORDEX/output-Adjust/CMIP6/bias-adjusted-output/AUST-05i/BOM/ACCESS-CM2/ssp370/r4i1p1f1/BARPA-R/v1-r1-ACS-QME-AGCDv1-1960-2022/day/prAdjust/v20241216
 ```
 
 Most completed runs have bias corrected data available from 1960 to 2100 inclusive, with years up to and including 2014 found within the "historical" instead of "ssp370" subdirectory. The exception is for CCAM-v2203-SN runs, which are missing the year 2100.
