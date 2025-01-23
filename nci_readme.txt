@@ -29,7 +29,7 @@ NCI THREDDS Data Server: https://dx.doi.org/10.25914/xeca-pw53
 
 License: https://creativecommons.org/licenses/by/4.0/
 
-Extended Documentation: <insert https://opus.nci.org.au/ or GitHub link?> 
+Extended Documentation: <insert https://opus.nci.org.au/ link> 
 
 --------------------------------------------------------------------------------
 
@@ -47,17 +47,6 @@ the data, to help identify areas for improvements.
 The Australian Climate Service can also advise appropriate use of the data. 
 
 Please refer feedback and questions on data use to help@nci.org.au.
-
---------------------------------------------------------------------------------
-
-DISCLAIMER
-
-Refer to http://www.bom.gov.au/other/disclaimer.shtml
-
---------------------------------------------------------------------------------
-
-CITATION
-
 
 
 --------------------------------------------------------------------------------
@@ -79,42 +68,40 @@ FILE ORGANISATION
                                      |-- <freq>
                                         |-- <variable_id>
                                            |-- <version>
-                                              |-- <netcdf filename>
+                                              |-- <netcdf_filename>
    where,
-     <project_id> is CORDEX
+     <project_id> is "CORDEX"
      <product> is "output" or "outputAdjust"
-     <mip-era> is the cycle of CMIP that defines experiment and data
-         specifications. We use CMIP6.
-     <activity_id> is "DD" for dynamical downscaling or "bais-adjusted-output"
-     <domain_id> is the spatial domain and grid resolution of the data,
-         namely "AUST-05i"
-     <institution_id> is the institution that performed the downscaling
-         institutions are:
+     <mip-era> is "CMIP6"
+     <activity_id> is "DD" for dynamical downscaling or "bias-adjusted-output" 
+     <domain_id> is the spatial domain and grid resolution: "AUST-05i"
+     <institution_id> is the institution that performed the downscaling:
          "BOM" (Bureau of Meteorology)
          "CSIRO" (Commonwealth Scientific and Industrial Research Organisation)
-         "NSW-Government" (for the New South Wales government)
-         "UQ-DEC" (for the University of Queensland - 
-     <driving_source_id> is the global driving model that was downscaled. The 
-          models selected are: 
-          ACCESS-CM2, ACCESS-ESM1-5, NorESM2-MM, EC-Earth3, CESM2, 
-          CMCC-ESM2, MPI-ESM1-2-HR
-     <driving_experiment_id> is historical, ssp126 or ssp370
+         "NSW-Government" (New South Wales Government)
+         "UQ-DEC" (University of Queensland - Department of Energy and Climate) 
+     <driving_source_id> is the global driving model that was downscaled:
+          "ACCESS-CM2", "ACCESS-ESM1-5", "CESM2", "CMCC-ESM2", "EC-Earth3",
+          "MPI-ESM1-2-HR", "NorESM2-MM"
+     <driving_experiment_id> is "historical", "ssp126" or "ssp370"
      <driving_variant_label> labels the ensemble member of the CMIP6 simulation 
-               that produced forcing data.
-     <source_id> is either BARPA-R
+           that produced forcing data.
+     <source_id> is the regional climate model that performed the downscaling:
+           "BARPA-R", "CCAM-v2203-SN", "NARCliM2-0-WRF412R3",
+           "NARCliM2-0-WRF412R5", "CCAM-v2112" "CCAMoc-v2112", "CCAM-v2105"
      <version_realisation> identifies the modelling version
-     <freq> is day (daily)
-     <variable_id> is the variable name
-         hursmax (daily maximum surface relative humidity)
-         hursmin (daily minimum surface relative humidity)
-         pr (precipitation)
-         rsds (surface downwelling solar radiation)
-         sfcWindmax (daily maximum surface wind speed)
-         tasmax (daily maximum surface air temperature)
-         tasmin (daily minimum surface air temperature)
+     <freq> is "day" (daily)
+     <variable_id> is the variable name:
+         "hursmax" (daily maximum surface relative humidity)
+         "hursmin" (daily minimum surface relative humidity)
+         "pr" (precipitation)
+         "rsds" (surface downwelling solar radiation)
+         "sfcWindmax" (daily maximum surface wind speed)
+         "tasmax" (daily maximum surface air temperature)
+         "tasmin" (daily minimum surface air temperature)
      <version> denotes the date of data generation or date of data release
-         in the form vYYYYMMDD
-     <netcdf filename> is 
+         in the form "vYYYYMMDD"
+     <netcdf_filename> is: 
           <variable_id>_<domain_id>_<driving_source_id>_<driving_experiment_id>_
           <driving_variant_label>_<institution_id>_<source_id>_
           <version_realisation>_<freq>[_<StartTime>-<EndTime>].nc
