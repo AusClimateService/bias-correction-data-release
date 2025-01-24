@@ -53,8 +53,7 @@ Please refer feedback and questions on data use to help@nci.org.au.
 
 FILE ORGANISATION
 
-   /g/data/kj66
-   |-- <project_id>
+   /g/data/kj66/CORDEX/
       |-- <product>
          |-- <mip_era>
             |-- <activity_id>
@@ -70,10 +69,13 @@ FILE ORGANISATION
                                            |-- <version>
                                               |-- <netcdf_filename>
    where,
-     <project_id> is "CORDEX"
-     <product> is "output" or "outputAdjust"
+     <product> is:
+         "output" (for all regridded data)
+         "outputAdjust" (for all bias corrected/adjusted data)
      <mip-era> is "CMIP6"
-     <activity_id> is "DD" for dynamical downscaling or "bias-adjusted-output" 
+     <activity_id> is:
+         "DD" for dynamical downscaling (i.e. the regridded data)
+         "bias-adjusted-output" (for the bias corrected/adjusted data) 
      <domain_id> is the spatial domain and grid resolution: "AUST-05i"
      <institution_id> is the institution that performed the downscaling:
          "BOM" (Bureau of Meteorology)
@@ -106,11 +108,19 @@ FILE ORGANISATION
           <driving_variant_label>_<institution_id>_<source_id>_
           <version_realisation>_<freq>[_<StartTime>-<EndTime>].nc
 
-   Example is, 
+   An example for the reridded data is, 
       /g/data/kj66/CORDEX/output/CMIP6/DD/AUST-05i/UQ-DES/ACCESS-ESM1-5/
       historical/r40i1p1f1/CCAMoc-v2112/v1-r1/day/sfcWindmax/v20241216/
-      sfcWindmax_AUST-05i_ACCESS-ESM1-5_historical_r40i1p1f1_UQ-DES_CCAMoc-v2112
-      _v1-r1_day_19600101-19601231.nc
+      sfcWindmax_AUST-05i_ACCESS-ESM1-5_historical_r40i1p1f1_UQ-DES_
+      CCAMoc-v2112_v1-r1_day_19600101-19601231.nc
+
+   An example for the bias corrected data is,
+      /g/data/kj66/CORDEX/output-Adjust/CMIP6/bias-adjusted-output/AUST-05i/
+      CSIRO/CNRM-ESM2-1/ssp370/r1i1p1f2/CCAM-v2203-SN/
+      v1-r1-ACS-QME-BARRAR2-1980-2022/day/tasminAdjust/v20241216/tasminAdjust_
+      AUST-05i_CNRM-ESM2-1_ssp370_r1i1p1f2_CSIRO_CCAM-v2203-SN_
+      v1-r1-ACS-QME-BARRAR2-1980-2022_day_20660101-20661231.nc
+
 
 --------------------------------------------------------------------------------
 
