@@ -100,8 +100,6 @@ For example, pr bias corrected output data for ACCESS-CM2 BARPA-R corrected to A
 
 Most completed runs have bias corrected data available from 1960 to 2100 inclusive, with years up to and including 2014 found within the "historical" instead of "ssp370" subdirectory. The exception is for CCAM-v2203-SN runs, which are missing the year 2100.
 
-Note that from previous usage there still exists data following a slightly different directory structure at the RCM level. The new data can be found in RCM directories labelled exactly as they are in the proceeding availability table.
-
 ## Data availability
 
 The table below provides a summary of what data has been processed for each GCM.
