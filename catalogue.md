@@ -1,0 +1,87 @@
+The following information will appear in the NCI catalogue entry for the dataset.
+
+[Level 1: CORDEX-CMIP6-based regridded and calibrated data for Australia](#Level-1-CORDEX-CMIP6-based-regridded-and-calibrated-data-for-Australia)  
+ &ensp; [Level 1.1: CORDEX-CMIP6-based regridded data for Australia](#Level-1-1-CORDEX-CMIP6-based-regridded-data-for-Australia)  
+ &ensp; &ensp; [Level 1.1.1: Regridded CORDEX-CMIP6 data from the Bureau of Meteorology](Level-1-1-1-Regridded-CORDEX-CMIP6-data-from-the-Bureau-of-Meteorology)
+
+ &ensp; [Level 1.2: CORDEX-CMIP6-based calibrated data for Australia](#Level-1-2-CORDEX-CMIP6-based-calibrated-data-for-Australia)
+
+
+## Level 1: CORDEX-CMIP6-based regridded and calibrated data for Australia
+
+#### Abstract
+
+This collection contains data from Regional Climate Models (RCMs) contributing to the Coordinated Regional Downscaling Experiment under the Coupled Model Intercomparison Project phase 6 (CORDEX-CMIP6) for Australasia, processed in a convenient form for applied users. 
+
+Data for several commonly used surface variables and three model experiments (an historical experiment and two Shared Socioeconomic Pathway experiments) have been regridded to a regular 0.05 degree (~5km) latitude-longitude grid across Australia and then calibrated against two different observational datasets using two different bias correction methods.
+
+The collection is useful for analysis of future climate change scenarios for Australia where CORDEX-CMIP6 is an appropriate data source and the application requires data to statistically match observed/reanalysis datasets – including analysis of changes in the variables included, indices derived from these variables (including indices with absolute thresholds) and downstream modelling of areas such as hydrology, agriculture, environmental suitability, fire risk and more.
+
+#### Dataset lineage information
+
+This product was derived from CORDEX-CMIP6 and observational data.
+
+The CORDEX-CMIP6 data was produced by the Bureau of Meteorology (https://dx.doi.org/10.25914/z1x6-dq28), CSIRO (https://dx.doi.org/10.25914/rd73-4m38), NARCliM2.0 (https://dx.doi.org/10.25914/resv-vj43) and the Queensland Future Climate Science Program (https://dx.doi.org/10.25914/8fve-1910).
+
+The observation-based data was from the AGCD (https://dx.doi.org/10.25914/6009600304b02) and BARRA-R2 (https://dx.doi.org/10.25914/90rq-d839) datasets.
+
+Further details about this product can be found at https://github.com/AusClimateService/bias-correction-data-release
+
+
+## Level 1.1: CORDEX-CMIP6-based regridded data for Australia
+
+#### Abstract
+
+This dataset contains data from Regional Climate Models (RCMs) contributing to the Coordinated Regional Downscaling Experiment under the Coupled Model Intercomparison Project phase 6 (CORDEX-CMIP6) for Australasia,  regridded to a regular 0.05 degree (~5km) latitude-longitude grid across Australia. 
+
+Data are available for several commonly used surface variables and three model experiments (an historical experiment and two Shared Socioeconomic Pathway experiments).
+
+This dataset is useful for analysis that compares / combines CORDEX-CMIP6 data across different RCMs, as each individual RCM is run on a different spatial grid.
+
+#### Dataset lineage information
+
+This dataset was produced by re-gridding (via bilinear interpolation) the CORDEX-CMIP6 and observational data to a regular 0.05 latitude-longitude grid over the Australia domain (the AGCD grid).
+
+The code used to perform the re-gridding can be found at: https://github.com/AusClimateService/bias-correction-data-release
+
+
+## Level 1.1.1: Regridded CORDEX-CMIP6 data from the Bureau of Meteorology
+
+#### Abstract
+
+This dataset contains data from the Bureau of Meteorology contribution to the Coordinated Regional Downscaling Experiment under the Coupled Model Intercomparison Project phase 6 (CORDEX-CMIP6) for Australasia,  regridded to a regular 0.05 degree (~5km) latitude-longitude grid across Australia. 
+
+Data are available for several commonly used surface variables and three model experiments (historical, SSP1.26 and SSP3.70).
+
+#### Dataset lineage information
+
+This product was produced by re-gridding (via bilinear interpolation) CORDEX-CMIP6 data from the Bureau of Meteorology (https://dx.doi.org/10.25914/z1x6-dq28) to a regular 0.05 latitude-longitude grid over the Australia domain (the AGCD grid).
+
+The code used to perform the re-gridding can be found at: https://github.com/AusClimateService/bias-correction-data-release
+
+
+
+
+
+
+## Level 1.2 CORDEX-CMIP6-based calibrated data for Australia
+
+#### Abstract
+
+This dataset contains data from Regional Climate Models (RCMs) contributing to the Coordinated Regional Downscaling Experiment under the Coupled Model Intercomparison Project phase 6 (CORDEX-CMIP6) for Australasia, calibrated against two observational datasets using two different bias correction methods.
+
+Data are available for several commonly used surface variables and three model experiments (an historical experiment and two Shared Socioeconomic Pathway experiments) on a regular 0.05 degree (~5km) latitude-longitude grid across Australia.
+
+The data are useful for analysis of future climate change scenarios for Australia where CORDEX-CMIP6 is an appropriate data source and the application requires data to statistically match observed and reanalysis datasets – including analysis of changes in the variables included, indices derived from these variables (including indices with absolute thresholds) and downstream modelling of areas such as hydrology, agriculture, environmental suitability, fire risk and more.
+
+#### Dataset lineage information
+
+This calibrated dataset was generated by applying two different bias correction methods to the re-gridded dataset.
+
+The Quantile Matching for Extremes (QME) method is described by Dowdy (2023; http://www.bom.gov.au/research/publications/researchreports/BRR-087.pdf) with code available at https://doi.org/10.5281/zenodo.14635628 and https://github.com/AusClimateService/QME.
+
+The Multivariate Recursive Nesting Bias Correction (MRNBC) method is described by Mehrotra and Sharma (2015; https://doi.org/10.1016/j.jhydrol.2014.11.037) with code available at https://doi.org/10.5281/zenodo.14641855 and https://github.com/AusClimateService/MRNBC. 
+
+
+
+
