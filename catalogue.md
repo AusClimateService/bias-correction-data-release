@@ -6,7 +6,17 @@ The following information will appear in the NCI catalogue entry for the dataset
  &ensp; &ensp; [Level 1.1.2: Regridded CORDEX-CMIP6 data from the CSIRO](#Level-112-Regridded-CORDEX-CMIP6-data-from-the-CSIRO)  
  &ensp; &ensp; [Level 1.1.3: Regridded CORDEX-CMIP6 data from the NARCliM2.0 project](#Level-113-Regridded-CORDEX-CMIP6-data-from-the-NARCliM20-project)  
  &ensp; &ensp; [Level 1.1.4: Regridded CORDEX-CMIP6 data from the Queensland Future Climate Science Program](#Level-114-Regridded-CORDEX-CMIP6-data-from-the-Queensland-Future-Climate-Science-Program)  
- &ensp; [Level 1.2: CORDEX-CMIP6-based calibrated data for Australia](#Level-12-CORDEX-CMIP6-based-calibrated-data-for-Australia)
+ &ensp; [Level 1.2: CORDEX-CMIP6-based calibrated data for Australia](#Level-12-CORDEX-CMIP6-based-calibrated-data-for-Australia)  
+ &ensp; &ensp; [Level 1.2.1: Calibrated CORDEX-CMIP6 data from the Bureau of Meteorology](#Level-121-Calibrated-CORDEX-CMIP6-data-from-the-Bureau-of-Meteorology)  
+ &ensp; &ensp; &ensp; [Level 1.2.1.1: CORDEX-CMIP6 data from the Bureau of Meteorology calibrated against AGCD using the QME method](#Level-1211-CORDEX-CMIP6-data-from-the-Bureau-of-Meteorology-calibrated-against-AGCD-using-the-QME-method)  
+ &ensp; &ensp; &ensp; [Level 1.2.1.2: CORDEX-CMIP6 data from the Bureau of Meteorology calibrated against AGCD using the MRNBC method](#Level-1212-CORDEX-CMIP6-data-from-the-Bureau-of-Meteorology-calibrated-against-AGCD-using-the-MRNBC-method)  
+ &ensp; &ensp; &ensp; [Level 1.2.1.3: CORDEX-CMIP6 data from the Bureau of Meteorology calibrated against BARRA-R2 using the QME method](#Level-1213-CORDEX-CMIP6-data-from-the-Bureau-of-Meteorology-calibrated-against-BARRA-R2-using-the-QME-method)  
+ &ensp; &ensp; &ensp; [Level 1.2.1.4: CORDEX-CMIP6 data from the Bureau of Meteorology calibrated against BARRA-R2 using the MRNBC method](#Level-1214-CORDEX-CMIP6-data-from-the-Bureau-of-Meteorology-calibrated-against-BARRA-R2-using-the-MRNBC-method)  
+ &ensp; &ensp; [Level 1.2.2: Calibrated CORDEX-CMIP6 data from the CSIRO](#Level-122-Calibrated-CORDEX-CMIP6-data-from-the-CSIRO)  
+ &ensp; &ensp; &ensp; [Level 1.2.2.1: CORDEX-CMIP6 data from the CSIRO calibrated against AGCD using the QME method](#Level-1221-CORDEX-CMIP6-data-from-the-CSIRO-calibrated-against-AGCD-using-the-QME-method)  
+ &ensp; &ensp; &ensp; [Level 1.2.2.2: CORDEX-CMIP6 data from the CSIRO calibrated against AGCD using the MRNBC method](#Level-1222-CORDEX-CMIP6-data-from-the-CSIRO-calibrated-against-AGCD-using-the-MRNBC-method)  
+ &ensp; &ensp; &ensp; [Level 1.2.2.3: CORDEX-CMIP6 data from the CSIRO calibrated against BARRA-R2 using the QME method](#Level-1223-CORDEX-CMIP6-data-from-the-CSIRO-calibrated-against-BARRA-R2-using-the-QME-method)  
+ &ensp; &ensp; &ensp; [Level 1.2.2.4: CORDEX-CMIP6 data from the CSIRO calibrated against BARRA-R2 using the MRNBC method](#Level-1224-CORDEX-CMIP6-data-from-the-CSIRO-calibrated-against-BARRA-R2-using-the-MRNBC-method) 
 
 
 ## Level 1: CORDEX-CMIP6-based regridded and calibrated data for Australia
