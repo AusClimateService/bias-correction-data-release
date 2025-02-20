@@ -16,7 +16,17 @@ The following information will appear in the NCI catalogue entry for the dataset
  &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; [Level 1.2.2.1: CORDEX-CMIP6 data from the CSIRO calibrated against AGCD using the QME method](#Level-1221-CORDEX-CMIP6-data-from-the-CSIRO-calibrated-against-AGCD-using-the-QME-method)  
  &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; [Level 1.2.2.2: CORDEX-CMIP6 data from the CSIRO calibrated against AGCD using the MRNBC method](#Level-1222-CORDEX-CMIP6-data-from-the-CSIRO-calibrated-against-AGCD-using-the-MRNBC-method)  
  &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; [Level 1.2.2.3: CORDEX-CMIP6 data from the CSIRO calibrated against BARRA-R2 using the QME method](#Level-1223-CORDEX-CMIP6-data-from-the-CSIRO-calibrated-against-BARRA-R2-using-the-QME-method)  
- &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; [Level 1.2.2.4: CORDEX-CMIP6 data from the CSIRO calibrated against BARRA-R2 using the MRNBC method](#Level-1224-CORDEX-CMIP6-data-from-the-CSIRO-calibrated-against-BARRA-R2-using-the-MRNBC-method) 
+ &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; [Level 1.2.2.4: CORDEX-CMIP6 data from the CSIRO calibrated against BARRA-R2 using the MRNBC method](#Level-1224-CORDEX-CMIP6-data-from-the-CSIRO-calibrated-against-BARRA-R2-using-the-MRNBC-method)  
+&ensp; &ensp; &ensp; &ensp; [Level 1.2.3: Calibrated CORDEX-CMIP6 data from the NARCliM2.0 project](#Level-121-Calibrated-CORDEX-CMIP6-data-from-the-NARCliM20-project)  
+ &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; [Level 1.2.3.1: CORDEX-CMIP6 data from the NARCliM2.0 project calibrated against AGCD using the QME method](#Level-1211-CORDEX-CMIP6-data-from-the-NARCliM20-project-calibrated-against-AGCD-using-the-QME-method)  
+ &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; [Level 1.2.3.2: CORDEX-CMIP6 data from the NARCliM2.0 project calibrated against AGCD using the MRNBC method](#Level-1212-CORDEX-CMIP6-data-from-the-NARCliM20-project-calibrated-against-AGCD-using-the-MRNBC-method)  
+ &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; [Level 1.2.3.3: CORDEX-CMIP6 data from the NARCliM2.0 project calibrated against BARRA-R2 using the QME method](#Level-1213-CORDEX-CMIP6-data-from-the-NARCliM20-project-calibrated-against-BARRA-R2-using-the-QME-method)  
+ &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; [Level 1.2.3.4: CORDEX-CMIP6 data from the NARCliM2.0 project calibrated against BARRA-R2 using the MRNBC method](#Level-1214-CORDEX-CMIP6-data-from-the-NARCliM20-project-calibrated-against-BARRA-R2-using-the-MRNBC-method)  
+ &ensp; &ensp; &ensp; &ensp; [Level 1.2.4: Calibrated CORDEX-CMIP6 data from the Queensland Future Climate Science Program](#Level-122-Calibrated-CORDEX-CMIP6-data-from-the-Queensland-Future-Climate-Science-Program)  
+ &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; [Level 1.2.4.1: CORDEX-CMIP6 data from the Queensland Future Climate Science Program calibrated against AGCD using the QME method](#Level-1221-CORDEX-CMIP6-data-from-the-Queensland-Future-Climate-Science-Program-calibrated-against-AGCD-using-the-QME-method)  
+ &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; [Level 1.2.4.2: CORDEX-CMIP6 data from the Queensland Future Climate Science Program calibrated against AGCD using the MRNBC method](#Level-1222-CORDEX-CMIP6-data-from-the-Queensland-Future-Climate-Science-Program-calibrated-against-AGCD-using-the-MRNBC-method)  
+ &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; [Level 1.2.4.3: CORDEX-CMIP6 data from the Queensland Future Climate Science Program calibrated against BARRA-R2 using the QME method](#Level-1223-CORDEX-CMIP6-data-from-the-Queensland-Future-Climate-Science-Program-calibrated-against-BARRA-R2-using-the-QME-method)  
+ &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; [Level 1.2.4.4: CORDEX-CMIP6 data from the Queensland Future Climate Science Program calibrated against BARRA-R2 using the MRNBC method](#Level-1224-CORDEX-CMIP6-data-from-the-Queensland-Future-Climate-Science-Program-calibrated-against-BARRA-R2-using-the-MRNBC-method) 
 
 
 ## Level 1: CORDEX-CMIP6-based regridded and calibrated data for Australia
@@ -286,4 +296,160 @@ This product was produced by applying the Multivariate Recursive Nesting Bias Co
 The reference dataset for the bias correction was BARRA-R2 (https://dx.doi.org/10.25914/90rq-d839).  
 
 The MRNBC method is described by Mehrotra and Sharma (2015; https://doi.org/10.1016/j.jhydrol.2014.11.037) with code available at https://doi.org/10.5281/zenodo.14641855 and https://github.com/AusClimateService/MRNBC. 
+
+
+## Level 1.2.3: Calibrated CORDEX-CMIP6 data from the NARCliM2.0 project
+
+#### Abstract
+
+This dataset contains data from the NARCliM2.0 project contribution to the Coordinated Regional Downscaling Experiment under the Coupled Model Intercomparison Project phase 6 (CORDEX-CMIP6) for Australasia, calibrated against two observational datasets using two different bias correction methods.
+
+Data are available for several commonly used surface variables and three model experiments (an historical experiment and two Shared Socioeconomic Pathway experiments) on a regular 0.05 degree (~5km) latitude-longitude grid across Australia.
+
+
+## Level 1.2.3.1: CORDEX-CMIP6 data from the NARCliM2.0 project calibrated against AGCD using the QME method
+
+#### Abstract
+
+This dataset contains data from the NARCliM2.0 project contribution to the Coordinated Regional Downscaling Experiment under the Coupled Model Intercomparison Project phase 6 (CORDEX-CMIP6) for Australasia, calibrated against the AGCD dataset using the QME bias correction method.
+
+Daily surface temperature and precipitation data are available for three model experiments (historical, SSP1.26 and SSP3.70) on a regular 0.05 degree (~5km) latitude-longitude grid across Australia.
+
+#### Dataset lineage information
+
+This product was produced by applying the Quantile Matching for Extremes (QME) bias correction method to re-gridded CORDEX-CMIP6 data from the NARCliM2.0 project (dataset 1-1-3).
+
+The reference dataset for the bias correction was AGCD (https://dx.doi.org/10.25914/6009600304b02). 
+
+The QME method is described by Dowdy (2023; http://www.bom.gov.au/research/publications/researchreports/BRR-087.pdf) with code available at https://doi.org/10.5281/zenodo.14635628 and https://github.com/AusClimateService/QME.
+
+
+## Level 1.2.3.2: CORDEX-CMIP6 data from the NARCliM2.0 project calibrated against AGCD using the MRNBC method
+
+#### Abstract
+
+This dataset contains data from the NARCliM2.0 project contribution to the Coordinated Regional Downscaling Experiment under the Coupled Model Intercomparison Project phase 6 (CORDEX-CMIP6) for Australasia, calibrated against the AGCD dataset using the MRNBC bias correction method.
+
+Daily surface temperature and precipitation data are available for three model experiments (historical, SSP1.26 and SSP3.70) on a regular 0.05 degree (~5km) latitude-longitude grid across Australia.
+
+#### Dataset lineage information
+
+This product was produced by applying the Multivariate Recursive Nesting Bias Correction (MRNBC) bias correction method to re-gridded CORDEX-CMIP6 data from the NARCliM2.0 project (dataset 1-1-3).
+
+The reference dataset for the bias correction was AGCD (https://dx.doi.org/10.25914/6009600304b02). 
+
+The MRNBC method is described by Mehrotra and Sharma (2015; https://doi.org/10.1016/j.jhydrol.2014.11.037) with code available at https://doi.org/10.5281/zenodo.14641855 and https://github.com/AusClimateService/MRNBC. 
+
+
+## Level 1.2.3.3: CORDEX-CMIP6 data from the NARCliM2.0 project calibrated against BARRA-R2 using the QME method
+
+#### Abstract
+
+This dataset contains data from the NARCliM2.0 project contribution to the Coordinated Regional Downscaling Experiment under the Coupled Model Intercomparison Project phase 6 (CORDEX-CMIP6) for Australasia, calibrated against the BARRA-R2 dataset using the QME bias correction method.
+
+Daily surface temperature, precipitation, solar radiation, wind speed and relative humidity data are available for three model experiments (historical, SSP1.26 and SSP3.70) on a regular 0.05 degree (~5km) latitude-longitude grid across Australia.
+
+#### Dataset lineage information
+
+This product was produced by applying the Quantile Matching for Extremes (QME) bias correction method to re-gridded CORDEX-CMIP6 data from the NARCliM2.0 project (dataset 1-1-3).
+
+The reference dataset for the bias correction was BARRA-R2 (https://dx.doi.org/10.25914/90rq-d839). 
+
+The QME method is described by Dowdy (2023; http://www.bom.gov.au/research/publications/researchreports/BRR-087.pdf) with code available at https://doi.org/10.5281/zenodo.14635628 and https://github.com/AusClimateService/QME.
+
+
+## Level 1.2.3.4: CORDEX-CMIP6 data from the NARCliM2.0 project calibrated against BARRA-R2 using the MRNBC method
+
+#### Abstract
+
+This dataset contains data from the NARCliM2.0 project contribution to the Coordinated Regional Downscaling Experiment under the Coupled Model Intercomparison Project phase 6 (CORDEX-CMIP6) for Australasia, calibrated against the BARRA-R2 dataset using the MRNBC bias correction method.
+
+Daily surface temperature, precipitation, solar radiation, wind speed and relative humidity data are available for three model experiments (historical, SSP1.26 and SSP3.70) on a regular 0.05 degree (~5km) latitude-longitude grid across Australia.
+
+#### Dataset lineage information
+
+This product was produced by applying the Multivariate Recursive Nesting Bias Correction (MRNBC) bias correction method to re-gridded CORDEX-CMIP6 data from the NARCliM2.0 project (dataset 1-1-3).
+
+The reference dataset for the bias correction was BARRA-R2 (https://dx.doi.org/10.25914/90rq-d839).  
+
+The MRNBC method is described by Mehrotra and Sharma (2015; https://doi.org/10.1016/j.jhydrol.2014.11.037) with code available at https://doi.org/10.5281/zenodo.14641855 and https://github.com/AusClimateService/MRNBC. 
+
+
+## Level 1.2.4: Calibrated CORDEX-CMIP6 data from the Queensland Future Climate Science Program
+
+#### Abstract
+
+This dataset contains data from the Queensland Future Climate Science Program contribution to the Coordinated Regional Downscaling Experiment under the Coupled Model Intercomparison Project phase 6 (CORDEX-CMIP6) for Australasia, calibrated against two observational datasets using two different bias correction methods.
+
+Data are available for several commonly used surface variables and three model experiments (an historical experiment and two Shared Socioeconomic Pathway experiments) on a regular 0.05 degree (~5km) latitude-longitude grid across Australia.
+
+
+## Level 1.2.4.1: CORDEX-CMIP6 data from the Queensland Future Climate Science Program calibrated against AGCD using the QME method
+
+#### Abstract
+
+This dataset contains data from the Queensland Future Climate Science Program contribution to the Coordinated Regional Downscaling Experiment under the Coupled Model Intercomparison Project phase 6 (CORDEX-CMIP6) for Australasia, calibrated against the AGCD dataset using the QME bias correction method.
+
+Daily surface temperature and precipitation data are available for three model experiments (historical, SSP1.26 and SSP3.70) on a regular 0.05 degree (~5km) latitude-longitude grid across Australia.
+
+#### Dataset lineage information
+
+This product was produced by applying the Quantile Matching for Extremes (QME) bias correction method to re-gridded CORDEX-CMIP6 data from the Queensland Future Climate Science Program (dataset 1-1-4).
+
+The reference dataset for the bias correction was AGCD (https://dx.doi.org/10.25914/6009600304b02). 
+
+The QME method is described by Dowdy (2023; http://www.bom.gov.au/research/publications/researchreports/BRR-087.pdf) with code available at https://doi.org/10.5281/zenodo.14635628 and https://github.com/AusClimateService/QME.
+
+
+## Level 1.2.4.2: CORDEX-CMIP6 data from the Queensland Future Climate Science Program calibrated against AGCD using the MRNBC method
+
+#### Abstract
+
+This dataset contains data from the Queensland Future Climate Science Program contribution to the Coordinated Regional Downscaling Experiment under the Coupled Model Intercomparison Project phase 6 (CORDEX-CMIP6) for Australasia, calibrated against the AGCD dataset using the MRNBC bias correction method.
+
+Daily surface temperature and precipitation data are available for three model experiments (historical, SSP1.26 and SSP3.70) on a regular 0.05 degree (~5km) latitude-longitude grid across Australia.
+
+#### Dataset lineage information
+
+This product was produced by applying the Multivariate Recursive Nesting Bias Correction (MRNBC) bias correction method to re-gridded CORDEX-CMIP6 data from the Queensland Future Climate Science Program (dataset 1-1-4).
+
+The reference dataset for the bias correction was AGCD (https://dx.doi.org/10.25914/6009600304b02). 
+
+The MRNBC method is described by Mehrotra and Sharma (2015; https://doi.org/10.1016/j.jhydrol.2014.11.037) with code available at https://doi.org/10.5281/zenodo.14641855 and https://github.com/AusClimateService/MRNBC. 
+
+
+## Level 1.2.4.3: CORDEX-CMIP6 data from the Queensland Future Climate Science Program calibrated against BARRA-R2 using the QME method  
+
+#### Abstract
+
+This dataset contains data from the Queensland Future Climate Science Program contribution to the Coordinated Regional Downscaling Experiment under the Coupled Model Intercomparison Project phase 6 (CORDEX-CMIP6) for Australasia, calibrated against the BARRA-R2 dataset using the QME bias correction method.
+
+Daily surface temperature, precipitation, solar radiation, wind speed and relative humidity data are available for three model experiments (historical, SSP1.26 and SSP3.70) on a regular 0.05 degree (~5km) latitude-longitude grid across Australia.
+
+#### Dataset lineage information
+
+This product was produced by applying the Quantile Matching for Extremes (QME) bias correction method to re-gridded CORDEX-CMIP6 data from the Queensland Future Climate Science Program (dataset 1-1-4).
+
+The reference dataset for the bias correction was BARRA-R2 (https://dx.doi.org/10.25914/90rq-d839). 
+
+The QME method is described by Dowdy (2023; http://www.bom.gov.au/research/publications/researchreports/BRR-087.pdf) with code available at https://doi.org/10.5281/zenodo.14635628 and https://github.com/AusClimateService/QME.
+
+
+## Level 1.2.4.4: CORDEX-CMIP6 data from the Queensland Future Climate Science Program calibrated against BARRA-R2 using the MRNBC method
+
+#### Abstract
+
+This dataset contains data from the Queensland Future Climate Science Program contribution to the Coordinated Regional Downscaling Experiment under the Coupled Model Intercomparison Project phase 6 (CORDEX-CMIP6) for Australasia, calibrated against the BARRA-R2 dataset using the MRNBC bias correction method.
+
+Daily surface temperature, precipitation, solar radiation, wind speed and relative humidity data are available for three model experiments (historical, SSP1.26 and SSP3.70) on a regular 0.05 degree (~5km) latitude-longitude grid across Australia.
+
+#### Dataset lineage information
+
+This product was produced by applying the Multivariate Recursive Nesting Bias Correction (MRNBC) bias correction method to re-gridded CORDEX-CMIP6 data from the Queensland Future Climate Science Program (dataset 1-1-4).
+
+The reference dataset for the bias correction was BARRA-R2 (https://dx.doi.org/10.25914/90rq-d839).  
+
+The MRNBC method is described by Mehrotra and Sharma (2015; https://doi.org/10.1016/j.jhydrol.2014.11.037) with code available at https://doi.org/10.5281/zenodo.14641855 and https://github.com/AusClimateService/MRNBC. 
+
+
 
