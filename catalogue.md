@@ -2,8 +2,10 @@ The following information will appear in the NCI catalogue entry for the dataset
 
 [Level 1: CORDEX-CMIP6-based regridded and calibrated data for Australia](#Level-1-CORDEX-CMIP6-based-regridded-and-calibrated-data-for-Australia)  
  &ensp; [Level 1.1: CORDEX-CMIP6-based regridded data for Australia](#Level-1-1-CORDEX-CMIP6-based-regridded-data-for-Australia)  
- &ensp; &ensp; [Level 1.1.1: Regridded CORDEX-CMIP6 data from the Bureau of Meteorology](Level-1-1-1-Regridded-CORDEX-CMIP6-data-from-the-Bureau-of-Meteorology)
-
+ &ensp; &ensp; [Level 1.1.1: Regridded CORDEX-CMIP6 data from the Bureau of Meteorology](Level-1-1-1-Regridded-CORDEX-CMIP6-data-from-the-Bureau-of-Meteorology)  
+ &ensp; &ensp; [Level 1.1.2: Regridded CORDEX-CMIP6 data from the CSIRO](Level-1-1-2-Regridded-CORDEX-CMIP6-data-from-the-CSIRO)  
+ &ensp; &ensp; [Level 1.1.3: Regridded CORDEX-CMIP6 data from the NARCliM2.0 project](Level-1-1-3-Regridded-CORDEX-CMIP6-data-from-the-NARCliM2-0-project)  
+ &ensp; &ensp; [Level 1.1.4: Regridded CORDEX-CMIP6 data from the Queensland Future Climate Science Program](Level-1-1-4-Regridded-CORDEX-CMIP6-data-from-the-Queensland-Future-Climate-Science-Program)  
  &ensp; [Level 1.2: CORDEX-CMIP6-based calibrated data for Australia](#Level-1-2-CORDEX-CMIP6-based-calibrated-data-for-Australia)
 
 
@@ -60,8 +62,49 @@ This product was produced by re-gridding (via bilinear interpolation) CORDEX-CMI
 The code used to perform the re-gridding can be found at: https://github.com/AusClimateService/bias-correction-data-release
 
 
+## Level 1.1.2: Regridded CORDEX-CMIP6 data from the CSIRO
+
+#### Abstract
+
+This dataset contains data from the CSIRO contribution to the Coordinated Regional Downscaling Experiment under the Coupled Model Intercomparison Project phase 6 (CORDEX-CMIP6) for Australasia,  regridded to a regular 0.05 degree (~5km) latitude-longitude grid across Australia. 
+
+Data are available for several commonly used surface variables and three model experiments (historical, SSP1.26 and SSP3.70).
+
+#### Dataset lineage information
+
+This product was produced by re-gridding (via bilinear interpolation) CORDEX-CMIP6 data from CSIRO (https://dx.doi.org/10.25914/rd73-4m38) to a regular 0.05 latitude-longitude grid over the Australia domain (the AGCD grid).
+
+The code used to perform the re-gridding can be found at: https://github.com/AusClimateService/bias-correction-data-release
 
 
+## Level 1.1.3: Regridded CORDEX-CMIP6 data from the NARCliM2.0 project
+
+#### Abstract
+
+This dataset contains data from the NARCliM2.0 contribution to the Coordinated Regional Downscaling Experiment under the Coupled Model Intercomparison Project phase 6 (CORDEX-CMIP6) for Australasia,  regridded to a regular 0.05 degree (~5km) latitude-longitude grid across Australia. 
+
+Data are available for several commonly used surface variables and three model experiments (historical, SSP1.26 and SSP3.70).
+
+#### Dataset lineage information
+
+This product was produced by re-gridding (via bilinear interpolation) CORDEX-CMIP6 data from NARCliM2.0 (https://dx.doi.org/10.25914/resv-vj43) to a regular 0.05 latitude-longitude grid over the Australia domain (the AGCD grid).
+
+The code used to perform the re-gridding can be found at: https://github.com/AusClimateService/bias-correction-data-release
+
+
+## Level 1.1.4: Regridded CORDEX-CMIP6 data from the Queensland Future Climate Science Program
+
+#### Abstract
+
+This dataset contains data from the Queensland Future Climate Science Program contribution to the Coordinated Regional Downscaling Experiment under the Coupled Model Intercomparison Project phase 6 (CORDEX-CMIP6) for Australasia,  regridded to a regular 0.05 degree (~5km) latitude-longitude grid across Australia. 
+
+Data are available for several commonly used surface variables and three model experiments (historical, SSP1.26 and SSP3.70).
+
+#### Dataset lineage information
+
+This product was produced by re-gridding (via bilinear interpolation) CORDEX-CMIP6 data from Queensland Future Climate Science Program (https://dx.doi.org/10.25914/8fve-1910) to a regular 0.05 latitude-longitude grid over the Australia domain (the AGCD grid).
+
+The code used to perform the re-gridding can be found at: https://github.com/AusClimateService/bias-correction-data-release
 
 
 ## Level 1.2 CORDEX-CMIP6-based calibrated data for Australia
