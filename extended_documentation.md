@@ -2,7 +2,9 @@
 
 This collection contains data from Regional Climate Models (RCMs) contributing to the Coordinated Regional Downscaling Experiment under the Coupled Model Intercomparison Project phase 6 (CORDEX-CMIP6) for Australasia, processed in a convenient form for applied users. 
 
-Data for several commonly used surface variables and three model experiments have been regridded to a regular 0.05 degree (~5km) latitude-longitude grid across Australia and then calibrated against two different observational datasets using two different bias correction methods. Users can access the regridded data (i.e. with no bias correction applied) or the bias corrected data.
+Data for several commonly used surface variables and three model experiments have been regridded from the native CORDEX Australasia resolution of ~10-20 km to a regular 0.05 degree (~5km) latitude-longitude grid across Australia and then calibrated against two different observational datasets using two different bias correction methods. Users can access the regridded data (i.e. with no bias correction applied) or the bias corrected data.
+
+It should be noted that interpolation to ~5km is purely statistical and adds no new information from the RCMs at this scale, while the native resolution of the observational information used in the bias correction process was ~5km (AGCD) and ~11km (BARRA-R2) respectively.
 
 The regridded data is useful for analysis that compares / combines CORDEX-CMIP6 data across different RCMs, as each individual RCM is run on a different spatial grid. The bias corrected data is useful for analysis of future climate change scenarios for Australia where the application requires data to statistically match observed/reanalysis datasets – including analysis of changes in the variables included, indices derived from these variables (including indices with absolute thresholds) and downstream modelling of areas such as hydrology, agriculture, environmental suitability, fire risk and more.
 
