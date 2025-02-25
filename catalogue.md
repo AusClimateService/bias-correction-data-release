@@ -35,7 +35,7 @@ The following information will appear in the NCI catalogue entry for the dataset
 
 This collection contains data from Regional Climate Models (RCMs) contributing to the Coordinated Regional Downscaling Experiment under the Coupled Model Intercomparison Project phase 6 (CORDEX-CMIP6) for Australasia, processed in a convenient form for applied users. 
 
-Data for several commonly used surface variables and three model experiments (an historical experiment and two Shared Socioeconomic Pathway experiments) have been regridded to a regular 0.05 degree (~5km) latitude-longitude grid across Australia and then calibrated against two different observational datasets using two different bias correction methods.
+Data for several commonly used surface variables and three model experiments (an historical experiment and two Shared Socioeconomic Pathway experiments) have been regridded from the native RCM resolution of ~10-20 km to a regular 0.05 degree (~5km) latitude-longitude grid across Australia and then calibrated against two different observational datasets using two different bias correction methods.
 
 The collection is useful for analysis of future climate change scenarios for Australia where CORDEX-CMIP6 is an appropriate data source and the application requires data to statistically match observed/reanalysis datasets – including analysis of changes in the variables included, indices derived from these variables (including indices with absolute thresholds) and downstream modelling of areas such as hydrology, agriculture, environmental suitability, fire risk and more.
 
@@ -54,7 +54,7 @@ Further details about this product can be found at https://github.com/AusClimate
 
 #### Abstract
 
-This dataset contains data from Regional Climate Models (RCMs) contributing to the Coordinated Regional Downscaling Experiment under the Coupled Model Intercomparison Project phase 6 (CORDEX-CMIP6) for Australasia,  regridded to a regular 0.05 degree (~5km) latitude-longitude grid across Australia. 
+This dataset contains data from Regional Climate Models (RCMs) contributing to the Coordinated Regional Downscaling Experiment under the Coupled Model Intercomparison Project phase 6 (CORDEX-CMIP6) for Australasia, regridded from the native RCM resolution of ~10-20 km to a regular 0.05 degree (~5km) latitude-longitude grid across Australia. 
 
 Data are available for several commonly used surface variables and three model experiments (an historical experiment and two Shared Socioeconomic Pathway experiments).
 
@@ -62,7 +62,7 @@ This dataset is useful for analysis that compares / combines CORDEX-CMIP6 data a
 
 #### Dataset lineage information
 
-This dataset was produced by re-gridding (via bilinear interpolation) the CORDEX-CMIP6 and observational data to a regular 0.05 latitude-longitude grid over the Australia domain (the AGCD grid).
+This dataset was produced by re-gridding (via bilinear interpolation) regional climate model data from the native resolution of ~10-20 km to a regular 0.05 degree (~5km) latitude-longitude grid over the Australia domain (the AGCD grid).
 
 The code used to perform the re-gridding can be found at: https://github.com/AusClimateService/bias-correction-data-release
 
@@ -71,13 +71,13 @@ The code used to perform the re-gridding can be found at: https://github.com/Aus
 
 #### Abstract
 
-This dataset contains data from the Bureau of Meteorology contribution to the Coordinated Regional Downscaling Experiment under the Coupled Model Intercomparison Project phase 6 (CORDEX-CMIP6) for Australasia,  regridded to a regular 0.05 degree (~5km) latitude-longitude grid across Australia. 
+This dataset contains data from the Bureau of Meteorology contribution to the Coordinated Regional Downscaling Experiment under the Coupled Model Intercomparison Project phase 6 (CORDEX-CMIP6) for Australasia, regridded from the native model resolution of ~15 km to a regular 0.05 degree (~5km) latitude-longitude grid across Australia. 
 
 Data are available for several commonly used surface variables and three model experiments (historical, SSP1.26 and SSP3.70).
 
 #### Dataset lineage information
 
-This product was produced by re-gridding (via bilinear interpolation) CORDEX-CMIP6 data from the Bureau of Meteorology (https://dx.doi.org/10.25914/z1x6-dq28) to a regular 0.05 latitude-longitude grid over the Australia domain (the AGCD grid).
+This product was produced by re-gridding (via bilinear interpolation) regional climate model data from the Bureau of Meteorology (https://dx.doi.org/10.25914/z1x6-dq28) from its native resolution of ~15 km to a regular 0.05 degree (~5km) latitude-longitude grid over the Australia domain (the AGCD grid).
 
 The code used to perform the re-gridding can be found at: https://github.com/AusClimateService/bias-correction-data-release
 
@@ -86,13 +86,13 @@ The code used to perform the re-gridding can be found at: https://github.com/Aus
 
 #### Abstract
 
-This dataset contains data from the CSIRO contribution to the Coordinated Regional Downscaling Experiment under the Coupled Model Intercomparison Project phase 6 (CORDEX-CMIP6) for Australasia,  regridded to a regular 0.05 degree (~5km) latitude-longitude grid across Australia. 
+This dataset contains data from the CSIRO contribution to the Coordinated Regional Downscaling Experiment under the Coupled Model Intercomparison Project phase 6 (CORDEX-CMIP6) for Australasia, regridded from its native resolution of ~10km to a regular 0.05 degree (~5km) latitude-longitude grid across Australia. 
 
 Data are available for several commonly used surface variables and three model experiments (historical, SSP1.26 and SSP3.70).
 
 #### Dataset lineage information
 
-This product was produced by re-gridding (via bilinear interpolation) CORDEX-CMIP6 data from CSIRO (https://dx.doi.org/10.25914/rd73-4m38) to a regular 0.05 latitude-longitude grid over the Australia domain (the AGCD grid).
+This product was produced by re-gridding (via bilinear interpolation) regional climate model data from CSIRO (https://dx.doi.org/10.25914/rd73-4m38) from its native resolution of ~12.5km to a regular 0.05 degree (~5km) latitude-longitude grid over the Australia domain (the AGCD grid).
 
 The code used to perform the re-gridding can be found at: https://github.com/AusClimateService/bias-correction-data-release
 
@@ -101,13 +101,13 @@ The code used to perform the re-gridding can be found at: https://github.com/Aus
 
 #### Abstract
 
-This dataset contains data from the NARCliM2.0 contribution to the Coordinated Regional Downscaling Experiment under the Coupled Model Intercomparison Project phase 6 (CORDEX-CMIP6) for Australasia,  regridded to a regular 0.05 degree (~5km) latitude-longitude grid across Australia. 
+This dataset contains data from the NARCliM2.0 contribution to the Coordinated Regional Downscaling Experiment under the Coupled Model Intercomparison Project phase 6 (CORDEX-CMIP6) for Australasia, regridded from its native resolution of ~18km to a regular 0.05 degree (~5km) latitude-longitude grid across Australia. 
 
 Data are available for several commonly used surface variables and three model experiments (historical, SSP1.26 and SSP3.70).
 
 #### Dataset lineage information
 
-This product was produced by re-gridding (via bilinear interpolation) CORDEX-CMIP6 data from NARCliM2.0 (https://dx.doi.org/10.25914/resv-vj43) to a regular 0.05 latitude-longitude grid over the Australia domain (the AGCD grid).
+This product was produced by re-gridding (via bilinear interpolation) regional climate model data from NARCliM2.0 (https://dx.doi.org/10.25914/resv-vj43) from its native resolution of ~18km to a regular 0.05 degree (~5km) latitude-longitude grid over the Australia domain (the AGCD grid).
 
 The code used to perform the re-gridding can be found at: https://github.com/AusClimateService/bias-correction-data-release
 
@@ -116,13 +116,13 @@ The code used to perform the re-gridding can be found at: https://github.com/Aus
 
 #### Abstract
 
-This dataset contains data from the Queensland Future Climate Science Program contribution to the Coordinated Regional Downscaling Experiment under the Coupled Model Intercomparison Project phase 6 (CORDEX-CMIP6) for Australasia,  regridded to a regular 0.05 degree (~5km) latitude-longitude grid across Australia. 
+This dataset contains data from the Queensland Future Climate Science Program contribution to the Coordinated Regional Downscaling Experiment under the Coupled Model Intercomparison Project phase 6 (CORDEX-CMIP6) for Australasia, regridded from its native resolution of ~10km to a regular 0.05 degree (~5km) latitude-longitude grid across Australia. 
 
 Data are available for several commonly used surface variables and three model experiments (historical, SSP1.26 and SSP3.70).
 
 #### Dataset lineage information
 
-This product was produced by re-gridding (via bilinear interpolation) CORDEX-CMIP6 data from Queensland Future Climate Science Program (https://dx.doi.org/10.25914/8fve-1910) to a regular 0.05 latitude-longitude grid over the Australia domain (the AGCD grid).
+This product was produced by re-gridding (via bilinear interpolation) regional climate model data from the Queensland Future Climate Science Program (https://dx.doi.org/10.25914/8fve-1910) from its native resolution of ~10km to a regular 0.05 degree (~5km) latitude-longitude grid over the Australia domain (the AGCD grid).
 
 The code used to perform the re-gridding can be found at: https://github.com/AusClimateService/bias-correction-data-release
 
