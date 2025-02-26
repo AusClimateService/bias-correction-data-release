@@ -16,10 +16,9 @@ The data are the most commonly used surface variables from all model simulations
 Regional Downscaling Experiment under the Coupled Model Intercomparison Project
 phase 6 (CORDEX-CMIP6) for Australasia in a convenient form for applied users.
 Data are for historical and two Shared Socioeconomic Pathway (SSP) experiments,
-regridded from the native CORDEX Australasia resolution of ~10-20 km
-to the ~5 km standard and regular grid of the Australian Gridded Climate
-Dataset (AGCD) and subset for Australia only, in raw form and then with four
-variations of bias correction.
+regridded from the native RCM resolution of ~10-20 km to the ~5 km standard and
+regular grid of the Australian Gridded Climate Dataset (AGCD) and subset for
+Australia only, in raw form and then with four variations of bias correction.
 
 It should be noted that interpolation to ~5km is purely statistical and adds no
 new information from the RCMs at this scale, while the native resolution of the
