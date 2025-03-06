@@ -11,8 +11,8 @@ for inpath in "$@"; do
         echo 'File not found: ' ${inpath}
     else    
         outpath=`echo ${inpath} | sed s:_fixed.nc:.nc:`
-        #echo ${inpath}
-        echo mv ${inpath} ${outpath}    
-        #echo ${outpath}
+        echo ${inpath}
+        mv ${inpath} ${outpath}    
+        echo ${outpath}
     fi
 done

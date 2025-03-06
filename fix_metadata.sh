@@ -29,7 +29,11 @@ for inpath in "$@"; do
         else
             outpath=`echo ${inpath} | sed s:.nc:_fixed.nc:`
         fi
-        ${python} /home/599/dbi599/bias-correction-data-release/fix_metadata.py ${inpath} ${var} ${outpath}    
-        echo ${outpath}
+        if [ ! -f ${outpath} ] ; then
+            ${python} /home/599/dbi599/bias-correction-data-release/fix_metadata.py ${inpath} ${var} ${outpath}    
+            echo ${outpath} 
+        else
+            echo 'File already processed: ' ${outpath}
+        fi
     fi
 done
