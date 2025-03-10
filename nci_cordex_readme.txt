@@ -35,7 +35,7 @@ NCI THREDDS Data Server: https://dx.doi.org/10.25914/xeca-pw53
 
 License: https://creativecommons.org/licenses/by/4.0/
 
-Extended Documentation: <insert https://opus.nci.org.au/ link> 
+Extended Documentation: https://opus.nci.org.au/x/LoG_Fg 
 
 --------------------------------------------------------------------------------
 
