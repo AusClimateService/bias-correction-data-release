@@ -58,7 +58,7 @@ for infile in "${infiles[@]}"; do
     start_date=`echo ${tbounds} | cut -d - -f 1`
     end_date=`echo ${tbounds} | cut -d - -f 2`
     
-    outdir=/g/data/ia39/australian-climate-service/test-data/CORDEX/output-Adjust/CMIP6/bias-adjusted-input/AUST-05i/${institution}/${gcm}/${experiment}/${run}/${rcm}/${version}/day/${var}/v20250311
+    outdir=/g/data/ia39/australian-climate-service/release/CORDEX/output-Adjust/CMIP6/bias-adjusted-input/AUST-05i/${institution}/${gcm}/${experiment}/${run}/${rcm}/${version}/day/${var}/v20250311
     outfile=${var}_AUST-05i_${gcm}_${experiment}_${run}_${institution}_${rcm}_${version}_day_${start_date:0:6}01-${end_date:0:6}31.nc
     
     python_command="${python} preprocess.py ${infile} ${var} bilinear ${outdir}/${outfile} ${rlon}"
