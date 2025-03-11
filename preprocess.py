@@ -13,10 +13,12 @@ output_units = {
     'tasmax': 'degC',
     'tasmin': 'degC',
     'pr': 'mm d-1',
+    'sfcWind': 'm s-1',
     'sfcWindmax': 'm s-1',
     'rsds': 'W m-2',
     'hursmin': '%',
     'hursmax': '%',
+    'psl': 'Pa',
 }
 
 
@@ -162,7 +164,7 @@ def fix_metadata(ds, var):
     # Add/update global attributes
     ds.attrs['domain'] = 'Australia/AGCD'
     ds.attrs['domain_id'] = 'AUST-05i'
-    ds.attrs['title'] = 'CORDEX-CMIP6-based regridded and calibrated data for Australia'
+    ds.attrs['title'] = 'CORDEX-CMIP6 regridded data for Australia'
     ds.attrs['frequency'] = 'day'
     ds.attrs['variable_id'] = var
     ds.attrs['license'] = "CC BY 4.0"
