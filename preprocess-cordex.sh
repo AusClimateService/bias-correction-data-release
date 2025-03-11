@@ -24,11 +24,11 @@ if [[ "${rcm}" == "BARPA-R" ]] ; then
 elif [[ "${rcm}" == "CCAM-v2203-SN" ]] ; then
     project_dir=/g/data/hq89/CCAM/output/CMIP6/DD/AUS-10i/CSIRO
 elif [[ "${rcm}" == "CCAMoc-v2112" ]] ; then
-    project_dir=/g/data/ig45/QldFCP-2/CORDEX/CMIP6/DD/AUS-20i/UQ-DES
+    project_dir=/g/data/ig45/QldFCP-2/CORDEX/CMIP6/DD/AUS-20i/UQ-DEC
 elif [[ "${rcm}" == "CCAM-v2105" ]] ; then
-    project_dir=/g/data/ig45/QldFCP-2/CORDEX/CMIP6/DD/AUS-20i/UQ-DES
+    project_dir=/g/data/ig45/QldFCP-2/CORDEX/CMIP6/DD/AUS-20i/UQ-DEC
 elif [[ "${rcm}" == "CCAM-v2112" ]] ; then
-    project_dir=/g/data/ig45/QldFCP-2/CORDEX/CMIP6/DD/AUS-20i/UQ-DES
+    project_dir=/g/data/ig45/QldFCP-2/CORDEX/CMIP6/DD/AUS-20i/UQ-DEC
 elif [[ "${rcm}" == "NARCliM2-0-WRF412R3" ]] ; then
     project_dir=/g/data/zz63/NARCliM2-0/output/CMIP6/DD/AUS-18/NSW-Government
     rlon="--rlon /g/data/zz63/NARCliM2-0/rlon-correction-AUS-18.txt"
