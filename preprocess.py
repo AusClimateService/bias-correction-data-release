@@ -131,6 +131,10 @@ def fix_metadata(ds, var):
         'il',
         'kl',
         'native_resolution',
+        'units',
+        'nco_openmp_thread_number',
+        'CDO',
+        'CDI',
     ]
     for key in global_keys_to_delete:
         try:
