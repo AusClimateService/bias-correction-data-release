@@ -7,7 +7,7 @@
 #   rcm:    name of regional climate model (BARPA-R, CCAM-v2203-SN, CCAMoc-v2112, CCAM-v2105, CCAM-v2112, NARCliM2-0-WRF412R3, NARCliM2-0-WRF412R5)
 #   run:    run to process (e.g. r1i1p1f1)
 #   exp:    experiment (e.g. historical, ssp126, ssp370)
-#   var:    variable to process (tasmin, tasmax, pr, rsds, sfcwind, sfcWindmax, hursmin, hursmax, psl)
+#   var:    variable to process (tasmin, tasmax, pr, rsds, sfcwind, sfcWindmax, hursmin, hursmax, psl, orog)
 #   flags:  optional flags (e.g. -n for dry run)
 #
 
@@ -39,9 +39,15 @@ fi
 
 if [[ "${var}" == "hursmin" || "${var}" == "hursmax" ]] ; then
     input_freq=1hr
+    output_freq=day
     input_var=hurs
+elif [[ "${var}" == "orog" ]] ; then
+    input_freq=fx
+    output_freq=fx
+    input_var=${var}
 else
     input_freq=day
+    output_freq=day
     input_var=${var}
 fi
 
@@ -58,9 +64,15 @@ for infile in "${infiles[@]}"; do
     start_date=`echo ${tbounds} | cut -d - -f 1`
     end_date=`echo ${tbounds} | cut -d - -f 2`
     
-    outdir=/g/data/ia39/australian-climate-service/release/CORDEX/output-Adjust/CMIP6/bias-adjusted-input/AUST-05i/${institution}/${gcm}/${experiment}/${run}/${rcm}/${version}/day/${var}/v20250311
-    outfile=${var}_AUST-05i_${gcm}_${experiment}_${run}_${institution}_${rcm}_${version}_day_${start_date:0:6}01-${end_date:0:6}31.nc
-    
+    outdir=/g/data/ia39/australian-climate-service/release/CORDEX/output-Adjust/CMIP6/bias-adjusted-input/AUST-05i/${institution}/${gcm}/${experiment}/${run}/${rcm}/${version}/${output_freq}/${var}/v20250311
+    outfile_start=${var}_AUST-05i_${gcm}_${experiment}_${run}_${institution}_${rcm}_${version}_${output_freq}
+    if [[ "${var}" == "orog" ]] ; then
+        outfile_end=".nc"
+    else
+        outfile_end="_${start_date:0:6}01-${end_date:0:6}31.nc"
+    fi
+    outfile=${outfile_start}${outfile_end}
+
     python_command="${python} preprocess.py ${infile} ${var} bilinear ${outdir}/${outfile} ${rlon}"
     if [[ "${flags}" == "-n" ]] ; then
         echo ${python_command}

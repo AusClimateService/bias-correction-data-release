@@ -19,6 +19,7 @@ output_units = {
     'hursmin': '%',
     'hursmax': '%',
     'psl': 'Pa',
+    'orog': 'm',
 }
 
 
@@ -160,16 +161,20 @@ def fix_metadata(ds, var):
     ds['lat'].attrs['standard_name'] = 'latitude'
     ds['lon'].attrs['long_name'] = 'longitude'
     ds['lon'].attrs['standard_name'] = 'longitude'
-    ds['time'].attrs['long_name'] = 'time'
-    ds['time'].attrs['standard_name'] = 'time'
-    ds['time'].attrs['axis'] = 'T'
-    ds['time_bnds'].attrs = {}
+    if not var == 'orog':
+        ds['time'].attrs['long_name'] = 'time'
+        ds['time'].attrs['standard_name'] = 'time'
+        ds['time'].attrs['axis'] = 'T'
+        ds['time_bnds'].attrs = {}
 
     # Add/update global attributes
     ds.attrs['domain'] = 'Australia/AGCD'
     ds.attrs['domain_id'] = 'AUST-05i'
     ds.attrs['title'] = 'CORDEX-CMIP6 regridded data for Australia'
-    ds.attrs['frequency'] = 'day'
+    if var == 'orog':
+        ds.attrs['frequency'] = 'fx'
+    else:
+        ds.attrs['frequency'] = 'day'
     ds.attrs['variable_id'] = var
     ds.attrs['license'] = "CC BY 4.0"
     ds.attrs['grid'] = 'latitude-longitude with 0.05 degree grid spacing for Australia domain (the standard AGCD grid)'
@@ -200,14 +205,15 @@ def get_output_encoding(ds, var, nlats, nlons):
     #compression
     encoding[var]['zlib'] = True
     encoding[var]['complevel'] = 5
-    #chunking
-    var_shape = ds[var].shape
-    assert len(var_shape) == 3
-    assert var_shape[1] == nlats
-    assert var_shape[2] == nlons
-    encoding[var]['chunksizes'] = (1, nlats, nlons)
-    #time units
-    encoding['time']['units'] = 'days since 1950-01-01'
+    if not var == 'orog':
+        #chunking
+        var_shape = ds[var].shape
+        assert len(var_shape) == 3
+        assert var_shape[1] == nlats
+        assert var_shape[2] == nlons
+        encoding[var]['chunksizes'] = (1, nlats, nlons)
+        #time units
+        encoding['time']['units'] = 'days since 1950-01-01'
 
     return encoding
 
