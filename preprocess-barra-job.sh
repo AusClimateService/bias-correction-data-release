@@ -8,6 +8,10 @@
 #PBS -l ncpus=5
 #PBS -v var
 
+# Example:
+#   qsub -v var=psl preprocess-barra-job.sh
+#
+
 __conda_setup="$('/g/data/xv83/dbi599/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
