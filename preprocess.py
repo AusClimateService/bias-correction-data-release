@@ -68,6 +68,26 @@ def convert_units(da, target_units):
     return da
 
 
+def drop_vars(ds):
+    """Drop variables from dataset"""
+
+    drop_vars = [
+        'sigma',
+        'level_height',
+        'height',
+        'model_level_number',
+        'crs',
+    ]
+ 
+    for drop_var in drop_vars:
+        try:
+            ds = ds.drop(drop_var)
+        except ValueError:
+            pass
+
+    return ds
+
+
 def fix_metadata(ds, var):
     "Apply metadata fixes."""
 
@@ -149,6 +169,7 @@ def fix_metadata(ds, var):
         'valid_range',
         'grid_mapping',
         'MD5',
+        'coordinates',
     ]
     for key in var_keys_to_delete:
         try:
@@ -178,14 +199,6 @@ def fix_metadata(ds, var):
     ds.attrs['variable_id'] = var
     ds.attrs['license'] = "CC BY 4.0"
     ds.attrs['grid'] = 'latitude-longitude with 0.05 degree grid spacing for Australia domain (the standard AGCD grid)'
-
-    # Variables to delete
-    drop_vars = ['sigma', 'level_height', 'model_level_number', 'height']
-    for drop_var in drop_vars:
-        try:
-            ds = ds.drop(drop_var)
-        except ValueError:
-            pass
 
     return ds
 
@@ -239,7 +252,7 @@ def replace_rlon(ds, rlon_file):
 def main(args):
     """Run the program."""
     
-    input_ds = xcdat.open_mfdataset(args.infiles, mask_and_scale=True)
+    input_ds = xcdat.open_mfdataset(args.infiles, mask_and_scale=True, preprocess=drop_vars)
     if args.rlon:
         input_ds = replace_rlon(input_ds, args.rlon)
 
