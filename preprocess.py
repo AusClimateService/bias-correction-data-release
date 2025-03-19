@@ -13,13 +13,16 @@ output_units = {
     'tasmax': 'degC',
     'tasmin': 'degC',
     'pr': 'mm d-1',
+    'prsn': 'mm d-1',
     'sfcWind': 'm s-1',
     'sfcWindmax': 'm s-1',
     'rsds': 'W m-2',
     'hursmin': '%',
     'hursmax': '%',
+    'ps': 'Pa',
     'psl': 'Pa',
     'orog': 'm',
+    'huss': '1',
 }
 
 
