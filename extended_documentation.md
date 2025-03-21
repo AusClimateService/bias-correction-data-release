@@ -113,10 +113,9 @@ Data organisation
 An example for the reridded data is,
 
 ```
-/g/data/kj66/CORDEX/output/CMIP6/DD/AUST-05i/UQ-DES/ACCESS-ESM1-5/
-historical/r40i1p1f1/CCAMoc-v2112/v1-r1/day/sfcWindmax/v20241216/
-sfcWindmax_AUST-05i_ACCESS-ESM1-5_historical_r40i1p1f1_UQ-DES_
-CCAMoc-v2112_v1-r1_day_19600101-19601231.nc
+/g/data/kj66/CORDEX/output/CMIP6/DD/AUST-05i/BOM/EC-Earth3/historical/
+r1i1p1f1/BARPA-R/v1-r1/day/sfcWindmax/v20241216/sfcWindmax_AUST-05i_
+EC-Earth3_historical_r1i1p1f1_BOM_BARPA-R_v1-r1_day_19600101-19601231.nc
 ```
 
 An example for the bias corrected data is,
@@ -131,10 +130,22 @@ v1-r1-ACS-QME-BARRAR2-1980-2022_day_20660101-20661231.nc
 
 ## Known issues
 
-The BARPA-R dataset has a small number of daily timesteps where the value at all latitude/longitude points is NaN (see the BARPA known issues page for details). Those NaN timesteps are also present in the bias corrected data for all variables except hursmin and hursmax (which were calculated using unaffected hourly BARPA data). The impacted days in the CORDEX-CMIP6-based regridded and calibrated data are as follows:
+#### Missing values
+The BARPA-R dataset has a small number of daily timesteps where the value at all latitude/longitude points is NaN
+(see the BARPA [known issues](https://opus.nci.org.au/spaces/NDP/pages/264241299/Known+Issues+-+BOM+BARPA+py18) page for details).
+Those NaN timesteps are also present in the bias corrected data for all variables except hursmin and hursmax
+(which were calculated using unaffected hourly BARPA data).
+The impacted days in the CORDEX-CMIP6-based regridded and calibrated data are as follows:
 - ACCESS-CM2 (r4i1p1f1), ssp126: 1-2 Jul 2049
 - ACCESS-ESM1-5 (r6i1p1f1), ssp126: 9-10 Sep & 16-17 Oct 2073
 - ACCESS-ESM1-5 (r6i1p1f1), ssp370: 21-22 Apr 2029
+
+#### Missing sfcWindmax data
+
+Daily maximum surface wind speed (sfcWindmax) data is generally not available for the CCAMoc-v2112 or CCAM-v2105 RCMs.
+
+The only exception is the ACCESS-ESM1-5 (run r40i1p1f1) historical and ssp370 data downscaled using CCAMoc-v2112.
+Citing the data
 
 ## Citing the data
 
