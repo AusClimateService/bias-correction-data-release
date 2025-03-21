@@ -11,10 +11,10 @@ v1.0: 21/01/25: Created by Dr Damien Irving, damien.irving@csiro.au
 
 INTRODUCTION
 
-The data are the most commonly used surface variables from all model simulations
-(n=39) from Regional Climate Models (RCMs) contributing to the Coordinated
-Regional Downscaling Experiment under the Coupled Model Intercomparison Project
-phase 6 (CORDEX-CMIP6) for Australasia in a convenient form for applied users.
+The data are the most commonly used surface variables from Regional Climate
+Models (RCMs) contributing to the Coordinated Regional Downscaling Experiment
+under the Coupled Model Intercomparison Project phase 6 (CORDEX-CMIP6) for
+Australasia in a convenient form for applied users.
 Data are for historical and two Shared Socioeconomic Pathway (SSP) experiments,
 regridded from the native RCM resolution of ~10-20 km to the ~5 km standard and
 regular grid of the Australian Gridded Climate Dataset (AGCD) and subset for
