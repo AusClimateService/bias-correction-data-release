@@ -16,7 +16,7 @@ so [BARRA-R2](https://dx.doi.org/10.25914/90rq-d839) data have also been pre-pro
 
 This repository tracks the details and progress of the data produced by the ACS bias correction team.
 A first phase of pre-processing and bias correction was conducted to produce a core general purpose dataset
-(i.e. daily timescale data for a set of the most popular variables)
+that will soon be published as a stand-alone project on NCI (details will be at https://doi.org/10.25914/yrcz-m051)
 and now a second phase is underway to service the NHP.
 
 
@@ -24,10 +24,11 @@ and now a second phase is underway to service the NHP.
 
 Model outputs and observational data require pre-processing prior to bias correction.
 This pre-processing involves spatial regridding to the AUST-05i grid, unit conversion and re-chunking.
+
 AUST-05i is the AGCD 0.05 x 0.05 degrees spatial grid:
 691 latitudes (112.00 to 156.25 East), 886 longitudes (10.0 to 44.5 South). 
 
-#### Code
+### Code
 
 For the model outputs,
 the pre-processing was achieved by running the following at the command line
@@ -62,7 +63,7 @@ The following is the equivalent command to submit to the job queue on NCI:
 qsub -v var=tasmin preprocess-barra-job.sh
 ```
 
-#### Data availability
+### Data availability
 
 The following pre-processed variables are available at a daily timescale
 for the historical, ssp126 and ssp370 experiments.
@@ -85,8 +86,7 @@ Phase 2:
 - Surface wind speed (sfcWind)
 - Surface altitude (orog) (historical experiment only)
 
-
-#### Data location
+### Data location
 
 The AGCD and pre-processed BARRA-R2 observational data 
 are available on NCI at the following (example) directories:
@@ -107,15 +107,15 @@ https://doi.org/10.25914/yrcz-m051
 
 ## Bias corrected output data
 
-#### Data availability
+### Data availability
 
 The following bias corrected data is currently available for two bias correction methods:
 Quantile Matching for Extremes (QME) and Multivariate Recursive Nesting Bias Correction (MRNBC).
 
 Phase 1:
 
-| Variable | Timescale | Grid | Observations | Experiments |
-| ---      | ---       | ---  | ---          | ---         |
+| Variable | Timescale | Grid | Units | Observations | Experiments |
+| ---      | ---       | ---  | ---   | ---          | ---         |
 | Daily maximum surface air temperature (tasmax) | daily | AUST-05i | C | AGCD, BARRA-R2 | historical, ssp126, ssp370 |
 | Daily minimum surface air temperature (tasmin) | daily | AUST-05i | C | AGCD, BARRA-R2 | historical, ssp126, ssp370 |
 | Precipitation (pr) | daily | AUST-05i | mm/day | AGCD, BARRA-R2 | historical, ssp126, ssp370 |
@@ -128,7 +128,7 @@ Phase 2:
 
 Still to come.
 
-#### Data location
+### Data location
 
 Bias corrected output data are available at:
 ```
