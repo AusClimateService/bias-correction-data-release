@@ -66,7 +66,9 @@ qsub -v var=tasmin preprocess-barra-job.sh
 ### Data availability
 
 The following pre-processed variables are available at a daily timescale
-for the historical, ssp126 and ssp370 experiments.
+for all historical, ssp126 and ssp370 experiment data
+produced by the BoM, CSIRO, Queensland Future Climate Science Program and
+NARCliM2.0.
 
 Phase 1:
 - Daily maximum surface air temperature (tasmax)
@@ -111,6 +113,7 @@ https://doi.org/10.25914/yrcz-m051
 
 The following bias corrected data is currently available for two bias correction methods:
 Quantile Matching for Extremes (QME) and Multivariate Recursive Nesting Bias Correction (MRNBC).
+All relevant BoM, CSIRO, Queensland Future Climate Science Program and NARCliM2.0 data were processed.
 
 Phase 1:
 
@@ -142,11 +145,3 @@ For example, pr bias corrected output data for ACCESS-CM2 BARPA-R corrected to A
 
 The phase 1 bias corrected data are also about to be formally published on NCI at the following DOI:  
 https://doi.org/10.25914/z2jm-nr63
-
-
-
-
-
-
-
-
