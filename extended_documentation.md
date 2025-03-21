@@ -149,14 +149,11 @@ Citing the data
 
 ## Citing the data
 
-To cite the regridded CORDEX-CMIP6 data:
-- Irving D (2025). CORDEX-CMIP6-based regridded data for Australia. National Computational Infrastructure. https://doi.org/10.25914/yrcz-m051
+To cite the regridded CORDEX-CMIP6 use: https://doi.org/10.25914/yrcz-m051
 
-To cite the bias corrected CORDEX-CMIP6 data:
-- Gammon A & Peter J (2025). CORDEX-CMIP6-based calibrated data for Australia. National Computational Infrastructure. https://doi.org/10.25914/z2jm-nr63
+To cite the bias corrected CORDEX-CMIP6 data: https://doi.org/10.25914/z2jm-nr63
 
-To cite the entire dataset (i.e. the regridded and bias corrected data):
-- Gammon A, Irving D & Peter J (2025). CORDEX-CMIP6-based regridded and calibrated data for Australia. National Computational Infrastructure. https://doi.org/10.25914/xeca-pw53
+To cite the entire dataset (i.e. the regridded and bias corrected data) use: https://doi.org/10.25914/xeca-pw53
 
 ## Licensing, terms and conditions
 
