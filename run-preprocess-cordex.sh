@@ -31,6 +31,7 @@ qsub -v gcm=MPI-ESM1-2-HR,rcm=BARPA-R,run=r1i1p1f1,exp=${exp},var=${var} preproc
 qsub -v gcm=MPI-ESM1-2-HR,rcm=NARCliM2-0-WRF412R3,run=r1i1p1f1,exp=${exp},var=${var} preprocess-cordex-job.sh
 qsub -v gcm=MPI-ESM1-2-HR,rcm=NARCliM2-0-WRF412R5,run=r1i1p1f1,exp=${exp},var=${var} preprocess-cordex-job.sh
 qsub -v gcm=NorESM2-MM,rcm=BARPA-R,run=r1i1p1f1,exp=${exp},var=${var} preprocess-cordex-job.sh
+qsub -v gcm=NorESM2-MM,rcm=CCAM-v2203-SN,run=r1i1p1f1,exp=${exp},var=${var} preprocess-cordex-job.sh
 qsub -v gcm=NorESM2-MM,rcm=NARCliM2-0-WRF412R3,run=r1i1p1f1,exp=${exp},var=${var} preprocess-cordex-job.sh
 qsub -v gcm=NorESM2-MM,rcm=NARCliM2-0-WRF412R5,run=r1i1p1f1,exp=${exp},var=${var} preprocess-cordex-job.sh
 qsub -v gcm=UKESM1-0-LL,rcm=NARCliM2-0-WRF412R3,run=r1i1p1f2,exp=${exp},var=${var} preprocess-cordex-job.sh
