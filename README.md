@@ -8,6 +8,8 @@ Four institutions have dynamically downscaled CMIP6 global climate model data ov
 - The NARCliM2.0 project
   ([data collection](https://dx.doi.org/10.25914/resv-vj43), [paper](https://dx.doi.org/10.5194/gmd-2024-87))
 
+(See Appendix below for which CMIP6 global climate models each institution downscaled.)
+
 The Australian Climate Service (ACS) has been pre-processing (to a common 5km grid)
 and then bias correcting some of these data for projects including the
 National Climate Risk Assessment (NCRA) and National Hydrological Projections (NHP).
@@ -145,3 +147,56 @@ For example, pr bias corrected output data for ACCESS-CM2 BARPA-R corrected to A
 
 The phase 1 bias corrected data are also about to be formally published on NCI at the following DOI:  
 https://doi.org/10.25914/z2jm-nr63
+
+
+## Appendix
+
+Here's a list of each global climate model (GCM) / regional climate model (RCM) combination
+processed by each modelling group.
+
+BoM:
+- ACCESS-CM2 (run r4i1p1f1) / BARPA-R
+- ACCESS-ESM1-5 (r6i1p1f1) / BARPA-R
+- CESM2 (r11i1p1f1) / BARPA-R
+- CMCC-ESM2 (r1i1p1f1) / BARPA-R
+- EC-Earth3 (r1i1p1f1) / BARPA-R
+- MPI-ESM1-2-HR (r1i1p1f1) / BARPA-R
+- NorESM2-MM 	(r1i1p1f1) / BARPA-R
+
+CSIRO:
+- ACCESS-CM2 	(r4i1p1f1) / CCAM-v2203-SN
+- ACCESS-ESM1-5 (r6i1p1f1) / CCAM-v2203-SN
+- CESM2 (r11i1p1f1) / CCAM-v2203-SN
+- CMCC-ESM2 (r1i1p1f1) / CCAM-v2203-SN
+- CNRM-ESM2-1 (r1i1p1f2) / CCAM-v2203-SN
+- EC-Earth3 (r1i1p1f1) / CCAM-v2203-SN
+- NorESM2-MM (r1i1p1f1) / CCAM-v2203-SN 	
+
+UQ-DEC:
+- ACCESS-CM2 (r2i1p1f1) / CCAMoc-v2112 	
+- ACCESS-ESM1-5 (r20i1p1f1) / CCAMoc-v2112 	
+- ACCESS-ESM1-5 (r40i1p1f1) /	CCAMoc-v2112 	
+- ACCESS-ESM1-5 (r6i1p1f1) / CCAM-v2105 	
+- CMCC-ESM2 (r1i1p1f1) / CCAM-v2105 	
+- CNRM-CM6-1-HR (r1i1p1f2) / CCAMoc-v2112 	
+- CNRM-CM6-1-HR (r1i1p1f2) / CCAM-v2112 	
+- EC-Earth3 (r1i1p1f1) / CCAM-v2105 	
+- FGOALS-g3 (r4i1p1f1) / CCAM-v2105 
+- GFDL-ESM4 (r1i1p1f1) / CCAM-v2105
+- GISS-E2-1-G (r2i1p1f2) / CCAM-v2105 	
+- MPI-ESM1-2-LR (r9i1p1f1) / CCAM-v2105 	
+- MRI-ESM2-0 (r1i1p1f1) /	CCAM-v2105 	
+- NorESM2-MM (r1i1p1f1) / CCAMoc-v2112
+- NorESM2-MM (r1i1p1f1) / CCAM-v2112
+
+NSW-Government:
+- ACCESS-ESM1-5 (r6i1p1f1) / NARCliM2-0-WRF412R3 	
+- ACCESS-ESM1-5 (r6i1p1f1) / NARCliM2-0-WRF412R5
+- EC-Earth3-Veg (r1i1p1f1) / NARCliM2-0-WRF412R3 	
+- EC-Earth3-Veg (r1i1p1f1) / NARCliM2-0-WRF412R5
+- MPI-ESM1-2-HR (r1i1p1f1) / NARCliM2-0-WRF412R3
+- MPI-ESM1-2-HR (r1i1p1f1) / NARCliM2-0-WRF412R5
+- NorESM2-MM (r1i1p1f1) /	NARCliM2-0-WRF412R3
+- NorESM2-MM (r1i1p1f1) /	NARCliM2-0-WRF412R5
+- UKESM1-0-LL (r1i1p1f2) / NARCliM2-0-WRF412R3
+- UKESM1-0-LL (r1i1p1f2) / NARCliM2-0-WRF412R5
