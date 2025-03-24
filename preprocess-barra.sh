@@ -3,7 +3,7 @@
 #
 # Usage: bash preprocess-barra.sh {var} {flags}
 #
-#   var:    variable to process (tasmin, tasmax, pr, rsds, sfcWind, sfcWindmax, hursmin, hursmax, psl)
+#   var:    variable to process (tasmin, tasmax, pr, prsn, rsds, rlds, sfcWind, sfcWindmax, hursmin, hursmax, psl, ps)
 #   flags:  optional flags (e.g. -n for dry run)
 #
 

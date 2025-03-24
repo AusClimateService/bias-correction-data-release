@@ -7,7 +7,7 @@
 #   rcm:    name of regional climate model (BARPA-R, CCAM-v2203-SN, CCAMoc-v2112, CCAM-v2105, CCAM-v2112, NARCliM2-0-WRF412R3, NARCliM2-0-WRF412R5)
 #   run:    run to process (e.g. r1i1p1f1)
 #   exp:    experiment (e.g. historical, ssp126, ssp370)
-#   var:    variable to process (tasmin, tasmax, pr, rsds, sfcwind, sfcWindmax, hursmin, hursmax, psl, orog, ps, huss, prsn)
+#   var:    variable to process (tasmin, tasmax, pr, rsds, rlds, sfcwind, sfcWindmax, hursmin, hursmax, psl, orog, ps, huss, prsn)
 #   flags:  optional flags (e.g. -n for dry run)
 #
 

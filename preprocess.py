@@ -17,6 +17,7 @@ output_units = {
     'sfcWind': 'm s-1',
     'sfcWindmax': 'm s-1',
     'rsds': 'W m-2',
+    'rlds': 'W m-2',
     'hursmin': '%',
     'hursmax': '%',
     'ps': 'Pa',
