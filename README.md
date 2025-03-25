@@ -1,14 +1,12 @@
 # bias-correction-data-release
 
-Four institutions have dynamically downscaled CMIP6 global climate model data over Australia: 
-- Bureau of Meteorology ([data collection](https://dx.doi.org/10.25914/z1x6-dq28))
+Four institutions have run regional climate models (RCMs) to dynamically downscale CMIP6 global climate model (GCM) data over Australia: 
+- Bureau of Meteorology (BoM; [data collection](https://dx.doi.org/10.25914/z1x6-dq28))
 - CSIRO ([data collection](https://dx.doi.org/10.25914/rd73-4m38)) 
-- Queensland Future Climate Science Program
-  ([data collection](https://dx.doi.org/10.25914/8fve-1910), [paper](https://doi.org/10.1029/2023EF003548))
-- The NARCliM2.0 project
+- University of Queensland and Department of Energy and Climate
+  (UQ-DEC; [data collection](https://dx.doi.org/10.25914/8fve-1910), [paper](https://doi.org/10.1029/2023EF003548))
+- NSW Government (NARCliM2.0 project)
   ([data collection](https://dx.doi.org/10.25914/resv-vj43), [paper](https://dx.doi.org/10.5194/gmd-2024-87))
-
-(See Appendix below for which CMIP6 global climate models each institution downscaled.)
 
 The Australian Climate Service (ACS) has been pre-processing (to a common 5km grid)
 and then bias correcting some of these data for projects including the
@@ -69,15 +67,15 @@ qsub -v var=tasmin preprocess-barra-job.sh
 
 The following pre-processed variables are available at a daily timescale
 for all historical, ssp126 and ssp370 experiment data
-produced by the BoM, CSIRO, Queensland Future Climate Science Program and
-NARCliM2.0.
+produced by the BoM, CSIRO, UQ-DEC and NSW Government
+(see [Appendix](#appendix) for details).
 
 Phase 1:
 - Daily maximum surface air temperature (tasmax)
 - Daily minimum surface air temperature (tasmin)
 - Precipitation (pr)
 - Surface downwelling shortwave radiation (rsds)
-- Daily maximum surface wind speed (sfcWindmax)
+- Daily maximum surface wind speed (sfcWindmax; not available for UQ-DEC)
 - Daily maximum relative humidity (hursmax)
 - Daily minimum relative humidity (hursmin)
 
@@ -86,7 +84,7 @@ Phase 2:
 - Sea level pressure (psl)
 - Surface specific humidity (huss)
 - Surface downwelling longwave radiation (rlds)
-- Snowfall (prsn)
+- Snowfall (prsn; not available for UQ-DEC)
 - Surface wind speed (sfcWind)
 - Surface altitude (orog) (historical experiment only)
 
@@ -115,7 +113,8 @@ https://doi.org/10.25914/yrcz-m051
 
 The following bias corrected data is currently available for two bias correction methods:
 Quantile Matching for Extremes (QME) and Multivariate Recursive Nesting Bias Correction (MRNBC).
-All relevant BoM, CSIRO, Queensland Future Climate Science Program and NARCliM2.0 data were processed.
+All relevant BoM, CSIRO, UQ-DEC and NSW Government data were processed
+(see [Appendix](#appendix) for details).
 
 Phase 1:
 
@@ -128,6 +127,8 @@ Phase 1:
 | Daily maximum surface wind speed (sfcWindmax) | daily | AUST-05i | m/s | BARRA-R2 | historical, ssp126, ssp370 |
 | Daily maximum relative humidity (hursmax) | daily | AUST-05i | % | BARRA-R2 | historical, ssp126, ssp370 |
 | Daily minimum relative humidity (hursmin) | daily | AUST-05i | % | BARRA-R2 | historical, ssp126, ssp370 |
+
+Note: sfcWindmax data is not available UQ-DEC.
 
 Phase 2:
 
@@ -151,8 +152,7 @@ https://doi.org/10.25914/z2jm-nr63
 
 ## Appendix
 
-Here's a list of each global climate model (GCM) / regional climate model (RCM) combination
-processed by each modelling group.
+Here's a list of GCM / RCM combination processed by each modelling group.
 
 BoM:
 - ACCESS-CM2 (run r4i1p1f1) / BARPA-R
