@@ -2,6 +2,7 @@
 
 import argparse
 
+import cftime
 import numpy as np
 import xarray as xr
 import xcdat
@@ -252,6 +253,26 @@ def replace_rlon(ds, rlon_file):
 
     return ds
 
+def set_12h(dt):
+    """Set the hour of a cftime object to 12"""
+    
+    cftime_types = {
+        'proleptic_gregorian': cftime.DatetimeProlepticGregorian,
+        'noleap': cftime.DatetimeNoLeap,
+        'standard': cftime.DatetimeGregorian,
+        '360_day': cftime.Datetime360Day,
+    }
+    
+    calendar = dt.calendar
+    dt_12h = cftime_types[calendar](
+        dt.year,
+        dt.month,
+        dt.day,
+        12,
+    )
+    
+    return dt_12h
+
 
 def main(args):
     """Run the program."""
@@ -263,10 +284,12 @@ def main(args):
     # Temporal aggregation
     if args.var == 'hursmax':
         input_ds = input_ds.resample(time='D').max('time', keep_attrs=True)
+        input_ds['time'] = np.vectorize(set_12h)(input_ds['time'].values)
         input_ds = input_ds.rename({'hurs': 'hursmax'})
         input_ds['hursmax'].attrs['long_name'] = 'Daily Maximum Near-Surface Relative Humidity'
     elif args.var == 'hursmin':
         input_ds = input_ds.resample(time='D').min('time', keep_attrs=True)
+        input_ds['time'] = np.vectorize(set_12h)(input_ds['time'].values)
         input_ds = input_ds.rename({'hurs': 'hursmin'})
         input_ds['hursmin'].attrs['long_name'] = 'Daily Minimum Near-Surface Relative Humidity'
 
