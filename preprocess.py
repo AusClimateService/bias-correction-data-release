@@ -11,6 +11,7 @@ import cmdline_provenance as cmdprov
 
 
 output_units = {
+    'tas': 'degC',
     'tasmax': 'degC',
     'tasmin': 'degC',
     'pr': 'mm d-1',
@@ -19,6 +20,7 @@ output_units = {
     'sfcWindmax': 'm s-1',
     'rsds': 'W m-2',
     'rlds': 'W m-2',
+    'hurs': '%',
     'hursmin': '%',
     'hursmax': '%',
     'ps': 'Pa',

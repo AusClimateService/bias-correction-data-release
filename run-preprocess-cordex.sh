@@ -4,7 +4,7 @@
 # Usage: bash run-preprocess-cordex.sh {exp} {var}
 #
 #   exp:    experiment (e.g. historical, ssp126, ssp370)
-#   var:    variable to process (tasmin, tasmax, pr, rsds, rlds, sfcwind, sfcWindmax, hursmin, hursmax, psl, orog, ps, huss, prsn)
+#   var:    variable to process (tas, tasmin, tasmax, pr, prsn, rsds, rlds, sfcwind, sfcWindmax, hurs, hursmin, hursmax, ps, psl, orog, huss)
 #
 
 exp=$1
