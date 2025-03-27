@@ -296,8 +296,8 @@ def main(args):
         input_ds['hursmin'].attrs['long_name'] = 'Daily Minimum Near-Surface Relative Humidity'
 
     # AGCD grid
-    lats = np.round(np.arange(-44.5, -9.99, 0.05), decimals=2)
-    lons = np.round(np.arange(112, 156.26, 0.05), decimals=2)
+    lats = xcdat.create_axis('lat', np.round(np.arange(-44.5, -9.99, 0.05), decimals=2))
+    lons = xcdat.create_axis('lon', np.round(np.arange(112, 156.26, 0.05), decimals=2))
     npcp_grid = xcdat.create_grid(lats, lons)
     output_ds = input_ds.regridder.horizontal(
         args.var,
