@@ -1,9 +1,11 @@
 """Command line program to change daily data from 00:00 centered to 12:00 centered"""
-
+import pdb
 import argparse
 
+import cftime
 import numpy as np
 import xarray as xr
+from xcdat.bounds import create_bounds
 
 
 def get_output_encoding(ds, var):
@@ -34,10 +36,32 @@ def get_output_encoding(ds, var):
     return encoding
 
 
+def set_12h(dt):
+    """Set the hour of a cftime object to 12"""
+    
+    cftime_types = {
+        'proleptic_gregorian': cftime.DatetimeProlepticGregorian,
+        'noleap': cftime.DatetimeNoLeap,
+        'standard': cftime.DatetimeGregorian,
+        '360_day': cftime.Datetime360Day,
+    }
+    
+    calendar = dt.calendar
+    dt_12h = cftime_types[calendar](
+        dt.year,
+        dt.month,
+        dt.day,
+        12,
+    )
+    
+    return dt_12h
+
+
 def main(args):
     """Run the program."""
 
-    ds = xr.open_dataset(args.infile)
+    time_coder = xr.coders.CFDatetimeCoder(use_cftime=True)
+    ds = xr.open_dataset(args.infile, decode_times=time_coder)
     
     # Check that data is 00:00 centered
     np.testing.assert_array_equal(ds['time'].dt.hour.values, 0)
@@ -45,9 +69,10 @@ def main(args):
 
     # Increment times by 12 hours
     time_attrs = ds['time'].attrs
-    ds['time'] = ds['time'] + np.timedelta64(12, 'h')
+    ds['time'] = np.vectorize(set_12h)(ds['time'].values)
+    ds['time_bnds'] = create_bounds('T', ds['time'])
     ds['time'].attrs = time_attrs
-    ds['time_bnds'] = ds['time_bnds'] + np.timedelta64(12, 'h')
+    ds['time_bnds'].attrs = {}
 
     # Check that data is 12:00 centered
     np.testing.assert_array_equal(ds['time'].dt.hour.values, 12)
