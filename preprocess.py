@@ -6,6 +6,7 @@ import cftime
 import numpy as np
 import xarray as xr
 import xcdat
+from xcdat.bounds import create_bounds
 import xclim
 import cmdline_provenance as cmdprov
 
@@ -88,7 +89,7 @@ def drop_vars(ds):
  
     for drop_var in drop_vars:
         try:
-            ds = ds.drop(drop_var)
+            ds = ds.drop_vars(drop_var)
         except ValueError:
             pass
 
@@ -101,10 +102,7 @@ def fix_metadata(ds, var):
     # Remove xcdat attributes
     del ds['lat_bnds'].attrs['xcdat_bounds']
     del ds['lon_bnds'].attrs['xcdat_bounds']
-    try:
-        del ds['time_bnds'].attrs['xcdat_bounds']
-    except KeyError:
-        pass
+    del ds['time_bnds'].attrs['xcdat_bounds']
 
     # Rename input attributes
     for attr in ['tracking_id', 'doi']:
@@ -193,6 +191,7 @@ def fix_metadata(ds, var):
         ds['time'].attrs['long_name'] = 'time'
         ds['time'].attrs['standard_name'] = 'time'
         ds['time'].attrs['axis'] = 'T'
+        ds['time'].attrs['bounds'] = 'time_bnds'
         ds['time_bnds'].attrs = {}
 
     # Add/update global attributes
@@ -217,13 +216,15 @@ def get_output_encoding(ds, var, nlats, nlons):
     ds_vars = list(ds.coords) + list(ds.keys())
     #data type and fill value
     for ds_var in ds_vars:
-        encoding[ds_var] = {'_FillValue': None}
         if ds_var == var:
+            encoding[ds_var] = {'_FillValue': np.float32(1e20)}
             encoding[ds_var]['dtype'] = 'float32'
         else:
+            encoding[ds_var] = {'_FillValue': None}
             encoding[ds_var]['dtype'] = 'float64'
     #compression
     encoding[var]['zlib'] = True
+    encoding[var]['least_significant_digit'] = 2
     encoding[var]['complevel'] = 5
     if not var == 'orog':
         #chunking
@@ -278,8 +279,14 @@ def set_12h(dt):
 
 def main(args):
     """Run the program."""
-    
-    input_ds = xcdat.open_mfdataset(args.infiles, mask_and_scale=True, preprocess=drop_vars)
+
+    time_coder = xr.coders.CFDatetimeCoder(use_cftime=True)
+    input_ds = xcdat.open_mfdataset(
+        args.infiles,
+        mask_and_scale=True,
+        decode_times=time_coder,
+        preprocess=drop_vars
+    )
     if args.rlon:
         input_ds = replace_rlon(input_ds, args.rlon)
 
@@ -305,12 +312,20 @@ def main(args):
         tool='xesmf',
         method=args.method,
     )
+
+    # Time bounds (including check that data is 12:00 centered)
+    output_ds['time_bnds'] = create_bounds('T', output_ds['time'])
+    np.testing.assert_array_equal(output_ds['time'].dt.hour.values, 12)
+    np.testing.assert_array_equal(output_ds['time_bnds'].dt.hour.values, 0)
+
+    # Metadata
     output_ds[args.var] = convert_units(output_ds[args.var], output_units[args.var])
     output_ds = fix_metadata(output_ds, args.var)
     output_ds.attrs['history'] = cmdprov.new_log(
         code_url='https://github.com/AusClimateService/bias-correction-data-release'
     )
-    output_encoding = get_output_encoding(output_ds, args.var, len(lats), len(lons))
+    output_encoding = get_output_encoding(output_ds, args.var, len(lats[0]), len(lons[0]))
+
     output_ds.to_netcdf(args.outfile, encoding=output_encoding, format='NETCDF4_CLASSIC')
 
 
