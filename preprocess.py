@@ -5,7 +5,8 @@ import argparse
 import cftime
 import numpy as np
 import xarray as xr
-import xcdat
+import xcdat as xc
+import xesmf as xe
 from xcdat.bounds import create_bounds
 import xclim
 import cmdline_provenance as cmdprov
@@ -52,6 +53,7 @@ def convert_units(da, target_units):
         'deg_k': 'degK',
         'kg/m2/s': 'kg m-2 s-1',
         'mm': 'mm d-1',
+        'K': 'degK',
     }
 
     if da.attrs["units"] in xclim_unit_check:
@@ -175,6 +177,7 @@ def fix_metadata(ds, var):
         'grid_mapping',
         'MD5',
         'coordinates',
+        'units_metadata',
     ]
     for key in var_keys_to_delete:
         try:
@@ -256,6 +259,7 @@ def replace_rlon(ds, rlon_file):
 
     return ds
 
+
 def set_12h(dt):
     """Set the hour of a cftime object to 12"""
     
@@ -277,11 +281,47 @@ def set_12h(dt):
     return dt_12h
 
 
+def xesmf_regrid(ds, ds_grid, variable=None, method='bilinear'):
+    """Regrid data using xesmf directly.
+    
+    Parameters
+    ----------
+    ds : xarray Dataset
+        Dataset to be regridded
+    ds_grid : xarray Dataset
+        Dataset containing target horizontal grid
+    variable : str, optional
+        Variable to restore attributes for
+    method : str, default bilinear
+        Method for regridding
+    
+    Returns
+    -------
+    ds : xarray Dataset
+    
+    """
+    
+    global_attrs = ds.attrs
+    if variable:
+        var_attrs = ds[variable].attrs
+    regridder = xe.Regridder(ds, ds_grid, method)
+    ds = regridder(ds)
+    ds.attrs = global_attrs
+    if variable:
+        ds[variable].attrs = var_attrs
+    ds['lon_bnds'] = create_bounds('X', ds['lon'])
+    ds['lat_bnds'] = create_bounds('Y', ds['lat'])
+    del ds['lat'].attrs['coordinate']
+    del ds['lon'].attrs['coordinate']
+
+    return ds
+
+
 def main(args):
     """Run the program."""
 
     time_coder = xr.coders.CFDatetimeCoder(use_cftime=True)
-    input_ds = xcdat.open_mfdataset(
+    input_ds = xc.open_mfdataset(
         args.infiles,
         mask_and_scale=True,
         decode_times=time_coder,
@@ -303,15 +343,16 @@ def main(args):
         input_ds['hursmin'].attrs['long_name'] = 'Daily Minimum Near-Surface Relative Humidity'
 
     # AGCD grid
-    lats = xcdat.create_axis('lat', np.round(np.arange(-44.5, -9.99, 0.05), decimals=2))
-    lons = xcdat.create_axis('lon', np.round(np.arange(112, 156.26, 0.05), decimals=2))
-    npcp_grid = xcdat.create_grid(lats, lons)
-    output_ds = input_ds.regridder.horizontal(
-        args.var,
-        npcp_grid,
-        tool='xesmf',
-        method=args.method,
-    )
+    lats = xc.create_axis('lat', np.round(np.arange(-44.5, -9.99, 0.05), decimals=2))
+    lons = xc.create_axis('lon', np.round(np.arange(112, 156.26, 0.05), decimals=2))
+    npcp_grid = xc.create_grid(lats, lons)
+#    output_ds = input_ds.regridder.horizontal(
+#        args.var,
+#        npcp_grid,
+#        tool='xesmf',
+#        method=args.method,
+#    )
+    output_ds = xesmf_regrid(input_ds, npcp_grid, variable=args.var, method=args.method)
 
     # Time bounds (including check that data is 12:00 centered)
     output_ds['time_bnds'] = create_bounds('T', output_ds['time'])
