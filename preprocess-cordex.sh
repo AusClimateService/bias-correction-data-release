@@ -21,20 +21,27 @@ python=/g/data/xv83/dbi599/miniconda3/envs/npcp/bin/python
 
 if [[ "${rcm}" == "BARPA-R" ]] ; then
     project_dir=/g/data/py18/BARPA/output/CMIP6/DD/AUS-15/BOM
+    tstamp="latest"
 elif [[ "${rcm}" == "CCAM-v2203-SN" ]] ; then
     project_dir=/g/data/hq89/CCAM/output/CMIP6/DD/AUS-10i/CSIRO
+    tstamp="v*"
 elif [[ "${rcm}" == "CCAMoc-v2112" ]] ; then
     project_dir=/g/data/ig45/QldFCP-2/CORDEX/CMIP6/DD/AUS-20i/UQ-DEC
+    tstamp="latest"
 elif [[ "${rcm}" == "CCAM-v2105" ]] ; then
     project_dir=/g/data/ig45/QldFCP-2/CORDEX/CMIP6/DD/AUS-20i/UQ-DEC
+    tstamp="latest"
 elif [[ "${rcm}" == "CCAM-v2112" ]] ; then
     project_dir=/g/data/ig45/QldFCP-2/CORDEX/CMIP6/DD/AUS-20i/UQ-DEC
+    tstamp="latest"
 elif [[ "${rcm}" == "NARCliM2-0-WRF412R3" ]] ; then
     project_dir=/g/data/zz63/NARCliM2-0/output/CMIP6/DD/AUS-18/NSW-Government
     rlon="--rlon /g/data/zz63/NARCliM2-0/rlon-correction-AUS-18.txt"
+    tstamp="latest"
 elif [[ "${rcm}" == "NARCliM2-0-WRF412R5" ]] ; then
     project_dir=/g/data/zz63/NARCliM2-0/output/CMIP6/DD/AUS-18/NSW-Government
     rlon="--rlon /g/data/zz63/NARCliM2-0/rlon-correction-AUS-18.txt"
+    tstamp="latest"
 fi
 
 if [[ "${var}" == "hursmin" || "${var}" == "hursmax" ]] ; then
@@ -51,7 +58,7 @@ else
     input_var=${var}
 fi
 
-infiles=(`ls ${project_dir}/${gcm}/${exp}/${run}/${rcm}/*/${input_freq}/${input_var}/latest/*.nc`)
+infiles=(`ls ${project_dir}/${gcm}/${exp}/${run}/${rcm}/*/${input_freq}/${input_var}/${tstamp}/*.nc`)
 
 for infile in "${infiles[@]}"; do
     gcm=`basename ${infile} | cut -d _ -f 3`

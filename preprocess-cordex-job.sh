@@ -1,11 +1,10 @@
 #!/bin/bash
-#PBS -P xv83
+#PBS -P wp00
 #PBS -q normal
-#PBS -l walltime=10:00:00
-#PBS -l mem=60GB
+#PBS -l walltime=30:00:00
+#PBS -l mem=50GB
 #PBS -l storage=gdata/xv83+gdata/ia39+gdata/hq89+gdata/ig45+gdata/py18+gdata/ob53+gdata/zz63
 #PBS -l wd
-#PBS -l ncpus=5
 #PBS -v gcm,rcm,run,exp,var
 
 __conda_setup="$('/g/data/xv83/dbi599/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
