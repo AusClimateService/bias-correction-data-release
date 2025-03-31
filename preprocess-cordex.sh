@@ -51,7 +51,7 @@ else
     input_var=${var}
 fi
 
-infiles=(`ls ${project_dir}/${gcm}/${exp}/${run}/${rcm}/*/${input_freq}/${input_var}/v*/*.nc`)
+infiles=(`ls ${project_dir}/${gcm}/${exp}/${run}/${rcm}/*/${input_freq}/${input_var}/latest/*.nc`)
 
 for infile in "${infiles[@]}"; do
     gcm=`basename ${infile} | cut -d _ -f 3`
