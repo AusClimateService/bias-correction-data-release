@@ -342,6 +342,9 @@ def main(args):
         input_ds = input_ds.rename({'hurs': 'hursmin'})
         input_ds['hursmin'].attrs['long_name'] = 'Daily Minimum Near-Surface Relative Humidity'
 
+    if args.compute:
+        input_ds = input_ds.compute()
+
     # AGCD grid
     lats = xc.create_axis('lat', np.round(np.arange(-44.5, -9.99, 0.05), decimals=2))
     lons = xc.create_axis('lon', np.round(np.arange(112, 156.26, 0.05), decimals=2))
@@ -384,6 +387,12 @@ if __name__ == '__main__':
         default=None,
         type=str,
         help="file containing correct rlon values"
+    )
+    parser.add_argument(
+        "--compute",
+        action='store_true',
+        default=False,
+        help="read all the data into memory"
     )
     args = parser.parse_args()
     main(args)

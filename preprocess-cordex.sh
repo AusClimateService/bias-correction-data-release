@@ -79,17 +79,19 @@ for infile in "${infiles[@]}"; do
         outfile_end="_${start_date:0:6}01-${end_date:0:6}31.nc"
     fi
     outfile=${outfile_start}${outfile_end}
-
-    python_command="${python} preprocess.py ${infile} ${var} bilinear ${outdir}/${outfile} ${rlon}"
+    outpath=${outdir}/${outfile}
+    python_command="${python} preprocess.py ${infile} ${var} bilinear ${outpath} ${rlon}"
     if [[ ! -f ${infile} ]] ; then
         echo "File not found: ${infile}"
     elif [[ "${flags}" == "-n" ]] ; then
         echo ${python_command}
-    else
+    elif [[ ! -f ${outpath} ]] ; then
         echo ${infile}
         mkdir -p ${outdir}
         ${python_command}
-        echo ${outdir}/${outfile}
+        echo ${outpath}
+    else
+        echo "File already exists: ${outpath}"
     fi
 done
 

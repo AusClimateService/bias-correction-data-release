@@ -3,7 +3,7 @@
 #
 # Usage: bash preprocess-barra.sh {var} {flags}
 #
-#   var:    variable to process (tasmin, tasmax, pr, prsn, rsds, rlds, sfcWind, sfcWindmax, hursmin, hursmax, psl, ps)
+#   var:    variable to process (tas, tasmin, tasmax, pr, prsn, rsds, rlds, sfcWind, sfcWindmax, hurs, hursmin, hursmax, psl, ps)
 #   flags:  optional flags (e.g. -n for dry run)
 #
 
@@ -29,7 +29,7 @@ for year in $(seq 1979 2023); do
     if [[ "${flags}" == "-n" ]] ; then
         echo ${python_command}
     else
-        echo ${infile}
+        echo ${year}
         mkdir -p ${outdir}
         ${python_command}
         echo ${outdir}/${outfile}
