@@ -80,6 +80,8 @@ Phase 1:
 - Daily minimum relative humidity (hursmin)
 
 Phase 2:
+- Daily mean surface air temperature (tas)
+- Daily mean relative humidity (hurs)
 - Surface pressure (ps)
 - Sea level pressure (psl)
 - Surface specific humidity (huss)
