@@ -15,9 +15,13 @@ Bias correction also involves calibrating against observations,
 so [BARRA-R2](https://dx.doi.org/10.25914/90rq-d839) data have also been pre-processed.
 
 This repository tracks the details and progress of the data produced by the ACS bias correction team.
-A first phase of pre-processing and bias correction was conducted to produce a core general purpose dataset
-that will soon be published as a stand-alone project on NCI (details will be at https://doi.org/10.25914/yrcz-m051)
+A first phase of pre-processing and bias correction was conducted to produce a core general purpose dataset,
 and now a second phase is underway to service the NHP.
+Data is generally first made available on project ia39 on NCI for early/advanced users
+(ia39 is the general ACS data sharing project)
+and then when appropriate some data is eventually published to a stand-alone
+project on NCI with all the bells and whistles
+(more detailed documentation, THREDDS access, an intake catalogue, etc).
 
 
 ## Pre-processed input data for bias correction
@@ -93,20 +97,29 @@ Phase 2:
 ### Data location
 
 The AGCD and pre-processed BARRA-R2 observational data 
-are available on NCI at the following (example) directories:
+are available in project ia39 on NCI at the following (example) directories:
 ```
 /g/data/xv83/agcd-csiro/precip/daily/precip-total_AGCD-CSIRO_r005_19300101-19301231_daily.nc
 
 /g/data/ia39/australian-climate-service/release/CORDEX/output-Adjust/CMIP6/bias-adjusted-input/AUST-05i/BOM/ERA5/historical/hres/BARRAR2/v1/day/pr/v20241216/pr_AUST-05i_ERA5_historical_hres_BOM_BARRAR2_v1_day_20020101-20021231.nc
 ```
 
-The pre-processed model data is available on NCI at the following (example) directory:
+The pre-processed model data from BoM and CSIRO for Phase 1 have been formally published to project kj66 on NCI (https://doi.org/10.25914/yrcz-m051)
+and are available at the following (example) directory:
+
+```
+/g/data/kj66/CORDEX/output/CMIP6/DD/AUST-05i/BOM/EC-Earth3/historical/r1i1p1f1/BARPA-R/v1-r1/day/sfcWindmax/v20241216/sfcWindmax_AUST-05i_EC-Earth3_historical_r1i1p1f1_BOM_BARPA-R_v1-r1_day_19600101-19601231.nc
+```
+
+The kj66 file naming convention is explained in detail at: https://opus.nci.org.au/x/LoG_Fg
+
+Everything else (i.e. all Phase 2 data and Phase 1 data for UQ-DEC and NSW-Government)
+is available in project ia39 on NCI at the following (example) directory:
 ```
 /g/data/ia39/australian-climate-service/release/CORDEX/output-Adjust/CMIP6/bias-adjusted-input/AUST-05i/BOM/CESM2/ssp370/r11i1p1f1/BARPA-R/v1-r1/day/pr/v20241216/pr_AUST-05i_CESM2_ssp370_r11i1p1f1_BOM_BARPA-R_v1-r1_day_20220101-20221231.nc
 ```
 
-The phase 1 pre-processed data are also about to be formally published on NCI at the following DOI:  
-https://doi.org/10.25914/yrcz-m051
+(A replica of the Phase 1 BoM and CSIRO data on kj66 data is also on ia39 at the moment.)
 
 
 ## Bias corrected output data
@@ -138,18 +151,20 @@ Still to come.
 
 ### Data location
 
-Bias corrected output data are available at:
+The Phase 1 bias corrected output data for BoM and CSIRO have been formally published to project kj66 on NCI (https://doi.org/10.25914/yrcz-m051)
+and are available at the following (example) directory:
+
 ```
-/g/data/ia39/australian-climate-service/release/CORDEX/output-Adjust/CMIP6/bias-adjusted-output/
+/g/data/kj66/CORDEX/output/CMIP6/bias-adjusted-output/AUST-05i/CSIRO/CNRM-ESM2-1/ssp370/r1i1p1f2/CCAM-v2203-SN/v1-r1-ACS-QME-BARRAR2-1980-2022/day/tasminAdjust/v20241216/tasminAdjust_AUST-05i_CNRM-ESM2-1_ssp370_r1i1p1f2_CSIRO_CCAM-v2203-SN_v1-r1-ACS-QME-BARRAR2-1980-2022_day_20660101-20661231.nc
 ```
 
-For example, pr bias corrected output data for ACCESS-CM2 BARPA-R corrected to AGCD data using the QME method can be found at the following directory:
+The kj66 file naming convention is explained in detail at: https://opus.nci.org.au/x/LoG_Fg
+
+Everything else (i.e. the Phase 1 data for UQ-DEC and NSW-Government) and a replica of what's on kj66 
+is available in project ia39 on NCI at the following (example) directory:
 ```
 /g/data/ia39/australian-climate-service/release/CORDEX/output-Adjust/CMIP6/bias-adjusted-output/AUST-05i/BOM/ACCESS-CM2/ssp370/r4i1p1f1/BARPA-R/v1-r1-ACS-QME-AGCDv1-1960-2022/day/prAdjust/v20241216
 ```
-
-The phase 1 bias corrected data are also about to be formally published on NCI at the following DOI:  
-https://doi.org/10.25914/z2jm-nr63
 
 
 ## Appendix
