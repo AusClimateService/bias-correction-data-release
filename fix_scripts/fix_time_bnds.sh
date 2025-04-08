@@ -28,7 +28,7 @@ for inpath in "$@"; do
             mkdir -p ${outdir}
         fi
         if [ ! -f ${outpath} ] ; then
-            ${python} /home/599/dbi599/bias-correction-data-release/fix_time_bnds.py ${inpath} ${var} ${outpath}    
+            ${python} /home/599/dbi599/bias-correction-data-release/fix_scripts/fix_time_bnds.py ${inpath} ${var} ${outpath}    
             echo ${outpath} 
         else
             echo 'File already processed: ' ${outpath}

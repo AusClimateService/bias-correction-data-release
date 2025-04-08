@@ -25,9 +25,9 @@ filevar=${var}
 fi
 
 if [[ "${project}" == "kj66" ]] ; then
-bash /home/599/dbi599/bias-correction-data-release/fix_time_bnds.sh /g/data/kj66/CORDEX/output/CMIP6/*/AUST-05i/${inst}/*/${exp}/*/*/*/day/${filevar}/v*/*.nc
+bash /home/599/dbi599/bias-correction-data-release/fix_scripts/fix_time_bnds.sh /g/data/kj66/admin/staging/CORDEX/output/CMIP6/*/AUST-05i/${inst}/*/${exp}/*/*/*/day/${filevar}/v*/*.nc
 elif [[ "${project}" == "ia39" ]] ; then
-bash /home/599/dbi599/bias-correction-data-release/fix_time_bnds.sh /g/data/ia39/australian-climate-service/release/CORDEX/output-Adjust/CMIP6/*/AUST-05i/${inst}/*/${exp}/*/*/*/day/${filevar}/v*/*.nc
+bash /home/599/dbi599/bias-correction-data-release/fix_scripts/fix_time_bnds.sh /g/data/ia39/australian-climate-service/release/CORDEX/output-Adjust/CMIP6/*/AUST-05i/${inst}/*/${exp}/*/*/*/day/${filevar}/v*/*.nc
 fi
 
 
