@@ -3,7 +3,7 @@
 #PBS -q normal
 #PBS -l walltime=22:00:00
 #PBS -l mem=50GB
-#PBS -l storage=gdata/xv83+gdata/kj66
+#PBS -l storage=gdata/xv83+gdata/kj66+gdata/ia39
 #PBS -l wd
 #PBS -v inst,exp,var,type,project
 
