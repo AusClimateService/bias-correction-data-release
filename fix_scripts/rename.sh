@@ -10,7 +10,8 @@ for inpath in "$@"; do
     if [ ! -f ${inpath} ] ; then
         echo 'File not found: ' ${inpath}
     else    
-        outpath=`echo ${inpath} | sed s:_fixed.nc:.nc:`
+        #outpath=`echo ${inpath} | sed s:_fixed.nc:.nc:`
+	outpath=`echo ${inpath} | sed s:test-data:release:`
         echo ${inpath}
         mv ${inpath} ${outpath}    
         echo ${outpath}
