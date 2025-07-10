@@ -1,5 +1,6 @@
 """Command line program for time aggregation."""
-
+import pdb
+import os
 import argparse
 
 import cftime
@@ -7,18 +8,32 @@ import xarray as xr
 import xcdat as xc
 import cmdline_provenance as cmdprov
 
+import preprocess
+
 
 def update_var_attrs(ds, var):
     """Update the variable attributes."""
 
+    daily_extreme_vars = [
+        'tasminAdjust',
+        'tasmaxAdjust',
+        'hursminAdjust',
+        'hursmaxAdjust',
+        'tasmin',
+        'tasmax',
+        'hursmin',
+        'hursmax',
+    ]
     long_name = ds[var].attrs['long_name']
     standard_name = ds[var].attrs['standard_name']
-    if var == 'pr':
+    if 'pr' in var:
         ds[var].attrs['units'] = 'mm'
         ds[var].attrs['long_name'] = f'Total Monthly {long_name}'
         ds[var].attrs['standard_name'] = 'precipitation'
-    elif var in ['tasmin', 'tasmax', 'hursmin', 'hursmax']:
+    elif var in daily_extreme_vars:
         ds[var].attrs['long_name'] = f'Monthly Mean {long_name}'
+
+    del ds['time_bnds'].attrs['xcdat_bounds']
 
     return ds
 
@@ -26,22 +41,25 @@ def update_var_attrs(ds, var):
 def main(args):
     """Run the program."""
 
-    time_coder = xr.coders.CFDatetimeCoder(use_cftime=True)
-    input_ds = xc.open_mfdataset(
-        args.infiles,
-        decode_times=time_coder,
-    )
+#    time_coder = xr.coders.CFDatetimeCoder(use_cftime=True)
+#    input_ds = xc.open_mfdataset(args.infiles, decode_times=time_coder)
+    input_ds = xc.open_mfdataset(args.infiles)
 
-    if args.var == 'pr':
-        output_ds = input_ds.resample(time='M').sum('time', keep_attrs=True)
-    elif args.var == 'hursmin':
-        output_ds = input_ds.resample(time='M').mean('time', keep_attrs=True)
+    if 'pr' in args.var:
+        output_ds = input_ds.resample(time='ME').sum('time', skipna=True, keep_attrs=True)
+    else:
+        output_ds = input_ds.resample(time='ME').mean('time', skipna=True, keep_attrs=True)
+    output_ds.time.encoding['calendar'] = 'proleptic_gregorian'
+    output_ds = output_ds.bounds.add_time_bounds(method='freq', freq='month', end_of_month=True)
+    output_ds = xc.center_times(output_ds)
     output_ds.attrs['frequency'] = 'mon'
 
     output_ds = update_var_attrs(output_ds, args.var)
 
     output_ds.attrs['history'] = cmdprov.new_log(
-        code_url='https://github.com/AusClimateService/bias-correction-data-release'
+        infile_logs={args.infiles[0]: input_ds.attrs['history']},
+        code_url='https://github.com/AusClimateService/bias-correction-data-release',
+        wildcard_prefixes=[os.path.dirname(args.infiles[0]),],
     )
     nlats = len(output_ds.lat.values)
     nlons = len(output_ds.lon.values)
