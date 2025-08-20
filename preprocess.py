@@ -1,5 +1,5 @@
 """Command line program for ACS bias correction data pre-processing."""
-
+import pdb
 import argparse
 
 import cftime
@@ -98,7 +98,7 @@ def drop_vars(ds):
     return ds
 
 
-def fix_metadata(ds, var):
+def fix_metadata(ds, var, freq):
     "Apply metadata fixes."""
 
     # Remove xcdat attributes
@@ -201,10 +201,7 @@ def fix_metadata(ds, var):
     ds.attrs['domain'] = 'Australia/AGCD'
     ds.attrs['domain_id'] = 'AUST-05i'
     ds.attrs['title'] = 'CORDEX-CMIP6 regridded data for Australia'
-    if var == 'orog':
-        ds.attrs['frequency'] = 'fx'
-    else:
-        ds.attrs['frequency'] = 'day'
+    ds.attrs['frequency'] = freq
     ds.attrs['variable_id'] = var
     ds.attrs['license'] = "CC BY 4.0"
     ds.attrs['grid'] = 'latitude-longitude with 0.05 degree grid spacing for Australia domain (the standard AGCD grid)'
@@ -331,16 +328,19 @@ def main(args):
         input_ds = replace_rlon(input_ds, args.rlon)
 
     # Temporal aggregation
-    if args.var == 'hursmax':
-        input_ds = input_ds.resample(time='D').max('time', keep_attrs=True)
-        input_ds['time'] = np.vectorize(set_12h)(input_ds['time'].values)
-        input_ds = input_ds.rename({'hurs': 'hursmax'})
-        input_ds['hursmax'].attrs['long_name'] = 'Daily Maximum Near-Surface Relative Humidity'
-    elif args.var == 'hursmin':
-        input_ds = input_ds.resample(time='D').min('time', keep_attrs=True)
-        input_ds['time'] = np.vectorize(set_12h)(input_ds['time'].values)
-        input_ds = input_ds.rename({'hurs': 'hursmin'})
-        input_ds['hursmin'].attrs['long_name'] = 'Daily Minimum Near-Surface Relative Humidity'
+    if (args.input_freq) == "1hr" and (args.output_freq == "day"):
+        if (args.input_var == 'hurs') and (args.output_var == "hursmax"):
+            input_ds = input_ds.resample(time='D').max('time', keep_attrs=True)
+            input_ds['time'] = np.vectorize(set_12h)(input_ds['time'].values)
+            input_ds = input_ds.rename({'hurs': 'hursmax'})
+            input_ds['hursmax'].attrs['long_name'] = 'Daily Maximum Near-Surface Relative Humidity'
+        elif (args.input_var == 'hurs') and (args.output_var == 'hursmin'):
+            input_ds = input_ds.resample(time='D').min('time', keep_attrs=True)
+            input_ds['time'] = np.vectorize(set_12h)(input_ds['time'].values)
+            input_ds = input_ds.rename({'hurs': 'hursmin'})
+            input_ds['hursmin'].attrs['long_name'] = 'Daily Minimum Near-Surface Relative Humidity'
+        else:
+            raise ValueError(f"temporal aggregation not coded up for {args.input_var} to {args.output_var}")
 
     if args.compute:
         input_ds = input_ds.compute()
@@ -355,20 +355,21 @@ def main(args):
 #        tool='xesmf',
 #        method=args.method,
 #    )
-    output_ds = xesmf_regrid(input_ds, npcp_grid, variable=args.var, method=args.method)
+    output_ds = xesmf_regrid(input_ds, npcp_grid, variable=args.output_var, method=args.regrid_method)
 
     # Time bounds (including check that data is 12:00 centered)
     output_ds['time_bnds'] = create_bounds('T', output_ds['time'])
-    np.testing.assert_array_equal(output_ds['time'].dt.hour.values, 12)
-    np.testing.assert_array_equal(output_ds['time_bnds'].dt.hour.values, 0)
+    if args.output_freq == "day":
+        np.testing.assert_array_equal(output_ds['time'].dt.hour.values, 12)
+        np.testing.assert_array_equal(output_ds['time_bnds'].dt.hour.values, 0)
 
     # Metadata
-    output_ds[args.var] = convert_units(output_ds[args.var], output_units[args.var])
-    output_ds = fix_metadata(output_ds, args.var)
+    output_ds[args.output_var] = convert_units(output_ds[args.output_var], output_units[args.output_var])
+    output_ds = fix_metadata(output_ds, args.output_var, args.output_freq)
     output_ds.attrs['history'] = cmdprov.new_log(
         code_url='https://github.com/AusClimateService/bias-correction-data-release'
     )
-    output_encoding = get_output_encoding(output_ds, args.var, len(lats[0]), len(lons[0]))
+    output_encoding = get_output_encoding(output_ds, args.output_var, len(lats[0]), len(lons[0]))
 
     output_ds.to_netcdf(args.outfile, encoding=output_encoding, format='NETCDF4_CLASSIC')
 
@@ -379,8 +380,11 @@ if __name__ == '__main__':
         formatter_class=argparse.RawDescriptionHelpFormatter
     )     
     parser.add_argument("infiles", type=str, nargs='*', help="input files")
-    parser.add_argument("var", type=str, help="input variable")
-    parser.add_argument("method", type=str, choices=('bilinear', 'conservative'), help="regridding method")
+    parser.add_argument("input_var", type=str, help="input variable")
+    parser.add_argument("input_freq", type=str, choices=("day", "1hr", "fx"), help="input frequency")
+    parser.add_argument("output_var", type=str, help="input variable")
+    parser.add_argument("output_freq", type=str, choices=("day", "1hr", "fx"), help="output frequency")
+    parser.add_argument("regrid_method", type=str, choices=('bilinear', 'conservative'), help="regridding method")
     parser.add_argument("outfile", type=str, help="output file")
     parser.add_argument(
         "--rlon",

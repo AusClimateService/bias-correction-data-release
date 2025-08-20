@@ -1,22 +1,28 @@
 #
 # Bash script for preprocessing CORDEX data for ACS bias correction
 #
-# Usage: bash preprocess-cordex.sh {gcm} {rcm} {run} {exp} {var} {flags}
+# Usage: bash preprocess-cordex.sh {gcm} {rcm} {run} {exp} {invar} {infreq} {outvar} {outfreq} {flags}
 #
-#   gcm:    name of global climate model (e.g. ACCESS-CM2)
-#   rcm:    name of regional climate model (BARPA-R, CCAM-v2203-SN, CCAMoc-v2112, CCAM-v2105, CCAM-v2112, NARCliM2-0-WRF412R3, NARCliM2-0-WRF412R5)
-#   run:    run to process (e.g. r1i1p1f1)
-#   exp:    experiment (e.g. historical, ssp126, ssp370)
-#   var:    variable to process (tas, tasmin, tasmax, pr, rsds, rlds, sfcwind, sfcWindmax, hurs, hursmin, hursmax, psl, orog, ps, huss, prsn)
-#   flags:  optional flags (e.g. -n for dry run)
+#   gcm:      name of global climate model (e.g. ACCESS-CM2)
+#   rcm:      name of regional climate model (BARPA-R, CCAM-v2203-SN, CCAMoc-v2112, CCAM-v2105, CCAM-v2112, NARCliM2-0-WRF412R3, NARCliM2-0-WRF412R5)
+#   run:      run to process (e.g. r1i1p1f1)
+#   exp:      experiment (e.g. historical, ssp126, ssp370)
+#   invar:    variable to process (tas, tasmin, tasmax, pr, prsn, rsds, rlds, sfcWind, sfcWindmax, hurs, psl, ps)
+#   infreq:   input data frequency (fx, day, 1hr)
+#   outvar:   variable to output  (tas, tasmin, tasmax, pr, prsn, rsds, rlds, sfcWind, sfcWindmax, hurs, hursmin, hursmax, psl, ps)
+#   outfreq:  input data frequency (fx, day, 1hr)
+#   flags:    optional flags (e.g. -n for dry run)
 #
 
 gcm=$1
 rcm=$2
 run=$3
 exp=$4
-var=$5
-flags=$6
+invar=$5
+infreq=$6
+outvar=$7
+outfreq=$8
+flags=$9
 python=/g/data/xv83/dbi599/miniconda3/envs/npcp/bin/python
 
 if [[ "${rcm}" == "BARPA-R" ]] ; then
@@ -44,21 +50,7 @@ elif [[ "${rcm}" == "NARCliM2-0-WRF412R5" ]] ; then
     tstamp="latest"
 fi
 
-if [[ "${var}" == "hursmin" || "${var}" == "hursmax" ]] ; then
-    input_freq=1hr
-    output_freq=day
-    input_var=hurs
-elif [[ "${var}" == "orog" ]] ; then
-    input_freq=fx
-    output_freq=fx
-    input_var=${var}
-else
-    input_freq=day
-    output_freq=day
-    input_var=${var}
-fi
-
-infiles=(`ls ${project_dir}/${gcm}/${exp}/${run}/${rcm}/*/${input_freq}/${input_var}/${tstamp}/*.nc`)
+infiles=(`ls ${project_dir}/${gcm}/${exp}/${run}/${rcm}/*/${infreq}/${invar}/${tstamp}/*.nc`)
 
 for infile in "${infiles[@]}"; do
     gcm=`basename ${infile} | cut -d _ -f 3`
@@ -71,16 +63,16 @@ for infile in "${infiles[@]}"; do
     start_date=`echo ${tbounds} | cut -d - -f 1`
     end_date=`echo ${tbounds} | cut -d - -f 2`
     
-    outdir=/g/data/ia39/australian-climate-service/release/CORDEX/output-Adjust/CMIP6/bias-adjusted-input/AUST-05i/${institution}/${gcm}/${experiment}/${run}/${rcm}/${version}/${output_freq}/${var}/v20250311
-    outfile_start=${var}_AUST-05i_${gcm}_${experiment}_${run}_${institution}_${rcm}_${version}_${output_freq}
-    if [[ "${var}" == "orog" ]] ; then
+    outdir=/g/data/ia39/australian-climate-service/test-data/CORDEX/output-CMIP6/DD/AUST-05i/${institution}/${gcm}/${experiment}/${run}/${rcm}/${version}/${outfreq}/${outvar}/latest
+    outfile_start=${outvar}_AUST-05i_${gcm}_${experiment}_${run}_${institution}_${rcm}_${version}_${outfreq}
+    if [[ "${outvar}" == "orog" ]] ; then
         outfile_end=".nc"
     else
         outfile_end="_${start_date:0:6}01-${end_date:0:6}31.nc"
     fi
     outfile=${outfile_start}${outfile_end}
     outpath=${outdir}/${outfile}
-    python_command="${python} preprocess.py ${infile} ${var} bilinear ${outpath} ${rlon}"
+    python_command="${python} preprocess.py ${infile} ${invar} ${infreq} ${outvar} ${outfreq} bilinear ${outpath} ${rlon}"
     if [[ ! -f ${infile} ]] ; then
         echo "File not found: ${infile}"
     elif [[ "${flags}" == "-n" ]] ; then
