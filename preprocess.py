@@ -321,10 +321,10 @@ def create_grid():
 #    lons = xc.create_axis('lon', np.round(np.arange(112, 156.26, 0.05), decimals=2))
 #    npcp_grid = xc.create_grid(lats, lons)
     npcp_grid = xc.regridder.grid.create_uniform_grid(-44.5, -9.99, 0.05, 112, 156.26, 0.05)
-    npcp_grid['lat'] = npcp_grid['lat'].copy(data=np.round(npcp_grid'lat'].values, decimals=2))
-    npcp_grid['lon'] = npcp_grid['lon'].copy(data=np.round(npcp_grid'lon'].values, decimals=2))
-    npcp_grid['lat_bnds'] = npcp_grid['lat_bnds'].copy(data=np.round(npcp_grid'lat_bnds'].values, decimals=3))
-    npcp_grid['lon_bnds'] = npcp_grid['lon_bnds'].copy(data=np.round(npcp_grid'lon_bnds'].values, decimals=3))
+    npcp_grid['lat'] = npcp_grid['lat'].copy(data=np.round(npcp_grid['lat'].values, decimals=2))
+    npcp_grid['lon'] = npcp_grid['lon'].copy(data=np.round(npcp_grid['lon'].values, decimals=2))
+    npcp_grid['lat_bnds'] = npcp_grid['lat_bnds'].copy(data=np.round(npcp_grid['lat_bnds'].values, decimals=3))
+    npcp_grid['lon_bnds'] = npcp_grid['lon_bnds'].copy(data=np.round(npcp_grid['lon_bnds'].values, decimals=3))
 
     return npcp_grid
 
