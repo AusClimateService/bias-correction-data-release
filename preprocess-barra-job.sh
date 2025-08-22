@@ -1,16 +1,17 @@
 #!/bin/bash
 #PBS -P xv83
 #PBS -q hugemem
-#PBS -l walltime=24:00:00
-#PBS -l mem=250GB
+#PBS -l walltime=32:00:00
+#PBS -l mem=300GB
 #PBS -l storage=gdata/xv83+gdata/ia39+gdata/ob53
 #PBS -l wd
-#PBS -l ncpus=5
 #PBS -v var
 
 # Example:
 #   qsub -v input_var=tas,input_freq=1hr,output_var=tas,output_freq=1hr preprocess-barra-job.sh
 #
+# Compute usage:
+#   One year of hourly data takes about 40 minutes to process and 260 GB of memory (with --compute)
 
 __conda_setup="$('/g/data/xv83/dbi599/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then

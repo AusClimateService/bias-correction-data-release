@@ -9,6 +9,9 @@
 
 # Example:
 #   qsub -v gcm=ACCESS-CM2,rcm=BARPA-R,run=r4i1p1f1,exp=historical,invar=tas,infreq=1hr,outvar=tas,outfreq=1hr preprocess-cordex-job.sh
+#
+# Compute estimates:
+#   A file with 1 year of houly data will take about 25 minutes and 210GB of memory to process.
 
 
 __conda_setup="$('/g/data/xv83/dbi599/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
