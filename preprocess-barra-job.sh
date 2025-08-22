@@ -1,8 +1,8 @@
 #!/bin/bash
 #PBS -P xv83
-#PBS -q normal
-#PBS -l walltime=10:00:00
-#PBS -l mem=60GB
+#PBS -q hugemem
+#PBS -l walltime=24:00:00
+#PBS -l mem=250GB
 #PBS -l storage=gdata/xv83+gdata/ia39+gdata/ob53
 #PBS -l wd
 #PBS -l ncpus=5
@@ -24,7 +24,7 @@ else
 fi
 unset __conda_setup
 
-conda activate npcp
+conda activate npcp2
 
 command="bash /home/599/dbi599/bias-correction-data-release/preprocess-barra.sh ${input_var} ${input_freq} ${output_var} ${output_freq}"
 echo ${command}

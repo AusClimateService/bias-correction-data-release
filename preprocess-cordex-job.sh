@@ -1,8 +1,8 @@
 #!/bin/bash
 #PBS -P xv83
-#PBS -q normal
-#PBS -l walltime=30:00:00
-#PBS -l mem=50GB
+#PBS -q hugemem
+#PBS -l walltime=45:00:00
+#PBS -l mem=250GB
 #PBS -l storage=gdata/xv83+gdata/ia39+gdata/hq89+gdata/ig45+gdata/py18+gdata/ob53+gdata/zz63
 #PBS -l wd
 #PBS -v gcm,rcm,run,exp,invar,infreq,outvar,outfreq
@@ -23,7 +23,7 @@ else
 fi
 unset __conda_setup
 
-conda activate npcp
+conda activate npcp2
 
 command="bash /home/599/dbi599/bias-correction-data-release/preprocess-cordex.sh ${gcm} ${rcm} ${run} ${exp} ${invar} ${infreq} ${outvar} ${outfreq}"
 echo ${command}

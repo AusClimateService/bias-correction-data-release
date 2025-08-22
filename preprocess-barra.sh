@@ -16,7 +16,7 @@ output_var=$3
 output_freq=$4
 flags=$5
 
-python=/g/data/xv83/dbi599/miniconda3/envs/npcp/bin/python
+python=/g/data/xv83/dbi599/miniconda3/envs/npcp2/bin/python
 
 project_dir=/g/data/ob53/BARRA2/output/reanalysis/AUS-11/BOM/ERA5/historical/hres/BARRA-R2/v1
 outdir=/g/data/ia39/australian-climate-service/test-data/BARRA2/output/reanalysis/AUST-05i/BOM/ERA5/historical/hres/BARRAR2/v1/${output_freq}/${output_var}/latest
@@ -24,7 +24,7 @@ for year in $(seq 1979 2024); do
     infiles=(`ls ${project_dir}/${input_freq}/${input_var}/v*/*_${year}??-${year}??.nc`)
     outfile=${output_var}_AUST-05i_ERA5_historical_hres_BOM_BARRAR2_v1_${output_freq}_${year}0101-${year}1231.nc
     
-    python_command="${python} preprocess.py ${infiles[@]} ${input_var} ${input_freq} ${output_var} ${output_freq} bilinear ${outdir}/${outfile}"
+    python_command="${python} preprocess.py ${infiles[@]} ${input_var} ${input_freq} ${output_var} ${output_freq} bilinear ${outdir}/${outfile} --compute"
     if [[ "${flags}" == "-n" ]] ; then
         echo ${python_command}
     else

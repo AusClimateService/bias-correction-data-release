@@ -1,5 +1,5 @@
 """Command line program for ACS bias correction data pre-processing."""
-import pdb
+
 import argparse
 
 import cftime
@@ -314,6 +314,21 @@ def xesmf_regrid(ds, ds_grid, variable=None, method='bilinear'):
     return ds
 
 
+def create_grid():
+    """Create the NPCP grid"""
+
+#    lats = xc.create_axis('lat', np.round(np.arange(-44.5, -9.99, 0.05), decimals=2))
+#    lons = xc.create_axis('lon', np.round(np.arange(112, 156.26, 0.05), decimals=2))
+#    npcp_grid = xc.create_grid(lats, lons)
+    npcp_grid = xc.regridder.grid.create_uniform_grid(-44.5, -9.99, 0.05, 112, 156.26, 0.05)
+    npcp_grid['lat'] = npcp_grid['lat'].copy(data=np.round(npcp_grid'lat'].values, decimals=2))
+    npcp_grid['lon'] = npcp_grid['lon'].copy(data=np.round(npcp_grid'lon'].values, decimals=2))
+    npcp_grid['lat_bnds'] = npcp_grid['lat_bnds'].copy(data=np.round(npcp_grid'lat_bnds'].values, decimals=3))
+    npcp_grid['lon_bnds'] = npcp_grid['lon_bnds'].copy(data=np.round(npcp_grid'lon_bnds'].values, decimals=3))
+
+    return npcp_grid
+
+
 def main(args):
     """Run the program."""
 
@@ -346,16 +361,14 @@ def main(args):
         input_ds = input_ds.compute()
 
     # AGCD grid
-    lats = xc.create_axis('lat', np.round(np.arange(-44.5, -9.99, 0.05), decimals=2))
-    lons = xc.create_axis('lon', np.round(np.arange(112, 156.26, 0.05), decimals=2))
-    npcp_grid = xc.create_grid(lats, lons)
-#    output_ds = input_ds.regridder.horizontal(
-#        args.var,
-#        npcp_grid,
-#        tool='xesmf',
-#        method=args.method,
-#    )
-    output_ds = xesmf_regrid(input_ds, npcp_grid, variable=args.output_var, method=args.regrid_method)
+    npcp_grid = create_grid()
+    output_ds = input_ds.regridder.horizontal(
+        args.output_var,
+        npcp_grid,
+        tool='xesmf',
+        method=args.regrid_method,
+    )
+#    output_ds = xesmf_regrid(input_ds, npcp_grid, variable=args.output_var, method=args.regrid_method)
 
     # Time bounds (including check that data is 12:00 centered)
     output_ds['time_bnds'] = create_bounds('T', output_ds['time'])
@@ -369,7 +382,7 @@ def main(args):
     output_ds.attrs['history'] = cmdprov.new_log(
         code_url='https://github.com/AusClimateService/bias-correction-data-release'
     )
-    output_encoding = get_output_encoding(output_ds, args.output_var, len(lats[0]), len(lons[0]))
+    output_encoding = get_output_encoding(output_ds, args.output_var, len(npcp_grid.lat), len(npcp_grid.lon))
 
     output_ds.to_netcdf(args.outfile, encoding=output_encoding, format='NETCDF4_CLASSIC')
 

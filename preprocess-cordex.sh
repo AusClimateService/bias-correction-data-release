@@ -23,7 +23,7 @@ infreq=$6
 outvar=$7
 outfreq=$8
 flags=$9
-python=/g/data/xv83/dbi599/miniconda3/envs/npcp/bin/python
+python=/g/data/xv83/dbi599/miniconda3/envs/npcp2/bin/python
 
 if [[ "${rcm}" == "BARPA-R" ]] ; then
     project_dir=/g/data/py18/BARPA/output/CMIP6/DD/AUS-15/BOM
@@ -72,7 +72,7 @@ for infile in "${infiles[@]}"; do
     fi
     outfile=${outfile_start}${outfile_end}
     outpath=${outdir}/${outfile}
-    python_command="${python} preprocess.py ${infile} ${invar} ${infreq} ${outvar} ${outfreq} bilinear ${outpath} ${rlon}"
+    python_command="${python} preprocess.py ${infile} ${invar} ${infreq} ${outvar} ${outfreq} bilinear ${outpath} ${rlon} --compute"
     if [[ ! -f ${infile} ]] ; then
         echo "File not found: ${infile}"
     elif [[ "${flags}" == "-n" ]] ; then
