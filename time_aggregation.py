@@ -1,14 +1,37 @@
 """Command line program for time aggregation."""
-import pdb
+
 import os
 import argparse
 
-import cftime
-import xarray as xr
 import xcdat as xc
 import cmdline_provenance as cmdprov
 
 import preprocess
+
+
+def update_global_attrs(ds, infile0, input_history):
+    """Update the global file attributes."""
+
+    global_keys_to_delete = [
+        'time_coverage_start',
+        'time_coverage_end',
+        'time_coverage_duration',
+        'time_coverage_resolution',
+        'creation_date',
+    ]
+    for key in global_keys_to_delete:
+        try:
+            del ds.attrs[key]
+        except KeyError:
+            pass
+    ds.attrs['frequency'] = 'mon'
+    ds.attrs['history'] = cmdprov.new_log(
+        infile_logs={infile0: input_history},
+        code_url='https://github.com/AusClimateService/bias-correction-data-release',
+        wildcard_prefixes=[os.path.dirname(infile0),],
+    )
+
+    return ds
 
 
 def update_var_attrs(ds, var):
@@ -41,8 +64,6 @@ def update_var_attrs(ds, var):
 def main(args):
     """Run the program."""
 
-#    time_coder = xr.coders.CFDatetimeCoder(use_cftime=True)
-#    input_ds = xc.open_mfdataset(args.infiles, decode_times=time_coder)
     input_ds = xc.open_mfdataset(args.infiles)
 
     if 'pr' in args.var:
@@ -52,15 +73,10 @@ def main(args):
     output_ds.time.encoding['calendar'] = 'proleptic_gregorian'
     output_ds = output_ds.bounds.add_time_bounds(method='freq', freq='month', end_of_month=True)
     output_ds = xc.center_times(output_ds)
-    output_ds.attrs['frequency'] = 'mon'
 
     output_ds = update_var_attrs(output_ds, args.var)
+    output_ds = update_global_attrs(output_ds, args.infiles[0], input_ds.attrs['history'])
 
-    output_ds.attrs['history'] = cmdprov.new_log(
-        infile_logs={args.infiles[0]: input_ds.attrs['history']},
-        code_url='https://github.com/AusClimateService/bias-correction-data-release',
-        wildcard_prefixes=[os.path.dirname(args.infiles[0]),],
-    )
     nlats = len(output_ds.lat.values)
     nlons = len(output_ds.lon.values)
     output_encoding = preprocess.get_output_encoding(output_ds, args.var, nlats, nlons)
