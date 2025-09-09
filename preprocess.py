@@ -98,7 +98,7 @@ def drop_vars(ds):
     return ds
 
 
-def fix_metadata(ds, var, freq):
+def fix_metadata(ds, var, freq, grid):
     "Apply metadata fixes."""
 
     # Remove xcdat attributes
@@ -197,14 +197,21 @@ def fix_metadata(ds, var, freq):
         ds['time'].attrs['bounds'] = 'time_bnds'
         ds['time_bnds'].attrs = {}
 
+    grid_spacings = {
+        'AUST-05i': '0.05',
+        'AUST-11i': '0.11',
+        'AUST-20i': '0.20',
+    }
+
     # Add/update global attributes
-    ds.attrs['domain'] = 'Australia/AGCD'
-    ds.attrs['domain_id'] = 'AUST-05i'
-    ds.attrs['title'] = 'CORDEX-CMIP6 regridded data for Australia'
+    ds.attrs['domain'] = 'Australia'
+    ds.attrs['domain_id'] = grid
+    ds.attrs['title'] = 'CORDEX-CMIP6 regridded data for Australia' ##
     ds.attrs['frequency'] = freq
     ds.attrs['variable_id'] = var
     ds.attrs['license'] = "CC BY 4.0"
-    ds.attrs['grid'] = 'latitude-longitude with 0.05 degree grid spacing for Australia domain (the standard AGCD grid)'
+    grid_spacing = grid_spacings[grid]
+    ds.attrs['grid'] = f'latitude-longitude with {grid_spacing} degree grid spacing for the Australia domain'
 
     return ds
 
@@ -314,19 +321,27 @@ def xesmf_regrid(ds, ds_grid, variable=None, method='bilinear'):
     return ds
 
 
-def create_grid():
-    """Create the NPCP grid"""
+def create_grid(grid_name):
+    """Create the spatial grid"""
 
-#    lats = xc.create_axis('lat', np.round(np.arange(-44.5, -9.99, 0.05), decimals=2))
-#    lons = xc.create_axis('lon', np.round(np.arange(112, 156.26, 0.05), decimals=2))
-#    npcp_grid = xc.create_grid(lats, lons)
-    npcp_grid = xc.regridder.grid.create_uniform_grid(-44.5, -9.99, 0.05, 112, 156.26, 0.05)
-    npcp_grid['lat'] = npcp_grid['lat'].copy(data=np.round(npcp_grid['lat'].values, decimals=2))
-    npcp_grid['lon'] = npcp_grid['lon'].copy(data=np.round(npcp_grid['lon'].values, decimals=2))
-    npcp_grid['lat_bnds'] = npcp_grid['lat_bnds'].copy(data=np.round(npcp_grid['lat_bnds'].values, decimals=3))
-    npcp_grid['lon_bnds'] = npcp_grid['lon_bnds'].copy(data=np.round(npcp_grid['lon_bnds'].values, decimals=3))
+    if grid_name == 'AUST-05i':
+        grid = xc.regridder.grid.create_uniform_grid(-44.5, -9.99, 0.05, 112, 156.26, 0.05)
+        decimals = 2
+        bnds_decimals = 3 
+    elif grid_name == 'AUST-20i':
+        grid = xc.regridder.grid.create_uniform_grid(-44.5, -9.89, 0.20, 111.9, 156.31, 0.20)
+        decimals = 1
+        bnds_decimals = 1
+    elif grid_name == 'AUST-11i':
+        grid = xc.regridder.grid.create_uniform_grid(-44.55, -10.02, 0.11, 112.02, 156.25, 0.11)
+        decimals = 2
+        bnds_decimals = 3
+    grid['lat'] = grid['lat'].copy(data=np.round(grid['lat'].values, decimals=decimals))
+    grid['lon'] = grid['lon'].copy(data=np.round(grid['lon'].values, decimals=decimals))
+    grid['lat_bnds'] = grid['lat_bnds'].copy(data=np.round(grid['lat_bnds'].values, decimals=bnds_decimals))
+    grid['lon_bnds'] = grid['lon_bnds'].copy(data=np.round(grid['lon_bnds'].values, decimals=bnds_decimals))
 
-    return npcp_grid
+    return grid
 
 
 def main(args):
@@ -361,14 +376,13 @@ def main(args):
         input_ds = input_ds.compute()
 
     # AGCD grid
-    npcp_grid = create_grid()
+    npcp_grid = create_grid(args.output_grid)
     output_ds = input_ds.regridder.horizontal(
         args.output_var,
         npcp_grid,
         tool='xesmf',
         method=args.regrid_method,
     )
-#    output_ds = xesmf_regrid(input_ds, npcp_grid, variable=args.output_var, method=args.regrid_method)
 
     # Time bounds (including check that data is 12:00 centered)
     output_ds['time_bnds'] = create_bounds('T', output_ds['time'])
@@ -378,7 +392,7 @@ def main(args):
 
     # Metadata
     output_ds[args.output_var] = convert_units(output_ds[args.output_var], output_units[args.output_var])
-    output_ds = fix_metadata(output_ds, args.output_var, args.output_freq)
+    output_ds = fix_metadata(output_ds, args.output_var, args.output_freq, args.output_grid)
     output_ds.attrs['history'] = cmdprov.new_log(
         code_url='https://github.com/AusClimateService/bias-correction-data-release'
     )
@@ -397,6 +411,7 @@ if __name__ == '__main__':
     parser.add_argument("input_freq", type=str, choices=("day", "1hr", "fx"), help="input frequency")
     parser.add_argument("output_var", type=str, help="input variable")
     parser.add_argument("output_freq", type=str, choices=("day", "1hr", "fx"), help="output frequency")
+    parser.add_argument("output_grid", type=str, choices=("AUST-05i", "AUST-11i", "AUST-20i"), help="output grid")
     parser.add_argument("regrid_method", type=str, choices=('bilinear', 'conservative'), help="regridding method")
     parser.add_argument("outfile", type=str, help="output file")
     parser.add_argument(
