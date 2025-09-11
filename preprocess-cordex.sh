@@ -36,13 +36,13 @@ elif [[ "${rcm}" == "CCAM-v2203-SN" ]] ; then
     project_dir=/g/data/hq89/CCAM/output/CMIP6/DD/AUS-10i/CSIRO
     tstamp="v*"
 elif [[ "${rcm}" == "CCAMoc-v2112" ]] ; then
-    project_dir=/g/data/ig45/QldFCP-2/CORDEX/CMIP6/DD/AUS-20i/UQ-DEC
+    project_dir=/g/data/ig45/QldFCP-2/CORDEX-CMIP6/DD/AUS-20i/UQ-DEC
     tstamp="latest"
 elif [[ "${rcm}" == "CCAM-v2105" ]] ; then
-    project_dir=/g/data/ig45/QldFCP-2/CORDEX/CMIP6/DD/AUS-20i/UQ-DEC
+    project_dir=/g/data/ig45/QldFCP-2/CORDEX-CMIP6/DD/AUS-20i/UQ-DEC
     tstamp="latest"
 elif [[ "${rcm}" == "CCAM-v2112" ]] ; then
-    project_dir=/g/data/ig45/QldFCP-2/CORDEX/CMIP6/DD/AUS-20i/UQ-DEC
+    project_dir=/g/data/ig45/QldFCP-2/CORDEX-CMIP6/DD/AUS-20i/UQ-DEC
     tstamp="latest"
 elif [[ "${rcm}" == "NARCliM2-0-WRF412R3" ]] ; then
     project_dir=/g/data/zz63/NARCliM2-0/output/CMIP6/DD/AUS-18/NSW-Government
