@@ -216,8 +216,11 @@ def fix_metadata(ds, var, freq, grid):
     return ds
 
 
-def get_output_encoding(ds, var, nlats, nlons):
-    """Define the output file encoding."""
+def get_output_encoding(ds, var, nlats, nlons, chunking='temporal'):
+    """Define the output file encoding.
+
+    chunking can be 'temporal' or 'spatial'
+    """
 
     encoding = {}
     ds_vars = list(ds.coords) + list(ds.keys())
@@ -239,7 +242,13 @@ def get_output_encoding(ds, var, nlats, nlons):
         assert len(var_shape) == 3
         assert var_shape[1] == nlats
         assert var_shape[2] == nlons
-        encoding[var]['chunksizes'] = (1, nlats, nlons)
+        ntimes = var_shape[0]
+        if chunking == 'temporal':
+            encoding[var]['chunksizes'] = (1, nlats, nlons)
+        elif chunking == 'spatial':
+            encoding[var]['chunksizes'] = (ntimes, 1, 1)
+        else:
+            raise ValueError('invalid chunking strategy')
         #time units
         encoding['time']['units'] = 'days since 1950-01-01'
 
@@ -396,7 +405,13 @@ def main(args):
     output_ds.attrs['history'] = cmdprov.new_log(
         code_url='https://github.com/AusClimateService/bias-correction-data-release'
     )
-    output_encoding = get_output_encoding(output_ds, args.output_var, len(npcp_grid.lat), len(npcp_grid.lon))
+    output_encoding = get_output_encoding(
+        output_ds,
+        args.output_var,
+        len(npcp_grid.lat),
+        len(npcp_grid.lon),
+        chunking=args.chunking_strategy,
+    )
 
     output_ds.to_netcdf(args.outfile, encoding=output_encoding, format='NETCDF4_CLASSIC')
 
@@ -414,6 +429,13 @@ if __name__ == '__main__':
     parser.add_argument("output_grid", type=str, choices=("AUST-05i", "AUST-11i", "AUST-20i"), help="output grid")
     parser.add_argument("regrid_method", type=str, choices=('bilinear', 'conservative'), help="regridding method")
     parser.add_argument("outfile", type=str, help="output file")
+    parser.add_argument(
+        "--chunking_strategy",
+        default='temporal',
+        choices=('temporal', 'spatial'),
+        type=str,
+        help="apply temporal (default) or spatial (i.e. lat/lon) chunking to outfile"
+    )
     parser.add_argument(
         "--rlon",
         default=None,

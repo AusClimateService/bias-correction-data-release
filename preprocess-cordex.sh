@@ -1,7 +1,7 @@
 #
 # Bash script for preprocessing CORDEX data for ACS bias correction
 #
-# Usage: bash preprocess-cordex.sh {gcm} {rcm} {run} {exp} {invar} {infreq} {outvar} {outfreq} {outgrid} {regrid} {flags}
+# Usage: bash preprocess-cordex.sh {gcm} {rcm} {run} {exp} {invar} {infreq} {outvar} {outfreq} {outgrid} {regrid} {chunking} {flags}
 #
 #   gcm:      name of global climate model (e.g. ACCESS-CM2)
 #   rcm:      name of regional climate model (BARPA-R, CCAM-v2203-SN, CCAMoc-v2112, CCAM-v2105, CCAM-v2112, NARCliM2-0-WRF412R3, NARCliM2-0-WRF412R5)
@@ -13,6 +13,7 @@
 #   outfreq:  input data frequency (fx, day, 1hr)
 #   outgrid:  output grid (AUST-05i, AUST-11i, AUST-20i)
 #   regrid:   regrid method (bilinear, conservative)
+#   chunking: chunking strategy (temporal, spatial)
 #   flags:    optional flags (e.g. -n for dry run)
 #
 
@@ -26,7 +27,8 @@ outvar=$7
 outfreq=$8
 outgrid=$9
 regrid=${10}
-flags=${11}
+chunking=${11}
+flags=${12}
 python=/g/data/xv83/dbi599/miniconda3/envs/npcp2/bin/python
 
 if [[ "${rcm}" == "BARPA-R" ]] ; then
@@ -67,7 +69,7 @@ for infile in "${infiles[@]}"; do
     start_date=`echo ${tbounds} | cut -d - -f 1`
     end_date=`echo ${tbounds} | cut -d - -f 2`
     
-    outdir=/g/data/ia39/australian-climate-service/test-data/CORDEX/output-CMIP6/DD/${outgrid}/${institution}/${gcm}/${experiment}/${run}/${rcm}/${version}/${outfreq}/${outvar}/latest
+    outdir=/g/data/ia39/australian-climate-service/test-data/CORDEX/output-CMIP6/DD/${outgrid}/${institution}/${gcm}/${experiment}/${run}/${rcm}/${version}/${outfreq}/${outvar}/latest-${chunking}-chunking
     outfile_start=${outvar}_${outgrid}_${gcm}_${experiment}_${run}_${institution}_${rcm}_${version}_${outfreq}
     if [[ "${outvar}" == "orog" ]] ; then
         outfile_end=".nc"
@@ -76,7 +78,7 @@ for infile in "${infiles[@]}"; do
     fi
     outfile=${outfile_start}${outfile_end}
     outpath=${outdir}/${outfile}
-    python_command="${python} preprocess.py ${infile} ${invar} ${infreq} ${outvar} ${outfreq} ${outgrid} ${regrid} ${outpath} ${rlon} --compute"
+    python_command="${python} preprocess.py ${infile} ${invar} ${infreq} ${outvar} ${outfreq} ${outgrid} ${regrid} ${outpath} ${rlon} --chunking_strategy ${chunking} --compute"
     if [[ ! -f ${infile} ]] ; then
         echo "File not found: ${infile}"
     elif [[ "${flags}" == "-n" ]] ; then
