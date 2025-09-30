@@ -23,13 +23,13 @@ def drop_leap_day(ds):
     return ds_no_leap
 
 
-def define_target_chunks(ds, var, lat_name, lon_name, output_chunking):
+def define_target_chunks(ds, var, lat_name, lon_name, output_chunking, output_min_chunk):
     """Create a target chunks dictionary."""
 
     if output_chunking == 'spatial':
-        chunks = {'time': len(ds['time']), lat_name: 1, lon_name: 1}
+        chunks = {'time': len(ds['time']), lat_name: output_min_chunk, lon_name: output_min_chunk}
     elif output_chunking == 'temporal':
-        chunks = {'time': 1, lat_name: len(ds[lat_name]), lon_name: len(ds[lon_name])}
+        chunks = {'time': output_min_chunk, lat_name: len(ds[lat_name]), lon_name: len(ds[lon_name])}
     target_chunks_dict = {var: chunks}
     variables = list(ds.keys())
     variables.remove(var)
@@ -64,6 +64,7 @@ def main(args):
         args.lat_name,
         args.lon_name,
         args.output_chunking,
+        args.output_min_chunk,
     )
     group_plan = rechunk(
         ds,
@@ -92,6 +93,7 @@ if __name__ == '__main__':
     parser.add_argument("--input_time_chunk", type=int, default=None, help="input times per chunk")
     parser.add_argument("--input_lat_chunk", type=int, default=None, help="input latitudes per chunk")
     parser.add_argument("--input_lon_chunk", type=int, default=None, help="input longitudes per chunk")
+    parser.add_argument("--output_min_chunk", type=int, default=1, help="number of chunks along smallest output chunk dimension")
     parser.add_argument("--lat_name", type=str, default='lat', choices=('lat', 'latitude'), help="latitude dimension name")
     parser.add_argument("--lon_name", type=str, default='lon', choices=('lon', 'longitude'), help="longitude dimension name")
     parser.add_argument("--max_mem", type=str, default='5GB', help="Maximum memory that workers can use")
