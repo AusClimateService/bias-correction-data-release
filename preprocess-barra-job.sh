@@ -3,12 +3,12 @@
 #PBS -q normal
 #PBS -l walltime=12:00:00
 #PBS -l mem=150GB
-#PBS -l storage=gdata/xv83+gdata/ia39+gdata/ob53
+#PBS -l storage=gdata/xv83+gdata/ia39+gdata/ob53+scratch/tp28
 #PBS -l wd
-#PBS -v input_var,input_freq,output_var,output_freq,output_grid,regrid_method
+#PBS -v input_var,input_freq,output_var,output_freq,output_grid,regrid_method,chunking
 
 # Example:
-#   qsub -v input_var=tas,input_freq=1hr,output_var=tas,output_freq=1hr,output_grid=AUST-20i,regrid_method=conservative preprocess-barra-job.sh
+#   qsub -v input_var=tas,input_freq=1hr,output_var=tas,output_freq=1hr,output_grid=AUST-20i,regrid_method=conservative,chunking=spatial preprocess-barra-job.sh
 #
 # Compute usage:
 #   One year of hourly data takes about 40 minutes to process and 260 GB of memory for the AUST-05i grid (with --compute)
@@ -27,7 +27,7 @@ unset __conda_setup
 
 conda activate npcp2
 
-command="bash /home/599/dbi599/bias-correction-data-release/preprocess-barra.sh ${input_var} ${input_freq} ${output_var} ${output_freq} ${output_grid} ${regrid_method}"
+command="bash /home/599/dbi599/bias-correction-data-release/preprocess-barra.sh ${input_var} ${input_freq} ${output_var} ${output_freq} ${output_grid} ${regrid_method} ${chunking}"
 echo ${command}
 ${command}
 

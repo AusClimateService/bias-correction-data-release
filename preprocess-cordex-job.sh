@@ -1,9 +1,9 @@
 #!/bin/bash
 #PBS -P xv83
-#PBS -q normal
-#PBS -l walltime=12:00:00
-#PBS -l mem=100GB
-#PBS -l storage=gdata/xv83+gdata/ia39+gdata/hq89+gdata/ig45+gdata/py18+gdata/ob53+gdata/zz63
+#PBS -q hugemem
+#PBS -l walltime=20:00:00
+#PBS -l mem=400GB
+#PBS -l storage=gdata/xv83+gdata/ia39+gdata/hq89+gdata/ig45+gdata/py18+gdata/ob53+gdata/zz63+scratch/e53
 #PBS -l wd
 #PBS -v gcm,rcm,run,exp,invar,infreq,outvar,outfreq,outgrid,regrid,chunking
 

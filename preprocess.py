@@ -16,6 +16,7 @@ output_units = {
     'tas': 'degC',
     'tasmax': 'degC',
     'tasmin': 'degC',
+    'wbgt': 'degC',
     'pr': 'mm d-1',
     'prsn': 'mm d-1',
     'sfcWind': 'm s-1',
