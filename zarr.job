@@ -1,11 +1,11 @@
 #!/bin/bash
 #PBS -P xv83
-#PBS -q hugemem
-#PBS -l walltime=15:00:00
-#PBS -l mem=500GB
+#PBS -q normal
+#PBS -l walltime=10:00:00
+#PBS -l mem=180GB
 #PBS -l storage=gdata/xv83+gdata/ia39
 #PBS -l wd
-#PBS -v grid,dataset,input_chunking,output_chunking
+#PBS -v var,grid,dataset,input_chunking,output_chunking
 
 # Choices:
 #   grid: AUST-05i, AUST-20i
@@ -14,7 +14,7 @@
 #   output_chunking: spatial, temporal
 
 # Example:
-#   qsub -v grid=AUST-05i,dataset=CORDEX,input_chunking=spatial,output_chunking=spatial zarr.job
+#   qsub -v var=wbgt,grid=AUST-20i,dataset=CORDEX,input_chunking=temporal,output_chunking=spatial,output_min_chunk=1 zarr.job
 
 
 __conda_setup="$('/g/data/xv83/dbi599/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
@@ -31,6 +31,15 @@ unset __conda_setup
 
 conda activate agcd
 
+
+if [[ "${var}" == "tas" ]] ; then
+institution=BOM
+rcm=BARPA-R
+else
+institution=CSIRO
+rcm=CCAM-v2203-SN
+fi
+
 if [[ "${input_chunking}" == "spatial" ]] ; then
 version=latest-spatial-chunking
 input_options="--input_lat_chunk 1 --input_lon_chunk 1"
@@ -39,14 +48,20 @@ version=latest
 input_options="--input_time_chunk 1"
 fi
 
+padded_min_chunk="000${output_min_chunk}"
 if [[ "${output_chunking}" == "spatial" ]] ; then
-output_options="--drop_leap_days"
+output_options="--drop_leap_days --output_min_chunk ${output_min_chunk}"
+chunk_label="spatial${padded_min_chunk: -2}-chunking"
+else
+output_options="--output_min_chunk ${output_min_chunk}"
+chunk_label="temporal${padded_min_chunk: -2}-chunking"
 fi
 
+
 if [[ "${dataset}" == "BARRA" ]] ; then
-command="/g/data/xv83/dbi599/miniconda3/envs/agcd/bin/python /home/599/dbi599/bias-correction-data-release/nc_to_rechunked_zarr.py /g/data/ia39/australian-climate-service/test-data/BARRA2/output/reanalysis/${grid}/BOM/ERA5/historical/hres/BARRAR2/v1/1hr/tas/${version}/tas_${grid}_ERA5_historical_hres_BOM_BARRAR2_v1_1hr_*.nc tas ${output_chunking} /g/data/ia39/australian-climate-service/test-data/BARRA2/output/reanalysis/${grid}/BOM/ERA5/historical/hres/BARRAR2/v1/1hr/tas/${version}/tas_${grid}_ERA5_historical_hres_BOM_BARRAR2_v1_1hr_19790101-20241231.zarr /g/data/ia39/australian-climate-service/test-data/BARRA2/output/reanalysis/${grid}/BOM/ERA5/historical/hres/BARRAR2/v1/1hr/tas/${version}/temp.zarr ${input_options} ${output_options}"
+command="/g/data/xv83/dbi599/miniconda3/envs/agcd/bin/python /home/599/dbi599/bias-correction-data-release/nc_to_rechunked_zarr.py /g/data/ia39/australian-climate-service/test-data/BARRA2/output/reanalysis/${grid}/BOM/ERA5/historical/hres/BARRAR2/v1/1hr/${var}/${version}/${var}_${grid}_ERA5_historical_hres_BOM_BARRAR2_v1_1hr_*.nc ${var} ${output_chunking} /g/data/ia39/australian-climate-service/test-data/BARRA2/output/reanalysis/${grid}/BOM/ERA5/historical/hres/BARRAR2/v1/1hr/${var}/${version}/${var}_${grid}_ERA5_historical_hres_BOM_BARRAR2_v1_1hr_19790101-20241231_${chunk_label}.zarr /g/data/ia39/australian-climate-service/test-data/BARRA2/output/reanalysis/${grid}/BOM/ERA5/historical/hres/BARRAR2/v1/1hr/${var}/${version}/temp.zarr ${input_options} ${output_options}"
 else
-command="/g/data/xv83/dbi599/miniconda3/envs/agcd/bin/python /home/599/dbi599/bias-correction-data-release/nc_to_rechunked_zarr.py /g/data/ia39/australian-climate-service/test-data/CORDEX/output-CMIP6/DD/${grid}/BOM/ACCESS-CM2/historical/r4i1p1f1/BARPA-R/v1-r1/1hr/tas/${version}/*.nc /g/data/ia39/australian-climate-service/test-data/CORDEX/output-CMIP6/DD/${grid}/BOM/ACCESS-CM2/ssp370/r4i1p1f1/BARPA-R/v1-r1/1hr/tas/${version}/*.nc tas ${output_chunking} /g/data/ia39/australian-climate-service/test-data/CORDEX/output-CMIP6/DD/${grid}/BOM/ACCESS-CM2/ssp370/r4i1p1f1/BARPA-R/v1-r1/1hr/tas/${version}/tas_${grid}_ACCESS-CM2_ssp370_r4i1p1f1_BOM_BARPA-R_v1-r1_1hr_19600101-21001231.zarr /g/data/ia39/australian-climate-service/test-data/CORDEX/output-CMIP6/DD/${grid}/BOM/ACCESS-CM2/ssp370/r4i1p1f1/BARPA-R/v1-r1/1hr/tas/${version}/temp.zarr ${input_options} ${output_options}"
+command="/g/data/xv83/dbi599/miniconda3/envs/agcd/bin/python /home/599/dbi599/bias-correction-data-release/nc_to_rechunked_zarr.py /g/data/ia39/australian-climate-service/test-data/CORDEX/output-CMIP6/DD/${grid}/${institution}/ACCESS-CM2/historical/r4i1p1f1/${rcm}/v1-r1/1hr/${var}/${version}/*.nc /g/data/ia39/australian-climate-service/test-data/CORDEX/output-CMIP6/DD/${grid}/${institution}/ACCESS-CM2/ssp370/r4i1p1f1/${rcm}/v1-r1/1hr/${var}/${version}/*.nc ${var} ${output_chunking} /g/data/ia39/australian-climate-service/test-data/CORDEX/output-CMIP6/DD/${grid}/${institution}/ACCESS-CM2/ssp370/r4i1p1f1/${rcm}/v1-r1/1hr/${var}/${version}/${var}_${grid}_ACCESS-CM2_ssp370_r4i1p1f1_${institution}_${rcm}_v1-r1_1hr_19600101-21001231_${chunk_label}.zarr /g/data/ia39/australian-climate-service/test-data/CORDEX/output-CMIP6/DD/${grid}/${institution}/ACCESS-CM2/ssp370/r4i1p1f1/${rcm}/v1-r1/1hr/${var}/${version}/temp.zarr ${input_options} ${output_options} --max_mem 10GB"
 fi
 echo ${command}
 ${command}
