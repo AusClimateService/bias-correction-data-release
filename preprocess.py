@@ -217,7 +217,7 @@ def fix_metadata(ds, var, freq, grid):
     return ds
 
 
-def get_output_encoding(ds, var, nlats, nlons, chunking='temporal'):
+def get_output_encoding(ds, var, nlats, nlons, chunking='temporal', min_chunk_size=1):
     """Define the output file encoding.
 
     chunking can be 'temporal' or 'spatial'
@@ -245,9 +245,9 @@ def get_output_encoding(ds, var, nlats, nlons, chunking='temporal'):
         assert var_shape[2] == nlons
         ntimes = var_shape[0]
         if chunking == 'temporal':
-            encoding[var]['chunksizes'] = (1, nlats, nlons)
+            encoding[var]['chunksizes'] = (min_chunk_size, nlats, nlons)
         elif chunking == 'spatial':
-            encoding[var]['chunksizes'] = (ntimes, 1, 1)
+            encoding[var]['chunksizes'] = (ntimes, min_chunk_size, min_chunk_size)
         else:
             raise ValueError('invalid chunking strategy')
         #time units
@@ -412,6 +412,7 @@ def main(args):
         len(npcp_grid.lat),
         len(npcp_grid.lon),
         chunking=args.chunking_strategy,
+        min_chunk_size=args.min_chunk_size
     )
 
     output_ds.to_netcdf(args.outfile, encoding=output_encoding, format='NETCDF4_CLASSIC')
@@ -436,6 +437,12 @@ if __name__ == '__main__':
         choices=('temporal', 'spatial'),
         type=str,
         help="apply temporal (default) or spatial (i.e. lat/lon) chunking to outfile"
+    )
+    parser.add_argument(
+        "--min_chunk_size",
+        default=1,
+        type=int,
+        help="minimum chunk size"
     )
     parser.add_argument(
         "--rlon",
