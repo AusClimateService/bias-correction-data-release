@@ -9,7 +9,7 @@
 #   output_freq:     input data frequency (fx, day, 1hr)
 #   output_grid:     output grid (AUST-05i, AUST-11i, AUST-20i)
 #   regrid_method:   regrid method (bilinear, conservative)
-#   chunking:        chunking strategy (temporal, spatial)
+#   chunking:        chunking strategy (temporal, spatial, contiguous)
 #   chunksize:       e.g. 1
 #   flags:           optional flags (e.g. -n for dry run)
 #

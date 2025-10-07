@@ -217,15 +217,23 @@ def fix_metadata(ds, var, freq, grid):
     return ds
 
 
-def get_output_encoding(ds, var, nlats, nlons, chunking='temporal', min_chunk_size=1):
+def get_output_encoding(
+    ds,
+    var,
+    nlats,
+    nlons,
+    chunking='temporal',
+    min_chunk_size=1,
+    compress=False
+):
     """Define the output file encoding.
 
-    chunking can be 'temporal' or 'spatial'
+    chunking can be 'temporal', 'spatial' or 'contiguous' (no chunking)
     """
 
     encoding = {}
-    ds_vars = list(ds.coords) + list(ds.keys())
     #data type and fill value
+    ds_vars = list(ds.coords) + list(ds.keys())
     for ds_var in ds_vars:
         if ds_var == var:
             encoding[ds_var] = {'_FillValue': np.float32(1e20)}
@@ -234,9 +242,11 @@ def get_output_encoding(ds, var, nlats, nlons, chunking='temporal', min_chunk_si
             encoding[ds_var] = {'_FillValue': None}
             encoding[ds_var]['dtype'] = 'float64'
     #compression
-    encoding[var]['zlib'] = True
-    encoding[var]['least_significant_digit'] = 2
-    encoding[var]['complevel'] = 5
+    if compress:
+        encoding[var]['zlib'] = True
+        encoding[var]['least_significant_digit'] = 2
+        encoding[var]['complevel'] = 5
+
     if not var == 'orog':
         #chunking
         var_shape = ds[var].shape
@@ -248,6 +258,8 @@ def get_output_encoding(ds, var, nlats, nlons, chunking='temporal', min_chunk_si
             encoding[var]['chunksizes'] = (min_chunk_size, nlats, nlons)
         elif chunking == 'spatial':
             encoding[var]['chunksizes'] = (ntimes, min_chunk_size, min_chunk_size)
+        elif chunking == 'contiguous':
+            encoding[var]['contiguous'] = True
         else:
             raise ValueError('invalid chunking strategy')
         #time units
@@ -412,7 +424,8 @@ def main(args):
         len(npcp_grid.lat),
         len(npcp_grid.lon),
         chunking=args.chunking_strategy,
-        min_chunk_size=args.min_chunk_size
+        min_chunk_size=args.min_chunk_size,
+        compress=args.compress,
     )
 
     output_ds.to_netcdf(args.outfile, encoding=output_encoding, format='NETCDF4_CLASSIC')
@@ -434,9 +447,9 @@ if __name__ == '__main__':
     parser.add_argument(
         "--chunking_strategy",
         default='temporal',
-        choices=('temporal', 'spatial'),
+        choices=('temporal', 'spatial', 'contiguous'),
         type=str,
-        help="apply temporal (default) or spatial (i.e. lat/lon) chunking to outfile"
+        help="apply temporal (default), spatial (i.e. lat/lon) or contiguous (i.e. none) chunking to outfile"
     )
     parser.add_argument(
         "--min_chunk_size",
@@ -455,6 +468,12 @@ if __name__ == '__main__':
         action='store_true',
         default=False,
         help="read all the data into memory"
+    )
+    parser.add_argument(
+        "--compress",
+        action='store_true',
+        default=False,
+        help="apply compression to the output file"
     )
     args = parser.parse_args()
     main(args)
