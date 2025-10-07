@@ -79,7 +79,7 @@ def main(args):
 
     nlats = len(output_ds.lat.values)
     nlons = len(output_ds.lon.values)
-    output_encoding = preprocess.get_output_encoding(output_ds, args.var, nlats, nlons)
+    output_encoding = preprocess.get_output_encoding(output_ds, args.var, nlats, nlons, compress=True)
     output_ds.to_netcdf(args.outfile, encoding=output_encoding, format='NETCDF4_CLASSIC')
 
 

@@ -1,0 +1,35 @@
+#!/bin/bash
+#PBS -P xv83
+#PBS -q normal
+#PBS -l walltime=12:00:00
+#PBS -l mem=40GB
+#PBS -l storage=gdata/xv83+gdata/ia39+gdata/kj66
+#PBS -l wd
+#PBS -v var,exp,inst
+
+# var:  tasmax, pr
+# exp:  historical,ssp370
+# inst: BOM, CSIRO
+
+# Example:
+#   qsub -v var=tasmax,exp=historical,inst=BOM time_aggregation.job
+
+
+__conda_setup="$('/g/data/xv83/dbi599/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/g/data/xv83/dbi599/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/g/data/xv83/dbi599/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/g/data/xv83/dbi599/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+
+conda activate npcp
+
+bash time_aggregation.sh /g/data/kj66/CORDEX/output-CMIP6/bias-adjusted-output/AUST-05i/${inst}/*/${exp}/*/*/v1-r1-ACS-MRNBC-AGCDv1-1960-2022/day/${var}Adjust/v20241216/*.nc
+
+
+
