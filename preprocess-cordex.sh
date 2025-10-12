@@ -34,10 +34,14 @@ flags=${13}
 python=/g/data/xv83/dbi599/miniconda3/envs/npcp2/bin/python
 
 if [[ "${invar}" == "wbgt" ]] ; then
-    if [[ "${exp}" == "historical" ]] ; then
-        infiles=(`ls /scratch/e53/bxn599/aus10i/access-cm2_historical/wbgt*.nc`)
-    else
-        infiles=(`ls /scratch/e53/bxn599/aus10i/wbgt*_${exp}_*.nc`)
+    if [[ "${rcm}" == "CCAM-v2203-SN" ]] ; then
+        if [[ "${exp}" == "historical" ]] ; then
+            infiles=(`ls /scratch/e53/bxn599/aus10i/access-cm2_historical/wbgt*.nc`)
+        else
+            infiles=(`ls /scratch/e53/bxn599/aus10i/wbgt*_${exp}_*.nc`)
+        fi
+    elif [[ "${rcm}" == "BARPA-R" ]] ; then
+        infiles=(`ls /scratch/tp28/wbgt_preview/v20250901/wbgt_AUS-15_ACCESS-CM2_${exp}_*.nc`)
     fi
 else
     if [[ "${rcm}" == "BARPA-R" ]] ; then
