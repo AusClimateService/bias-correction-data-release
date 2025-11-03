@@ -99,7 +99,7 @@ def drop_vars(ds):
     return ds
 
 
-def fix_metadata(ds, var, freq, grid):
+def fix_metadata(ds, var, freq, grid, regrid):
     "Apply metadata fixes."""
 
     # Remove xcdat attributes
@@ -198,21 +198,23 @@ def fix_metadata(ds, var, freq, grid):
         ds['time'].attrs['bounds'] = 'time_bnds'
         ds['time_bnds'].attrs = {}
 
-    grid_spacings = {
-        'AUST-05i': '0.05',
-        'AUST-11i': '0.11',
-        'AUST-20i': '0.20',
-    }
-
     # Add/update global attributes
-    ds.attrs['domain'] = 'Australia'
-    ds.attrs['domain_id'] = grid
-    ds.attrs['title'] = 'CORDEX-CMIP6 regridded data for Australia' ##
     ds.attrs['frequency'] = freq
     ds.attrs['variable_id'] = var
     ds.attrs['license'] = "CC BY 4.0"
-    grid_spacing = grid_spacings[grid]
-    ds.attrs['grid'] = f'latitude-longitude with {grid_spacing} degree grid spacing for the Australia domain'
+    ds.attrs['domain'] = 'Australia'
+    ds.attrs['domain_id'] = grid
+    if regrid == 'native':
+        ds.attrs['title'] = 'CORDEX-CMIP6 data for Australia'
+    else:    
+        ds.attrs['title'] = 'CORDEX-CMIP6 regridded data for Australia'
+        grid_spacings = {
+            'AUST-05i': '0.05',
+            'AUST-11i': '0.11',
+            'AUST-20i': '0.20',
+        }
+        grid_spacing = grid_spacings[grid]
+        ds.attrs['grid'] = f'latitude-longitude with {grid_spacing} degree grid spacing for the Australia domain'
 
     return ds
 
@@ -397,14 +399,19 @@ def main(args):
     if args.compute:
         input_ds = input_ds.compute()
 
-    # AGCD grid
-    npcp_grid = create_grid(args.output_grid)
-    output_ds = input_ds.regridder.horizontal(
-        args.output_var,
-        npcp_grid,
-        tool='xesmf',
-        method=args.regrid_method,
-    )
+    # Grid
+    if args.regrid_method == 'native':
+        output_ds = input_ds.sel({'lat': slice(-44.5, -10)})
+        output_ds = output_ds.sel({'lon': slice(112, 156.25)})
+    else:
+        assert args.output_grid in ('AUST-05i', 'AUST-11i', 'AUST-20i'), "f{args.output_grid} not a recognised target for regridding"
+        npcp_grid = create_grid(args.output_grid)
+        output_ds = input_ds.regridder.horizontal(
+            args.output_var,
+            npcp_grid,
+            tool='xesmf',
+            method=args.regrid_method,
+        )
 
     # Time bounds (including check that data is 12:00 centered)
     output_ds['time_bnds'] = create_bounds('T', output_ds['time'])
@@ -414,15 +421,21 @@ def main(args):
 
     # Metadata
     output_ds[args.output_var] = convert_units(output_ds[args.output_var], output_units[args.output_var])
-    output_ds = fix_metadata(output_ds, args.output_var, args.output_freq, args.output_grid)
+    output_ds = fix_metadata(
+        output_ds,
+        args.output_var,
+        args.output_freq,
+        args.output_grid,
+        args.regrid_method,
+    )
     output_ds.attrs['history'] = cmdprov.new_log(
         code_url='https://github.com/AusClimateService/bias-correction-data-release'
     )
     output_encoding = get_output_encoding(
         output_ds,
         args.output_var,
-        len(npcp_grid.lat),
-        len(npcp_grid.lon),
+        len(output_ds.lat),
+        len(output_ds.lon),
         chunking=args.chunking_strategy,
         min_chunk_size=args.min_chunk_size,
         compress=args.compress,
@@ -441,8 +454,13 @@ if __name__ == '__main__':
     parser.add_argument("input_freq", type=str, choices=("day", "1hr", "fx"), help="input frequency")
     parser.add_argument("output_var", type=str, help="input variable")
     parser.add_argument("output_freq", type=str, choices=("day", "1hr", "fx"), help="output frequency")
-    parser.add_argument("output_grid", type=str, choices=("AUST-05i", "AUST-11i", "AUST-20i"), help="output grid")
-    parser.add_argument("regrid_method", type=str, choices=('bilinear', 'conservative'), help="regridding method")
+    parser.add_argument("output_grid", type=str, help="output grid label")
+    parser.add_argument(
+        "regrid_method",
+        type=str,
+        choices=('bilinear', 'conservative', 'native'),
+        help="regridding method (native = no regridding)"
+    )
     parser.add_argument("outfile", type=str, help="output file")
     parser.add_argument(
         "--chunking_strategy",

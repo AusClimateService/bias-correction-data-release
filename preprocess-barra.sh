@@ -7,8 +7,8 @@
 #   input_freq:      input data frequency (fx, day, 1hr)
 #   output_var:      variable to output  (tas, tasmin, tasmax, pr, prsn, rsds, rlds, sfcWind, sfcWindmax, hurs, hursmin, hursmax, psl, ps, wbgt)
 #   output_freq:     input data frequency (fx, day, 1hr)
-#   output_grid:     output grid (AUST-05i, AUST-11i, AUST-20i)
-#   regrid_method:   regrid method (bilinear, conservative)
+#   output_grid:     output grid (AUST-05i, AUST-11i, AUST-20i, native)
+#   regrid_method:   regrid method (bilinear, conservative, native)
 #   chunking:        chunking strategy (temporal, spatial, contiguous)
 #   chunksize:       e.g. 1
 #   flags:           optional flags (e.g. -n for dry run)

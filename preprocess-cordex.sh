@@ -11,8 +11,8 @@
 #   infreq:          input data frequency (fx, day, 1hr)
 #   outvar:          variable to output  (tas, tasmin, tasmax, pr, prsn, rsds, rlds, sfcWind, sfcWindmax, hurs, hursmin, hursmax, psl, ps, wbgt)
 #   outfreq:         input data frequency (fx, day, 1hr)
-#   outgrid:         output grid (AUST-05i, AUST-11i, AUST-20i)
-#   regrid:          regrid method (bilinear, conservative)
+#   outgrid:         output grid (AUST-05i, AUST-11i, AUST-20i, ...)
+#   regrid:          regrid method (bilinear, conservative, native)
 #   chunking:        chunking strategy (temporal, spatial, contiguous)
 #   min_chunk_size:  e.g. 1
 #   flags:           optional flags (e.g. -n for dry run)
@@ -82,7 +82,7 @@ for infile in "${infiles[@]}"; do
     start_date=`echo ${tbounds} | cut -d - -f 1`
     end_date=`echo ${tbounds} | cut -d - -f 2`
     
-    outdir=/g/data/ia39/australian-climate-service/test-data/CORDEX/output-CMIP6/DD/${outgrid}/${institution}/${gcm}/${experiment}/${run}/${rcm}/${version}/${outfreq}/${outvar}/latest-${chunking}
+    outdir=/g/data/ia39/australian-climate-service/test-data/CORDEX/output-CMIP6/DD/${outgrid}/${institution}/${gcm}/${experiment}/${run}/${rcm}/${version}/${outfreq}/${outvar}/latest-${regrid}-${chunking}
     outfile_start=${outvar}_${outgrid}_${gcm}_${experiment}_${run}_${institution}_${rcm}_${version}_${outfreq}
     if [[ "${outvar}" == "orog" ]] ; then
         outfile_end=".nc"

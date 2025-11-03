@@ -1,7 +1,7 @@
 #!/bin/bash
 #PBS -P xv83
 #PBS -q hugemem
-#PBS -l walltime=20:00:00
+#PBS -l walltime=14:00:00
 #PBS -l mem=400GB
 #PBS -l storage=gdata/xv83+gdata/ia39+gdata/hq89+gdata/ig45+gdata/py18+gdata/ob53+gdata/zz63+scratch/e53+scratch/tp28
 #PBS -l wd
