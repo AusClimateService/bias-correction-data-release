@@ -368,6 +368,28 @@ def create_grid(grid_name):
     return grid
 
 
+def clip_grid(ds, grid_name):
+    """Clip a grid to the AUST region"""
+
+    assert 'AUST' in grid_name
+
+    if grid_name == 'AUST-11':
+        south_lat = -44.56
+        north_lat = -10.1
+        west_lat = 112
+        east_lat = 156.25
+    else:
+        south_lat = -44.5
+        north_lat = -10
+        west_lat = 112
+        east_lat = 156.25
+
+    clipped_ds = ds.sel({'lat': slice(south_lat, north_lat)})
+    clipped_ds = clipped_ds.sel({'lon': slice(west_lat, east_lat)})
+
+    return clipped_ds
+
+
 def main(args):
     """Run the program."""
 
@@ -401,8 +423,10 @@ def main(args):
 
     # Grid
     if args.regrid_method == 'native':
-        output_ds = input_ds.sel({'lat': slice(-44.5, -10)})
-        output_ds = output_ds.sel({'lon': slice(112, 156.25)})
+        if 'AUST' in args.output_grid:
+            output_ds = clip_grid(input_ds, args.output_grid)
+        else:
+            output_ds = input_ds
     else:
         assert args.output_grid in ('AUST-05i', 'AUST-11i', 'AUST-20i'), "f{args.output_grid} not a recognised target for regridding"
         npcp_grid = create_grid(args.output_grid)
