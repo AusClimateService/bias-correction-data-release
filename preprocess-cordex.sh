@@ -34,44 +34,41 @@ flags=${13}
 python=/g/data/xv83/dbi599/miniconda3/envs/npcp2/bin/python
 
 if [[ "${invar}" == "wbgt" ]] ; then
-    if [[ "${rcm}" == "CCAM-v2203-SN" ]] ; then
-        if [[ "${exp}" == "historical" ]] ; then
-            infiles=(`ls /scratch/e53/bxn599/aus10i/access-cm2_historical/wbgt*.nc`)
-        else
-            infiles=(`ls /scratch/e53/bxn599/aus10i/wbgt*_${exp}_*.nc`)
-        fi
-    elif [[ "${rcm}" == "BARPA-R" ]] ; then
-        infiles=(`ls /scratch/tp28/wbgt_preview/v20250901/wbgt_AUS-15_ACCESS-CM2_${exp}_*.nc`)
-    fi
-else
     if [[ "${rcm}" == "BARPA-R" ]] ; then
-        project_dir=/g/data/py18/BARPA/output/CMIP6/DD/AUS-15/BOM
-        tstamp="latest"
-    elif [[ "${rcm}" == "CCAM-v2203-SN" ]] ; then
-        project_dir=/g/data/hq89/CCAM/output/CMIP6/DD/AUS-10i/CSIRO
+        project_dir=/g/data/ia39/australian-climate-service/release/CORDEX/output-CMIP6/DD/AUS-15/BOM
         tstamp="v*"
-    elif [[ "${rcm}" == "CCAMoc-v2112" ]] ; then
-        project_dir=/g/data/ig45/QldFCP-2/CORDEX-CMIP6/DD/AUS-20i/UQ-DEC
-        tstamp="latest"
-    elif [[ "${rcm}" == "CCAM-v2105" ]] ; then
-        project_dir=/g/data/ig45/QldFCP-2/CORDEX-CMIP6/DD/AUS-20i/UQ-DEC
-        tstamp="latest"
-    elif [[ "${rcm}" == "CCAM-v2112" ]] ; then
-        project_dir=/g/data/ig45/QldFCP-2/CORDEX-CMIP6/DD/AUS-20i/UQ-DEC
-        tstamp="latest"
-    elif [[ "${rcm}" == "NARCliM2-0-WRF412R3" ]] ; then
-        project_dir=/g/data/zz63/NARCliM2-0/output/CMIP6/DD/AUS-18/NSW-Government
-        rlon="--rlon /g/data/zz63/NARCliM2-0/rlon-correction-AUS-18.txt"
-        tstamp="latest"
-    elif [[ "${rcm}" == "NARCliM2-0-WRF412R5" ]] ; then
-        project_dir=/g/data/zz63/NARCliM2-0/output/CMIP6/DD/AUS-18/NSW-Government
-        rlon="--rlon /g/data/zz63/NARCliM2-0/rlon-correction-AUS-18.txt"
-        tstamp="latest"
+    elif [[ "${rcm}" == "CCAM-v2203-SN" ]] ; then
+        project_dir=/g/data/ia39/australian-climate-service/release/CORDEX/output-CMIP6/DD/AUS-10i/CSIRO
+        tstamp="v*"
     fi
-    infiles=(`ls ${project_dir}/${gcm}/${exp}/${run}/${rcm}/*/${infreq}/${invar}/${tstamp}/*.nc`)
+elif [[ "${rcm}" == "BARPA-R" ]] ; then
+    project_dir=/g/data/py18/BARPA/output/CMIP6/DD/AUS-15/BOM
+    tstamp="latest"
+elif [[ "${rcm}" == "CCAM-v2203-SN" ]] ; then
+    project_dir=/g/data/hq89/CCAM/output/CMIP6/DD/AUS-10i/CSIRO
+    tstamp="v*"
+elif [[ "${rcm}" == "CCAMoc-v2112" ]] ; then
+    project_dir=/g/data/ig45/QldFCP-2/CORDEX-CMIP6/DD/AUS-20i/UQ-DEC
+    tstamp="latest"
+elif [[ "${rcm}" == "CCAM-v2105" ]] ; then
+    project_dir=/g/data/ig45/QldFCP-2/CORDEX-CMIP6/DD/AUS-20i/UQ-DEC
+    tstamp="latest"
+elif [[ "${rcm}" == "CCAM-v2112" ]] ; then
+    project_dir=/g/data/ig45/QldFCP-2/CORDEX-CMIP6/DD/AUS-20i/UQ-DEC
+    tstamp="latest"
+elif [[ "${rcm}" == "NARCliM2-0-WRF412R3" ]] ; then
+    project_dir=/g/data/zz63/NARCliM2-0/output/CMIP6/DD/AUS-18/NSW-Government
+    rlon="--rlon /g/data/zz63/NARCliM2-0/rlon-correction-AUS-18.txt"
+    tstamp="latest"
+elif [[ "${rcm}" == "NARCliM2-0-WRF412R5" ]] ; then
+    project_dir=/g/data/zz63/NARCliM2-0/output/CMIP6/DD/AUS-18/NSW-Government
+    rlon="--rlon /g/data/zz63/NARCliM2-0/rlon-correction-AUS-18.txt"
+    tstamp="latest"
 fi
+infiles=(`ls ${project_dir}/${gcm}/${exp}/${run}/${rcm}/*/${infreq}/${invar}/${tstamp}/*.nc`)
 
 for infile in "${infiles[@]}"; do
+    vdir=`echo ${infile} | rev | cut -d / -f 2 | rev`
     gcm=`basename ${infile} | cut -d _ -f 3`
     experiment=`basename ${infile} | cut -d _ -f 4`
     run=`basename ${infile} | cut -d _ -f 5`
@@ -82,12 +79,19 @@ for infile in "${infiles[@]}"; do
     start_date=`echo ${tbounds} | cut -d - -f 1`
     end_date=`echo ${tbounds} | cut -d - -f 2`
     
-    outdir=/g/data/ia39/australian-climate-service/test-data/CORDEX/output-CMIP6/DD/${outgrid}/${institution}/${gcm}/${experiment}/${run}/${rcm}/${version}/${outfreq}/${outvar}/latest-${regrid}-${chunking}
+    outdir=/g/data/ia39/australian-climate-service/test-data/CORDEX/output-CMIP6/DD/${outgrid}/${institution}/${gcm}/${experiment}/${run}/${rcm}/${version}/${outfreq}/${outvar}/${vdir}-${regrid}-${chunking}
     outfile_start=${outvar}_${outgrid}_${gcm}_${experiment}_${run}_${institution}_${rcm}_${version}_${outfreq}
+    if [[ "${outfreq}" == "1hr" ]] ; then
+        time_start="010000"
+        time_end="312300"
+    else
+        time_start="01"
+        time_end="31"
+    fi
     if [[ "${outvar}" == "orog" ]] ; then
         outfile_end=".nc"
     else
-        outfile_end="_${start_date:0:6}01-${end_date:0:6}31.nc"
+        outfile_end="_${start_date:0:6}${time_start}-${end_date:0:6}${time_end}.nc"
     fi
     outfile=${outfile_start}${outfile_end}
     outpath=${outdir}/${outfile}
