@@ -17,19 +17,26 @@
 #   qsub -v var=wbgt,grid=AUST-20i,dataset=CORDEX,input_chunking=temporal,output_chunking=spatial,output_min_chunk=1 zarr.job
 
 
-__conda_setup="$('/g/data/xv83/dbi599/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/g/data/xv83/dbi599/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/g/data/xv83/dbi599/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/g/data/xv83/dbi599/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
+#__conda_setup="$('/g/data/xv83/dbi599/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+#if [ $? -eq 0 ]; then
+#    eval "$__conda_setup"
+#else
+#    if [ -f "/g/data/xv83/dbi599/miniconda3/etc/profile.d/conda.sh" ]; then
+#        . "/g/data/xv83/dbi599/miniconda3/etc/profile.d/conda.sh"
+#    else
+#        export PATH="/g/data/xv83/dbi599/miniconda3/bin:$PATH"
+#    fi
+#fi
+#unset __conda_setup
 
-conda activate agcd
+#conda activate agcd
+
+var=wbgt
+grid=AUST-20i
+dataset=CORDEX
+input_chunking=temporal
+output_chunking=temporal
+output_min_chunk=1
 
 
 if [[ "${var}" == "tas" ]] ; then
@@ -49,13 +56,8 @@ input_options="--input_time_chunk 1"
 fi
 
 padded_min_chunk="000${output_min_chunk}"
-if [[ "${output_chunking}" == "spatial" ]] ; then
-output_options="--drop_leap_days --output_min_chunk ${output_min_chunk}"
-chunk_label="spatial${padded_min_chunk: -2}-chunking"
-else
 output_options="--output_min_chunk ${output_min_chunk}"
-chunk_label="temporal${padded_min_chunk: -2}-chunking"
-fi
+chunk_label="${output_chunking}${padded_min_chunk: -2}-chunking"
 
 
 if [[ "${dataset}" == "BARRA" ]] ; then

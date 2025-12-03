@@ -53,6 +53,8 @@ def main(args):
     if args.input_lon_chunk:
         input_chunks[args.lon_name] = args.input_lon_chunk
     ds = xr.open_mfdataset(args.infiles, preprocess=preprocess_func, chunks=input_chunks)
+    ds = ds.chunk(input_chunks)
+
     ds.attrs['history'] = cmdprov.new_log(
         infile_logs={args.infiles[0]: ds.attrs['history']}
     )
