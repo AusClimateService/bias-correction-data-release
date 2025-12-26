@@ -13,7 +13,7 @@ This document tracks progress towards bias correcting wet bulb globe temperature
 | BARPA-R | CESM2 | :green_circle: | :green_circle: |
 | BARPA-R | CMCC-ESM2 | :green_circle: | :green_circle: |
 | BARPA-R | EC-Earth3 | :green_circle: | :green_circle: |
-| BARPA-R | MPI-ESM1-2-HR | :green_circle: | :yellow_circle: |
+| BARPA-R | MPI-ESM1-2-HR | :yellow_circle: | :green_circle: |
 | BARPA-R | NorESM2-MM | :green_circle: | :green_circle: |
 | CCAM-v2203-SN | ACCESS-CM2 | :green_circle: | :green_circle: |
 | CCAM-v2203-SN | ACCESS-ESM1-5 | :green_circle: | :green_circle: |
@@ -29,5 +29,5 @@ The completed data can be found at:
 ```
 The updated daily and newly implemented hourly QME codes will be available as seperate branches under the following repository: 
 ```
-https://github.com/AusClimateService/QME :yellow_circle:
+https://github.com/AusClimateService/QME (in progress)
 ```
