@@ -29,5 +29,11 @@ The completed data can be found at:
 ```
 The updated daily and newly implemented hourly QME codes will be available as seperate branches under the following repository: 
 ```
-https://github.com/AusClimateService/QME (in progress)
+https://github.com/AusClimateService/QME
+- https://github.com/AusClimateService/QME/tree/qme_dev_daily
+- https://github.com/AusClimateService/QME/tree/qme_dev_hourly
+```
+The evaluation script and plots of the results can be found here:
+```
+https://github.com/AusClimateService/QME/tree/qme_dev_hourly/evaluation
 ```
