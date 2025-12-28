@@ -34,7 +34,7 @@ https://github.com/AusClimateService/QME/
 •	https://github.com/AusClimateService/QME/tree/qme_dev_daily
 •	https://github.com/AusClimateService/QME/tree/qme_dev_hourly
 ```
-The `qme_dev_daily` branch is based on `qme_dev` (available on Mich Black’s NCI-GitLab page), which was used to bias-correct the ACS daily data. `qme_dev` was cloned from NCI-GitLab and some code lines were modified based on Andrew Gammon’s recommendations. So, `qme_dev_daily` is an updated version of `qme_dev`. `qme_dev_daily` was tested on a single CORDEX variable “prsn”, which worked fine. No further daily variables were tested by Alicia.
+The `qme_dev_daily` branch is based on `qme_dev` (available on Mich Black’s NCI-GitLab page), which was used to bias-correct the ACS daily data. `qme_dev` was cloned from NCI-GitLab and some code lines were modified based on Andrew Gammon’s recommendations. So, `qme_dev_daily` is an updated version of `qme_dev`. `qme_dev_daily` was tested on a single CORDEX variable “prsn” by Alicia, which worked fine. No further daily variables were tested by Alicia using this code.
 
 `qme_dev_hourly` was implemented for hourly bias-correction, adopted from `qme_dev_daily`. 
 
