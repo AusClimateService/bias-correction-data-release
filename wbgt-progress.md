@@ -27,6 +27,9 @@ The completed data can be found at:
 ```
 /g/data/ia39/australian-climate-service/test-data/CORDEX/output-CMIP6/bias-adjusted-output/AUST-11i
 ```
+The generated outputs (yearly files) are not compressed and not chunked (i.e., they are contiguous files) to enable timely and quick evaluation of the results, as compressed files take longer to read. After the evaluation process, the output files will/can be chunked and compressed in a post-processing step for sharing and publishing purposes.
+
+
 ## Codes
 Two branches were created under the repository:
 ```
