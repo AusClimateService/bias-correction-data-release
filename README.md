@@ -104,7 +104,7 @@ are available in project ia39 on NCI at the following (example) directories:
 /g/data/ia39/australian-climate-service/release/CORDEX/output-Adjust/CMIP6/bias-adjusted-input/AUST-05i/BOM/ERA5/historical/hres/BARRAR2/v1/day/pr/v20241216/pr_AUST-05i_ERA5_historical_hres_BOM_BARRAR2_v1_day_20020101-20021231.nc
 ```
 
-The pre-processed model data from BoM and CSIRO for Phase 1 have been formally published to project kj66 on NCI (https://doi.org/10.25914/yrcz-m051)
+The pre-processed model data from BoM, CSIRO and UQ-DEC for Phase 1 have been formally published to project kj66 on NCI (https://doi.org/10.25914/yrcz-m051)
 and are available at the following (example) directory:
 
 ```
@@ -113,14 +113,11 @@ and are available at the following (example) directory:
 
 The kj66 file naming convention is explained in detail at: https://opus.nci.org.au/x/LoG_Fg
 
-Everything else (i.e. all Phase 2 data and Phase 1 data for UQ-DEC and NSW-Government)
+Everything else (i.e. all Phase 2 data and Phase 1 data for NSW-Government)
 is available in project ia39 on NCI at the following (example) directory:
 ```
 /g/data/ia39/australian-climate-service/release/CORDEX/output-Adjust/CMIP6/bias-adjusted-input/AUST-05i/BOM/CESM2/ssp370/r11i1p1f1/BARPA-R/v1-r1/day/pr/v20241216/pr_AUST-05i_CESM2_ssp370_r11i1p1f1_BOM_BARPA-R_v1-r1_day_20220101-20221231.nc
 ```
-
-(A replica of the Phase 1 BoM and CSIRO data on kj66 data is also on ia39 at the moment.)
-
 
 ## Bias corrected output data
 
@@ -151,7 +148,7 @@ Still to come.
 
 ### Data location
 
-The Phase 1 bias corrected output data for BoM and CSIRO have been formally published to project kj66 on NCI (https://doi.org/10.25914/yrcz-m051)
+The Phase 1 bias corrected output data for BoM, CSIRO and UQ-DEC have been formally published to project kj66 on NCI (https://doi.org/10.25914/yrcz-m051)
 and are available at the following (example) directory:
 
 ```
@@ -160,7 +157,7 @@ and are available at the following (example) directory:
 
 The kj66 file naming convention is explained in detail at: https://opus.nci.org.au/x/LoG_Fg
 
-Everything else (i.e. the Phase 1 data for UQ-DEC and NSW-Government) and a replica of what's on kj66 
+Everything else (i.e. the Phase 1 data for NSW-Government) and a replica of what's on kj66 
 is available in project ia39 on NCI at the following (example) directory:
 ```
 /g/data/ia39/australian-climate-service/release/CORDEX/output-Adjust/CMIP6/bias-adjusted-output/AUST-05i/BOM/ACCESS-CM2/ssp370/r4i1p1f1/BARPA-R/v1-r1-ACS-QME-AGCDv1-1960-2022/day/prAdjust/v20241216
