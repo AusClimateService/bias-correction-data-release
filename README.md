@@ -97,26 +97,26 @@ Phase 2:
 ### Data location
 
 The AGCD and pre-processed BARRA-R2 observational data 
-are available in project ia39 on NCI at the following (example) directories:
+are available in project ia39 on NCI at the following (example) locations:
 ```
 /g/data/xv83/agcd-csiro/precip/daily/precip-total_AGCD-CSIRO_r005_19300101-19301231_daily.nc
 
-/g/data/ia39/australian-climate-service/release/CORDEX/output-Adjust/CMIP6/bias-adjusted-input/AUST-05i/BOM/ERA5/historical/hres/BARRAR2/v1/day/pr/v20241216/pr_AUST-05i_ERA5_historical_hres_BOM_BARRAR2_v1_day_20020101-20021231.nc
+/g/data/ia39/australian-climate-service/release/CORDEX/output-CMIP6/DD/AUST-05i/BOM/ERA5/historical/hres/BARRAR2/v1/day/pr/v20241216/pr_AUST-05i_ERA5_historical_hres_BOM_BARRAR2_v1_day_20230101-20231231.nc
 ```
 
 The pre-processed model data from BoM, CSIRO and UQ-DEC for Phase 1 have been formally published to project kj66 on NCI (https://doi.org/10.25914/yrcz-m051)
-and are available at the following (example) directory:
+and are available at the following (example) location:
 
 ```
-/g/data/kj66/CORDEX/output/CMIP6/DD/AUST-05i/BOM/EC-Earth3/historical/r1i1p1f1/BARPA-R/v1-r1/day/sfcWindmax/v20241216/sfcWindmax_AUST-05i_EC-Earth3_historical_r1i1p1f1_BOM_BARPA-R_v1-r1_day_19600101-19601231.nc
+/g/data/kj66/CORDEX/output-CMIP6/DD/AUST-05i/BOM/EC-Earth3/historical/r1i1p1f1/BARPA-R/v1-r1/day/sfcWindmax/v20241216/sfcWindmax_AUST-05i_EC-Earth3_historical_r1i1p1f1_BOM_BARPA-R_v1-r1_day_20140101-20141231.nc
 ```
 
 The kj66 file naming convention is explained in detail at: https://opus.nci.org.au/x/LoG_Fg
 
 Everything else (i.e. all Phase 2 data and Phase 1 data for NSW-Government)
-is available in project ia39 on NCI at the following (example) directory:
+is available in project ia39 on NCI at the following (example) location:
 ```
-/g/data/ia39/australian-climate-service/release/CORDEX/output-Adjust/CMIP6/bias-adjusted-input/AUST-05i/BOM/CESM2/ssp370/r11i1p1f1/BARPA-R/v1-r1/day/pr/v20241216/pr_AUST-05i_CESM2_ssp370_r11i1p1f1_BOM_BARPA-R_v1-r1_day_20220101-20221231.nc
+/g/data/ia39/australian-climate-service/release/CORDEX/output-CMIP6/DD/AUST-05i/NSW-Government/MPI-ESM1-2-HR/ssp126/r1i1p1f1/NARCliM2-0-WRF412R3/v1-r1/day/tasmax/v20241216/tasmax_AUST-05i_MPI-ESM1-2-HR_ssp126_r1i1p1f1_NSW-Government_NARCliM2-0-WRF412R3_v1-r1_day_21000101-21001231.nc
 ```
 
 ## Bias corrected output data
@@ -149,18 +149,18 @@ Still to come.
 ### Data location
 
 The Phase 1 bias corrected output data for BoM, CSIRO and UQ-DEC have been formally published to project kj66 on NCI (https://doi.org/10.25914/yrcz-m051)
-and are available at the following (example) directory:
+and are available at the following (example) location:
 
 ```
-/g/data/kj66/CORDEX/output/CMIP6/bias-adjusted-output/AUST-05i/CSIRO/CNRM-ESM2-1/ssp370/r1i1p1f2/CCAM-v2203-SN/v1-r1-ACS-QME-BARRAR2-1980-2022/day/tasminAdjust/v20241216/tasminAdjust_AUST-05i_CNRM-ESM2-1_ssp370_r1i1p1f2_CSIRO_CCAM-v2203-SN_v1-r1-ACS-QME-BARRAR2-1980-2022_day_20660101-20661231.nc
+/g/data/kj66/CORDEX/output-CMIP6/bias-adjusted-output/AUST-05i/CSIRO/CNRM-ESM2-1/ssp370/r1i1p1f2/CCAM-v2203-SN/v1-r1-ACS-QME-BARRAR2-1980-2022/day/tasminAdjust/v20241216/tasminAdjust_AUST-05i_CNRM-ESM2-1_ssp370_r1i1p1f2_CSIRO_CCAM-v2203-SN_v1-r1-ACS-QME-BARRAR2-1980-2022_day_20990101-20991231.nc
 ```
 
 The kj66 file naming convention is explained in detail at: https://opus.nci.org.au/x/LoG_Fg
 
-Everything else (i.e. the Phase 1 data for NSW-Government) and a replica of what's on kj66 
-is available in project ia39 on NCI at the following (example) directory:
+Everything else (i.e. all Phase 2 data and Phase 1 data for NSW-Government) 
+is available in project ia39 on NCI at the following (example) location:
 ```
-/g/data/ia39/australian-climate-service/release/CORDEX/output-Adjust/CMIP6/bias-adjusted-output/AUST-05i/BOM/ACCESS-CM2/ssp370/r4i1p1f1/BARPA-R/v1-r1-ACS-QME-AGCDv1-1960-2022/day/prAdjust/v20241216
+/g/data/ia39/australian-climate-service/release/CORDEX/output-CMIP6/bias-adjusted-output/AUST-05i/BOM/ACCESS-CM2/ssp126/r4i1p1f1/BARPA-R/v1-r1-ACS-QME-BARRAR2-1980-2022/day/pslAdjust/v20250311/pslAdjust_AUST-05i_ACCESS-CM2_ssp126_r4i1p1f1_BOM_BARPA-R_v1-r1-ACS-QME-BARRAR2-1980-2022_day_21000101-21001231.nc
 ```
 
 
