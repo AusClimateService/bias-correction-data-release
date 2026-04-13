@@ -1,19 +1,21 @@
 #!/bin/bash
 #PBS -P xv83
 #PBS -q normal
-#PBS -l walltime=12:00:00
+#PBS -l walltime=2:00:00
 #PBS -l mem=40GB
 #PBS -l storage=gdata/xv83+gdata/ia39+gdata/kj66
 #PBS -l wd
-#PBS -v var,exp,inst
+#PBS -v var,exp,inst,obs,tscale
 
-# var:  tasmax, pr
-# exp:  historical,ssp370
-# inst: BOM, CSIRO
+# var:    e.g. tasmax, tasmin, pr
+# exp:    historical,ssp126,ssp370
+# inst:   BOM, CSIRO
+# bias:   QME, MRNBC
+# obs:    AGCD, BARRA
+# tscale: mon, yr
 
 # Example:
-#   qsub -v var=tasmax,exp=historical,inst=BOM time_aggregation.job
-
+#   qsub -v var=tasmax,exp=historical,inst=BOM,bias=QME,obs=AGCD,tscale=yr time_aggregation.job
 
 __conda_setup="$('/g/data/xv83/dbi599/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
@@ -29,7 +31,16 @@ unset __conda_setup
 
 conda activate npcp
 
-bash time_aggregation.sh /g/data/kj66/CORDEX/output-CMIP6/bias-adjusted-output/AUST-05i/${inst}/*/${exp}/*/*/v1-r1-ACS-MRNBC-AGCDv1-1960-2022/day/${var}Adjust/v20241216/*.nc
+
+if [[ "${inst}" == "BOM" ]] ; then
+    gcms=("ACCESS-CM2" "ACCESS-ESM1-5" "CESM2" "CMCC-ESM2" "EC-Earth3" "MPI-ESM1-2-HR" "NorESM2-MM")
+elif [[ "${inst}" == "CSIRO" ]] ; then
+    gcms=("ACCESS-CM2" "ACCESS-ESM1-5" "CESM2" "CMCC-ESM2" "CNRM-ESM2-1" "EC-Earth3" "NorESM2-MM")
+fi
+
+for gcm in ${gcms[@]}; do
+    bash time_aggregation_${tscale}.sh /g/data/kj66/CORDEX/output-CMIP6/bias-adjusted-output/AUST-05i/${inst}/${gcm}/${exp}/*/*/*${bias}-${obs}*/day/${var}Adjust/v20241216/*.nc
+done
 
 
 

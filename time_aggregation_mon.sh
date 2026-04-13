@@ -25,8 +25,9 @@ for inpath in "$@"; do
         outdir=`dirname ${outpath}`
         if [ ! -f ${outpath} ] ; then
             mkdir -p ${outdir}
-            ${python} /home/599/dbi599/bias-correction-data-release/time_aggregation.py ${inpath} ${var} ${outpath}    
-            echo ${outpath} 
+            command="${python} /home/599/dbi599/bias-correction-data-release/time_aggregation.py ${inpath} ${var} mon ${outpath}"
+            echo ${command}
+            ${comamnd}
         else
             echo 'File already processed: ' ${outpath}
         fi
