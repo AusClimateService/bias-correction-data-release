@@ -1,7 +1,7 @@
 #!/bin/bash
 #PBS -P xv83
 #PBS -q normal
-#PBS -l walltime=2:00:00
+#PBS -l walltime=5:00:00
 #PBS -l mem=40GB
 #PBS -l storage=gdata/xv83+gdata/ia39+gdata/kj66
 #PBS -l wd
@@ -10,12 +10,13 @@
 # var:    e.g. tasmax, tasmin, pr
 # exp:    historical,ssp126,ssp370
 # inst:   BOM, CSIRO
-# bias:   QME, MRNBC
+# bias:   QME, MRNBC, raw
 # obs:    AGCD, BARRA
 # tscale: mon, yr
 
 # Example:
 #   qsub -v var=tasmax,exp=historical,inst=BOM,bias=QME,obs=AGCD,tscale=yr time_aggregation.job
+
 
 __conda_setup="$('/g/data/xv83/dbi599/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
@@ -31,6 +32,16 @@ unset __conda_setup
 
 conda activate npcp
 
+if [[ "${bias}" == "raw" ]] ; then
+    activity="DD"
+    version="*"
+    filevar=${var}
+else
+    activity="bias-adjusted-output"
+    version="*${bias}-${obs}*"
+    filevar=${var}Adjust
+fi
+
 
 if [[ "${inst}" == "BOM" ]] ; then
     gcms=("ACCESS-CM2" "ACCESS-ESM1-5" "CESM2" "CMCC-ESM2" "EC-Earth3" "MPI-ESM1-2-HR" "NorESM2-MM")
@@ -39,7 +50,7 @@ elif [[ "${inst}" == "CSIRO" ]] ; then
 fi
 
 for gcm in ${gcms[@]}; do
-    bash time_aggregation_${tscale}.sh /g/data/kj66/CORDEX/output-CMIP6/bias-adjusted-output/AUST-05i/${inst}/${gcm}/${exp}/*/*/*${bias}-${obs}*/day/${var}Adjust/v20241216/*.nc
+    bash time_aggregation_${tscale}.sh /g/data/kj66/CORDEX/output-CMIP6/${activity}/AUST-05i/${inst}/${gcm}/${exp}/*/*/${version}/day/${filevar}/v20241216/*.nc
 done
 
 
